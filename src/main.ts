@@ -2,6 +2,7 @@ import * as audio from './audio';
 import * as button from './button';
 import * as color from './color';
 import * as display from './display';
+import * as gamepadTouch from './gamepadTouch';
 import * as keyboard from './keyboard';
 import * as memory from './memory';
 
@@ -18,6 +19,10 @@ let canvasCtx: CanvasRenderingContext2D;
 let colors: color.RGB[];
 let screenImageData: ImageData;
 let lastFrameAt = performance.now();
+const caseUnscaledWidth = 72;
+const caseUnscaledHeight = 128;
+const displayOffsetUnscaledX = 4;
+const displayOffsetUnscaledY = 4;
 
 window.addEventListener('load', onLoad);
 
@@ -27,6 +32,7 @@ function onLoad() {
   keyboard.init();
   initColors();
   initCanvas();
+  gamepadTouch.init(canvas, caseUnscaledWidth, caseUnscaledHeight);
   romInit();
   window.requestAnimationFrame(mainLoop);
 }
@@ -37,6 +43,7 @@ function mainLoop(now: number) {
     memory.poke(memory.ADDRESS_FPS, Math.round(1000 / (now - lastFrameAt)));
     lastFrameAt = now;
     keyboard.update();
+    gamepadTouch.update();
     updateBtn();
     updateAud();
     romLoop();
@@ -49,13 +56,13 @@ function updateBtn() {
   for (let i = 0; i < 6; i++) {
     let k = 0;
 
-    if (keyboard.buttons[i].isPressed) {
+    if (keyboard.buttons[i].isPressed || gamepadTouch.buttons[i].isPressed) {
       k |= button.STATE_PRESSED;
     }
-    if (keyboard.buttons[i].isJustPressed) {
+    if (keyboard.buttons[i].isJustPressed || gamepadTouch.buttons[i].isJustPressed) {
       k |= button.STATE_JUST_PRESSED;
     }
-    if (keyboard.buttons[i].isJustReleased) {
+    if (keyboard.buttons[i].isJustReleased || gamepadTouch.buttons[i].isJustReleased) {
       k |= button.STATE_JUST_RELEASED;
     }
 
@@ -80,7 +87,7 @@ function updateGfx() {
     screenImageData.data[i * 4 + 2] = pixelColor.b;
     screenImageData.data[i * 4 + 3] = 255;
   }
-  canvasCtx.putImageData(screenImageData, 0, 0);
+  canvasCtx.putImageData(screenImageData, displayOffsetUnscaledX, displayOffsetUnscaledY);
 }
 
 function initCanvas() {
@@ -89,14 +96,18 @@ function initCanvas() {
   const crispCss = 'image-rendering: -moz-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: -o-crisp-edges; image-rendering: pixelated;';
   document.body.style.cssText = bodyCss;
   canvas = document.createElement('canvas');
-  canvas.width = display.GFX_H;
-  canvas.height = display.GFX_H;
+  canvas.width = caseUnscaledWidth;
+  canvas.height = caseUnscaledHeight;
   canvasCtx = canvas.getContext('2d', { alpha: false });
   canvasCtx.imageSmoothingEnabled = false;
   canvas.style.cssText = canvasCss + crispCss;
+  canvasCtx.fillStyle = '#ddd';
+  canvasCtx.fillRect(0, 0, caseUnscaledWidth, caseUnscaledHeight); // case
+  canvasCtx.fillStyle = '#333';
+  canvasCtx.fillRect(displayOffsetUnscaledX - 1, displayOffsetUnscaledY - 1, display.GFX_W + 2, display.GFX_H + 2); // bezel
   const setSize = () => {
     const windowRatio = innerWidth / innerHeight;
-    const canvasRatio = display.GFX_W / display.GFX_H;
+    const canvasRatio = caseUnscaledWidth / caseUnscaledHeight;
     const filledHorizontal = windowRatio < canvasRatio;
     const scaledCanvasWidth = filledHorizontal ? innerWidth : innerHeight * canvasRatio;
     const scaledCanvasHeight = !filledHorizontal ? innerHeight : innerWidth / canvasRatio;
