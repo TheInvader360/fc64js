@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "prettier-check": "prettier --config .prettierrc './src/**/*.ts' --check",
+    "prettier-write": "prettier --config .prettierrc './src/**/*.ts' --write",
+    "rollup-watch": "rollup -c -w --bundleConfigAsCjs",
+    "browser-sync-start": "browser-sync start --server --directory --files \"*\""
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.1",
+    "prettier": "^3.1.1",
+    "rollup": "^3.21.5",
+    "tslib": "^2.5.0"
+  }
+}
