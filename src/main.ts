@@ -1,10 +1,13 @@
+import * as button from './button';
 import * as color from './color';
 import * as display from './display';
+import * as keyboard from './keyboard';
 import * as memory from './memory';
 
+export { BTN_U, BTN_D, BTN_L, BTN_R, BTN_A, BTN_B } from './button';
 export { COL_BLK, COL_BLU, COL_RED, COL_MAG, COL_GRN, COL_CYN, COL_YEL, COL_WHT } from './color';
 export { GFX_W, GFX_H } from './display';
-export { ADDRESS_GFX, ADDRESS_FPS, peek, poke } from './memory';
+export { ADDRESS_GFX, ADDRESS_BTN, ADDRESS_FPS, peek, poke } from './memory';
 
 declare function romInit(): void;
 declare function romLoop(): void;
@@ -19,6 +22,7 @@ window.addEventListener('load', onLoad);
 
 function onLoad() {
   memory.init();
+  keyboard.init();
   initColors();
   initCanvas();
   romInit();
@@ -30,10 +34,30 @@ function mainLoop(now: number) {
   if (now - lastFrameAt > 1000 / 61) {
     memory.poke(memory.ADDRESS_FPS, Math.round(1000 / (now - lastFrameAt)));
     lastFrameAt = now;
+    keyboard.update();
+    updateBtn();
     romLoop();
     updateGfx();
   }
   window.requestAnimationFrame(mainLoop); // keep requesting new frames
+}
+
+function updateBtn() {
+  for (let i = 0; i < 6; i++) {
+    let k = 0;
+
+    if (keyboard.buttons[i].isPressed) {
+      k |= button.STATE_PRESSED;
+    }
+    if (keyboard.buttons[i].isJustPressed) {
+      k |= button.STATE_JUST_PRESSED;
+    }
+    if (keyboard.buttons[i].isJustReleased) {
+      k |= button.STATE_JUST_RELEASED;
+    }
+
+    memory.poke(memory.ADDRESS_BTN + i, k);
+  }
 }
 
 function updateGfx() {
