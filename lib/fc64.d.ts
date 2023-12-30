@@ -1,4 +1,5 @@
 // global constants
+declare const ADDRESS_AUD: number;
 declare const ADDRESS_BTN: number;
 declare const ADDRESS_FPS: number;
 declare const ADDRESS_GFX: number;

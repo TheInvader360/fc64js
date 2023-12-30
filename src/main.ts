@@ -1,3 +1,4 @@
+import * as audio from './audio';
 import * as button from './button';
 import * as color from './color';
 import * as display from './display';
@@ -7,7 +8,7 @@ import * as memory from './memory';
 export { BTN_U, BTN_D, BTN_L, BTN_R, BTN_A, BTN_B } from './button';
 export { COL_BLK, COL_BLU, COL_RED, COL_MAG, COL_GRN, COL_CYN, COL_YEL, COL_WHT } from './color';
 export { GFX_W, GFX_H } from './display';
-export { ADDRESS_GFX, ADDRESS_BTN, ADDRESS_FPS, peek, poke } from './memory';
+export { ADDRESS_GFX, ADDRESS_BTN, ADDRESS_AUD, ADDRESS_FPS, peek, poke } from './memory';
 
 declare function romInit(): void;
 declare function romLoop(): void;
@@ -22,6 +23,7 @@ window.addEventListener('load', onLoad);
 
 function onLoad() {
   memory.init();
+  audio.init();
   keyboard.init();
   initColors();
   initCanvas();
@@ -36,6 +38,7 @@ function mainLoop(now: number) {
     lastFrameAt = now;
     keyboard.update();
     updateBtn();
+    updateAud();
     romLoop();
     updateGfx();
   }
@@ -57,6 +60,15 @@ function updateBtn() {
     }
 
     memory.poke(memory.ADDRESS_BTN + i, k);
+  }
+}
+
+function updateAud() {
+  const frequency = memory.peek(memory.ADDRESS_AUD);
+  const duration = memory.peek(memory.ADDRESS_AUD + 1);
+  frequency > 0 && duration > 0 ? audio.on(frequency) : audio.off();
+  if (duration > 0) {
+    memory.poke(memory.ADDRESS_AUD + 1, duration - 1);
   }
 }
 

@@ -1,7 +1,8 @@
 export const ADDRESS_GFX = 0;
 export const ADDRESS_BTN = 4096;
-export const ADDRESS_FPS = 4102;
-const ADDRESS_MAX = 4102;
+export const ADDRESS_AUD = 4102;
+export const ADDRESS_FPS = 4104;
+const ADDRESS_MAX = 4104;
 
 const ram: number[] = [];
 
