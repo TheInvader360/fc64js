@@ -131,8 +131,11 @@ function drawDiagonalLine(x1: number, y1: number, x2: number, y2: number, color:
 }
 
 export function drawPattern(pixels: number[], x: number, y: number, color: number): void {
-  //TODO: Implement
-  console.log('stub', pixels, x, y, color);
+  for (let i = 0; i < pixels.length; i += 2) {
+    const offsetX = pixels[i];
+    const offsetY = pixels[i + 1];
+    drawPixel(x + offsetX, y + offsetY, color);
+  }
 }
 
 export function drawPixel(x: number, y: number, color: number): void {
@@ -201,9 +204,10 @@ export function getFps(): number {
 }
 
 export function getPixel(x: number, y: number): number {
-  //TODO: Implement
-  console.log('stub', x, y);
-  return 0;
+  if (x < 0 || x >= display.GFX_W || y < 0 || y >= display.GFX_H) {
+    return -1;
+  }
+  return memory.peek(memory.ADDRESS_GFX + (x | 0) + (y | 0) * display.GFX_W);
 }
 
 export function isJustPressed(btn: number): boolean {

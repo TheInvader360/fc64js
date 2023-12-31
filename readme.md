@@ -29,3 +29,4 @@ npm run browser-sync-start
 * <https://theinvader360.github.io/fc64js/rom/demo/custom-fonts/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/button-states/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/fps-test/index.html>
+* <https://theinvader360.github.io/fc64js/rom/demo/pixel-inspector/index.html>

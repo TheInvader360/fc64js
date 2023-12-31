@@ -12,7 +12,7 @@ export function randomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export function swapImageColors(originalPixels: number[], oldValues: number[], newValues: number[]) {
+export function swapImageColors(originalPixels: number[], oldValues: number[], newValues: number[]): number[] {
   if (oldValues.length != newValues.length) {
     throw new Error('mismatched old/new list lengths');
   }
@@ -28,8 +28,8 @@ export function swapImageColors(originalPixels: number[], oldValues: number[], n
   return newPixels;
 }
 
-export function wrap(value: number, max: number): number {
-  //TODO: Implement
-  console.log('stub', value, max);
-  return 0;
+export function wrap(value: number, minInclusive: number, maxExclusive: number): number {
+  // e.g. wrap(-3, 0, 2) = 1, wrap(-2, 0, 2) = 0, wrap(-1, 0, 2) = 1, wrap(0, 0, 2) = 0, wrap(1, 0, 2) = 1, wrap(2, 0, 2) = 0, wrap(3, 0, 2) = 1...
+  const range = maxExclusive - minInclusive;
+  return minInclusive + ((((value - minInclusive) % range) + range) % range);
 }

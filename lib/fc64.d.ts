@@ -49,4 +49,4 @@ declare function clamp(value: number, min: number, max: number): number;
 declare function isEmptyObject(object: object): boolean;
 declare function randomInt(min: number, max: number): number;
 declare function swapImageColors(originalPixels: number[], oldValues: number[], newValues: number[]): number[];
-declare function wrap(value: number, max: number): number;
+declare function wrap(value: number, minInclusive: number, maxExclusive: number): number;
