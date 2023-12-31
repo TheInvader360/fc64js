@@ -9,16 +9,11 @@ npm run rollup-watch
 npm run browser-sync-start
 ```
 
-Served locally:
+## Tools
 
-* <http://127.0.0.1:3000/rom/demo/minimal-display/index.html>
-* <http://127.0.0.1:3000/rom/demo/minimal-keyboard/index.html>
-* <http://127.0.0.1:3000/rom/demo/minimal-audio/index.html>
-* <http://127.0.0.1:3000/rom/demo/basic-example/index.html>
-* <http://127.0.0.1:3000/rom/demo/display-noise/index.html>
-* <http://127.0.0.1:3000/rom/demo/draw-shapes/index.html>
+* <https://theinvader360.github.io/fc64js/tools/image-tool/index.html>
 
-Github pages:
+## Demos
 
 * <https://theinvader360.github.io/fc64js/rom/demo/minimal-display/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/minimal-keyboard/index.html>
