@@ -1,5 +1,3 @@
-import { fontDefinition } from '../src/font';
-
 // global constants
 declare const ADDRESS_AUD: number;
 declare const ADDRESS_BTN: number;

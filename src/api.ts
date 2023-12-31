@@ -1,4 +1,7 @@
+import * as button from './button';
+import * as display from './display';
 import * as font from './font';
+import * as memory from './memory';
 
 export function beep(frequency: number, duration: number, force: boolean): void {
   //TODO: Implement
@@ -31,8 +34,10 @@ export function drawPattern(pixels: number[], x: number, y: number, color: numbe
 }
 
 export function drawPixel(x: number, y: number, color: number): void {
-  //TODO: Implement
-  console.log('stub', x, y, color);
+  if (x < 0 || x >= display.GFX_W || y < 0 || y >= display.GFX_H) {
+    return;
+  }
+  memory.poke(memory.ADDRESS_GFX + (x | 0) + (y | 0) * display.GFX_W, color);
 }
 
 export function drawRectangle(x: number, y: number, width: number, height: number, edgeColor: number, fillColor?: number): void {
@@ -58,19 +63,13 @@ export function getPixel(x: number, y: number): number {
 }
 
 export function isJustPressed(btn: number): boolean {
-  //TODO: Implement
-  console.log('stub', btn);
-  return false;
+  return Boolean(memory.peek(memory.ADDRESS_BTN + btn) & button.STATE_JUST_PRESSED);
 }
 
 export function isJustReleased(btn: number): boolean {
-  //TODO: Implement
-  console.log('stub', btn);
-  return false;
+  return Boolean(memory.peek(memory.ADDRESS_BTN + btn) & button.STATE_JUST_RELEASED);
 }
 
 export function isPressed(btn: number): boolean {
-  //TODO: Implement
-  console.log('stub', btn);
-  return false;
+  return Boolean(memory.peek(memory.ADDRESS_BTN + btn) & button.STATE_PRESSED);
 }
