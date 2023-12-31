@@ -11,9 +11,7 @@ export function isEmptyObject(object: object): boolean {
 }
 
 export function randomInt(min: number, max: number): number {
-  //TODO: Implement
-  console.log('stub', min, max);
-  return 0;
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export function swapImageColors(originalPixels: number[], oldValues: number[], newValues: number[]): number[] {
