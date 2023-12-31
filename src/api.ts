@@ -197,9 +197,7 @@ function drawChar(char: string, font: font.fontDefinition, x: number, y: number,
 }
 
 export function getFps(): number {
-  //TODO: Implement
-  console.log('stub');
-  return 0;
+  return memory.peek(memory.ADDRESS_FPS);
 }
 
 export function getPixel(x: number, y: number): number {
