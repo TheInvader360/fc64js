@@ -16,6 +16,7 @@ Served locally:
 * <http://127.0.0.1:3000/rom/demo/minimal-audio/index.html>
 * <http://127.0.0.1:3000/rom/demo/basic-example/index.html>
 * <http://127.0.0.1:3000/rom/demo/display-noise/index.html>
+* <http://127.0.0.1:3000/rom/demo/draw-shapes/index.html>
 
 Github pages:
 
@@ -24,3 +25,4 @@ Github pages:
 * <https://theinvader360.github.io/fc64js/rom/demo/minimal-audio/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/basic-example/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/display-noise/index.html>
+* <https://theinvader360.github.io/fc64js/rom/demo/draw-shapes/index.html>
