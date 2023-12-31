@@ -34,3 +34,4 @@ npm run browser-sync-start
 * <https://theinvader360.github.io/fc64js/rom/demo/beep-tune/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/dungeon-generator/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/pathfinding/index.html>
+* <https://theinvader360.github.io/fc64js/rom/demo/ray-casting/index.html>
