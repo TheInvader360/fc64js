@@ -5,8 +5,11 @@ import * as font from './font';
 import * as memory from './memory';
 
 export function beep(frequency: number, duration: number, force: boolean): void {
-  //TODO: Implement
-  console.log('stub', frequency, duration, force);
+  // play beep if one isn't currently playing, or replace the currently playing one if set to force
+  if (memory.peek(memory.ADDRESS_AUD + 1) <= 0 || force) {
+    memory.poke(memory.ADDRESS_AUD, Math.floor(frequency));
+    memory.poke(memory.ADDRESS_AUD + 1, Math.floor(duration));
+  }
 }
 
 export function clearGfx(clearColor?: number): void {
