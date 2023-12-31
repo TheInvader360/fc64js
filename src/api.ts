@@ -176,8 +176,24 @@ export function drawRectangle(x: number, y: number, width: number, height: numbe
 }
 
 export function drawText(content: string, x: number, y: number, color: number, options?: { font?: font.fontDefinition; tracking?: number }): void {
-  //TODO: Implement
-  console.log('stub', content, x, y, color, options);
+  const f = options?.font ? options.font : font.defaultFont;
+  const t = options?.tracking >= 0 ? options.tracking : f.charTrackingDefault;
+  let cursor = x;
+  for (let i = 0; i < content.length; i++) {
+    drawChar(content.charAt(i), f, cursor, y, color);
+    cursor += f.charWidth + t;
+  }
+}
+
+function drawChar(char: string, font: font.fontDefinition, x: number, y: number, color: number): void {
+  const pattern = font.charMap[char.charCodeAt(0) - 32];
+  for (let i = 0; i < font.charWidth; i++) {
+    for (let j = 0; j < font.charHeight; j++) {
+      if (pattern[i + j * font.charWidth] === 1) {
+        drawPixel(x + i, y + j, color);
+      }
+    }
+  }
 }
 
 export function getFps(): number {

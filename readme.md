@@ -24,3 +24,5 @@ npm run browser-sync-start
 * <https://theinvader360.github.io/fc64js/rom/demo/image-gallery/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/large-image/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/scrolling-viewport-tilemap/index.html>
+* <https://theinvader360.github.io/fc64js/rom/demo/swap-image-colors/index.html>
+* <https://theinvader360.github.io/fc64js/rom/demo/draw-text/index.html>
