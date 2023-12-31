@@ -65,8 +65,14 @@ function drawCircleOutline(centerX: number, centerY: number, radius: number, col
 }
 
 export function drawImage(x: number, y: number, width: number, height: number, pixelColors: number[]): void {
-  //TODO: Implement
-  console.log('stub', x, y, width, height, pixelColors);
+  for (let j = 0; j < height; j++) {
+    for (let i = 0; i < width; i++) {
+      const pc = pixelColors[i + j * width];
+      if (pc >= 0) {
+        drawPixel(x + i, y + j, pc);
+      }
+    }
+  }
 }
 
 export function drawLine(x1: number, y1: number, x2: number, y2: number, color: number): void {

@@ -1,7 +1,5 @@
 export function clamp(value: number, min: number, max: number): number {
-  //TODO: Implement
-  console.log('stub', value, min, max);
-  return 0;
+  return Math.max(min, Math.min(value, max));
 }
 
 export function isEmptyObject(object: object): boolean {
