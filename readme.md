@@ -1,4 +1,4 @@
-# fc64.js
+# fc64js
 
 ```bash
 npm ci
