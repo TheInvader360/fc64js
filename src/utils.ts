@@ -3,9 +3,7 @@ export function clamp(value: number, min: number, max: number): number {
 }
 
 export function isEmptyObject(object: object): boolean {
-  //TODO: Implement
-  console.log('stub', object);
-  return false;
+  return Object.keys(object).length === 0 && object.constructor === Object;
 }
 
 export function randomInt(min: number, max: number): number {

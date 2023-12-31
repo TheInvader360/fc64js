@@ -32,3 +32,4 @@ npm run browser-sync-start
 * <https://theinvader360.github.io/fc64js/rom/demo/pixel-inspector/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/beep-effects/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/beep-tune/index.html>
+* <https://theinvader360.github.io/fc64js/rom/demo/dungeon-generator/index.html>
