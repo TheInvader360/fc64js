@@ -13,12 +13,12 @@ export default {
       extend: true,
     },
     {
-			file: "lib/fc64.min.js",
-			format: "iife",
-			name: "window",
+      file: "lib/fc64.min.js",
+      format: "iife",
+      name: "window",
       extend: true,
-			plugins: [terser()],
-		}
+      plugins: [terser()],
+    }
   ],
   plugins: [
     typescript({ tsconfig: "tsconfig.json" }),
