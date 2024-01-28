@@ -67,10 +67,31 @@ function drawCircleOutline(centerX: number, centerY: number, radius: number, col
   }
 }
 
-export function drawImage(x: number, y: number, width: number, height: number, pixelColors: number[]): void {
+export function drawImage(x: number, y: number, width: number, height: number, pixelColors: number[], options?: { flipX?: boolean; flipY?: boolean }): void {
+  const pixelColorsClone = [...pixelColors];
+  if (options) {
+    const pixelColors2D = [];
+    while (pixelColorsClone.length) {
+      pixelColors2D.push(pixelColorsClone.splice(0, width));
+    }
+    if (options.flipX) {
+      for (let row = 0; row < height; row++) {
+        pixelColors2D[row].reverse();
+      }
+    }
+    if (options.flipY) {
+      pixelColors2D.reverse();
+    }
+    for (let row = 0; row < height; row++) {
+      for (let col = 0; col < width; col++) {
+        pixelColorsClone[row * width + col] = pixelColors2D[row][col];
+      }
+    }
+  }
+
   for (let j = 0; j < height; j++) {
     for (let i = 0; i < width; i++) {
-      const pc = pixelColors[i + j * width];
+      const pc = pixelColorsClone[i + j * width];
       if (pc >= 0) {
         drawPixel(x + i, y + j, pc);
       }

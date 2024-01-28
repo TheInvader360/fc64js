@@ -32,7 +32,7 @@ declare function poke(address: number, value: number): void;
 declare function beep(frequency: number, duration: number, force: boolean): void;
 declare function clearGfx(color?: number): void;
 declare function drawCircle(centerX: number, centerY: number, radius: number, edgeColor: number, fillColor?: number): void;
-declare function drawImage(x: number, y: number, width: number, height: number, pixelColors: number[]): void;
+declare function drawImage(x: number, y: number, width: number, height: number, pixelColors: number[], options?: { flipX?: boolean, flipY?: boolean }): void;
 declare function drawLine(x1: number, y1: number, x2: number, y2: number, color: number): void;
 declare function drawPattern(pixels: number[], x: number, y: number, color: number): void;
 declare function drawPixel(x: number, y: number, color: number): void;
