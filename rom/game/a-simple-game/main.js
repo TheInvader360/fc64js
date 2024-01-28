@@ -75,10 +75,10 @@ function romLoop() {
 
   // process user input
   if (isPressed(BTN_L)) {
-    bucket.x -= 20 * 1/60;
+    bucket.x -= 40 * 1/60;
   }
   if (isPressed(BTN_R)) {
-    bucket.x += 20 * 1/60;
+    bucket.x += 40 * 1/60;
   }
 
   // make sure the bucket stays within screen bounds
@@ -96,33 +96,26 @@ function romLoop() {
   }
 
   // for each drop...
-  drops.forEach((d) => {
+  for (let i = drops.length - 1; i >= 0; i--) {
     // move down
-    d.y += 20 * 1/60;
+    drops[i].y += 50 * 1/60;
     // remove any that touch the ground, play a fail sound, and decrement score
-    if (d.y + d.h > GFX_H - 8) {
-      drops.shift();
+    if (drops[i].y + drops[i].h > GFX_H - 8) {
+      drops.splice(i, 1);
       beep(200, 10, true);
       score--;
     }
     // remove any caught by the bucket, play a success sound, and increment score
-    if (d.overlaps(bucket)) {
-      drops.shift();
+    // note: collision check could be improved, decided to leave unchanged for simplicity and to closely match https://libgdx.com/wiki/start/a-simple-game
+    if (drops[i].overlaps(bucket)) {
+      drops.splice(i, 1);
       beep(400, 5, true);
       score++;
     }
-  });
+  }
 }
 
 function spawnDrop() {
   // create a new drop one pixel into the top screen edge and at a random horizontal position within screen bounds
   drops.push(new Rectangle(randomInt(0, GFX_W - 5), -8, 5, 9));
 }
-
-/*
-Note:
-Collisions between the bucket and drops could be much improved
-Adding something like this to the existing overlap check would be better: d.y + d.h - 3 < bucket.y && d.x + d.w / 2 > bucket.x && d.x + d.w / 2 < bucket.x + bucket.w
-Introducing smaller rectangles to each entity for collision purposes (i.e. a smaller hit box than drawn area) could also work well
-Decided to leave things unchanged to keep things simple and to more faithfully replicate the original example found here https://libgdx.com/wiki/start/a-simple-game
-*/
