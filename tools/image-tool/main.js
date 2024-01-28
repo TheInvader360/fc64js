@@ -43,11 +43,11 @@ function imageLoaded() {
 function populateImageColors() {
   const pixelData = imageCanvasCtx.getImageData(0, 0, canvas.width, canvas.height).data;
   for (let i = 0; i < canvas.width * canvas.height; i++) {
-    const r = pixelData[i * 4 + 0];
-    const g = pixelData[i * 4 + 1];
-    const b = pixelData[i * 4 + 2];
-    const a = pixelData[i * 4 + 3];
-    a > 128 ? imageColors[i] = rgbToHex(r, g, b) : imageColors[i] = 'transparent';
+    const r = pixelData[i * 4 + 0] > 128 ? 255 : 0;
+    const g = pixelData[i * 4 + 1] > 128 ? 255 : 0;
+    const b = pixelData[i * 4 + 2] > 128 ? 255 : 0;
+    const a = pixelData[i * 4 + 3] > 128 ? 255 : 0;
+    imageColors[i] = a > 128 ? rgbToHex(r, g, b) : 'transparent';
   }
 }
 
