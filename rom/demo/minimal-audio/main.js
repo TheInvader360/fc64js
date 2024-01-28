@@ -3,12 +3,12 @@ const FREQUENCY_MAX = 1750;
 let frequency = 1500;
 
 function romInit() {
-  console.log('romInit');
+  //console.log('romInit');
   poke(ADDRESS_AUD, Math.floor(frequency));
 }
 
 function romLoop() {
-  console.log(`romLoop - fps: ${peek(ADDRESS_FPS)} - frequency: ${peek(ADDRESS_AUD)} / duration: ${peek(ADDRESS_AUD + 1)}`);
+  //console.log(`romLoop - fps: ${peek(ADDRESS_FPS)} - frequency: ${peek(ADDRESS_AUD)} / duration: ${peek(ADDRESS_AUD + 1)}`);
 
   if ((peek(ADDRESS_BTN + BTN_U) > 0 || peek(ADDRESS_BTN + BTN_R) > 0) && frequency <= FREQUENCY_MAX) {
     poke(ADDRESS_AUD, Math.floor(frequency++));

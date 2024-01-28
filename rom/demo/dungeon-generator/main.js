@@ -106,7 +106,7 @@ function loopLevel() {
 }
 
 function generateLevel(width, height, targetClearedCellProportion, targetEnemyCount, targetGoldCount, targetItemCount) {
-  console.log(`Generate ${width}x${height}, target cleared ${targetClearedCellProportion}, target enemies ${targetEnemyCount}, target gold ${targetGoldCount}, target items ${targetItemCount}`);
+  //console.log(`Generate ${width}x${height}, target cleared ${targetClearedCellProportion}, target enemies ${targetEnemyCount}, target gold ${targetGoldCount}, target items ${targetItemCount}`);
 
   level = {
     width: width,

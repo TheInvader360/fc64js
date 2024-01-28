@@ -1,9 +1,9 @@
 function romInit() {
-  console.log('romInit');
+  //console.log('romInit');
 }
 
 function romLoop() {
-  console.log(`romLoop - fps: ${peek(ADDRESS_FPS)}`);
+  //console.log(`romLoop - fps: ${peek(ADDRESS_FPS)}`);
 
   let color = COL_BLK;
 
