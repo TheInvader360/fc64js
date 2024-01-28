@@ -1,17 +1,5 @@
 // inspired by https://libgdx.com/wiki/start/a-simple-game
 
-class Rectangle {
-  constructor(x, y, w, h) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-  }
-  overlaps(rect) {
-    return this.x < rect.x + rect.w && this.x + this.w > rect.x && this.y < rect.y + rect.h && this.y + this.h > rect.y;
-  }
-}
-
 const imgBucket = [
   -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1,
    0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
@@ -44,7 +32,7 @@ let ticks = 0;
 
 function romInit() {
   // create a rectangle to logically represent the bucket, centered horizontally, a pixel above the bottom screen edge, 14 pixels wide and 10 pixels high
-  bucket = new Rectangle(GFX_W / 2 - 14 / 2, GFX_H - 11, 14, 10);
+  bucket = new Rect(GFX_W / 2 - 14 / 2, GFX_H - 11, 14, 10);
   // spawn the first drop
   spawnDrop();
 }
@@ -60,11 +48,11 @@ function romLoop() {
   drawRectangle(0, GFX_H - 8, GFX_W, 8, COL_GRN, COL_GRN);
 
   // draw the bucket
-  drawImage(Math.round(bucket.x), bucket.y, bucket.w, bucket.h, imgBucket);
+  drawImage(Math.round(bucket.x), bucket.y, bucket.width, bucket.height, imgBucket);
 
   // draw all the drops
   drops.forEach(d => {
-    drawImage(d.x, Math.round(d.y), d.w, d.h, imgDrop);
+    drawImage(d.x, Math.round(d.y), d.width, d.height, imgDrop);
   });
 
   // draw the current score
@@ -85,8 +73,8 @@ function romLoop() {
   if (bucket.x < 0) {
     bucket.x = 0;
   }
-  if (bucket.x > GFX_W - bucket.w) {
-    bucket.x = GFX_W - bucket.w;
+  if (bucket.x > GFX_W - bucket.width) {
+    bucket.x = GFX_W - bucket.width;
   }
 
   // create a new raindrop if it's time
@@ -100,7 +88,7 @@ function romLoop() {
     // move down
     drops[i].y += 50 * 1/60;
     // remove any that touch the ground, play a fail sound, and decrement score
-    if (drops[i].y + drops[i].h > GFX_H - 8) {
+    if (drops[i].y + drops[i].height > GFX_H - 8) {
       drops.splice(i, 1);
       beep(200, 10, true);
       score--;
@@ -117,5 +105,5 @@ function romLoop() {
 
 function spawnDrop() {
   // create a new drop one pixel into the top screen edge and at a random horizontal position within screen bounds
-  drops.push(new Rectangle(randomInt(0, GFX_W - 5), -8, 5, 9));
+  drops.push(new Rect(randomInt(0, GFX_W - 5), -8, 5, 9));
 }

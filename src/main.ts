@@ -8,11 +8,12 @@ import * as keyboard from './keyboard';
 import * as memory from './memory';
 
 export * from './api';
+export * from './classes';
+export * from './utils';
 export { BTN_U, BTN_D, BTN_L, BTN_R, BTN_A, BTN_B } from './button';
 export { COL_BLK, COL_BLU, COL_RED, COL_MAG, COL_GRN, COL_CYN, COL_YEL, COL_WHT } from './color';
 export { GFX_W, GFX_H } from './display';
 export { ADDRESS_GFX, ADDRESS_BTN, ADDRESS_AUD, ADDRESS_FPS, peek, poke } from './memory';
-export * from './utils';
 
 declare function romInit(): void;
 declare function romLoop(): void;

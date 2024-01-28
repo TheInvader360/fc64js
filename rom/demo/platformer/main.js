@@ -6,56 +6,7 @@
 // world coordinate system: origin (0,0) in bottom left corner
 // screen coordinate system: origin (0,0) in top left corner
 
-class Anim {
-  constructor(frames, frameTicks, looping) {
-    this.frames = frames;
-    this.frameTicks = frameTicks;
-    this.looping = looping;
-  }
-  getKeyFrame(stateTicks) {
-    if (this.frames.length === 1) {
-      return this.frames[0];
-    }
-    let index = Math.floor(stateTicks / this.frameTicks);
-    if (this.looping) {
-      index = index % this.frames.length;
-    } else {
-      index = Math.min(this.frames.length - 1, index);
-    }
-    return this.frames[index];
-  }
-}
 
-class Rectangle {
-  constructor(x, y, width, height) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-  }
-  overlaps(rect) {
-    return this.x < rect.x + rect.width && this.x + this.width > rect.x && this.y < rect.y + rect.height && this.y + this.height > rect.y;
-  }
-}
-
-class Vector2 {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-  set(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-  add(x, y) {
-    this.x += x;
-    this.y += y;
-  }
-  scl(scalar) {
-    this.x *= scalar;
-    this.y *= scalar;
-  }
-}
 
 class Level {
   constructor({ width, height, tilemap }) {
@@ -88,13 +39,13 @@ class Player {
     this.maxVelocity = 8;
     this.jumpVelocity = 20;
     this.damping = 0.92;
-    this.position = new Vector2(x, y);
-    this.velocity = new Vector2(0, 0);
+    this.position = new Vec2(x, y);
+    this.velocity = new Vec2(0, 0);
     this.state = playerState.walk;
     this.stateTicks = 0;
     this.facingRight = true;
     this.grounded = false;
-    this.bounds = new Rectangle(this.position.x, this.position.y, 0.75, 0.875); // player size: 6px wide 7px high (in world units 1/8*6=0.75 wide 1/8*7=0.875 high)
+    this.bounds = new Rect(this.position.x, this.position.y, 0.75, 0.875); // player size: 6px wide 7px high (in world units 1/8*6=0.75 wide 1/8*7=0.875 high)
   }
   changeState(newState) {
     this.state = newState;
@@ -108,7 +59,7 @@ class Player {
 
 class Tile {
   constructor(x, y) {
-    this.bounds = new Rectangle(x, y, 1, 1); // tile size: 8px wide 8px high (in world units 1/8*8=1 wide 1/8*8=1 high)
+    this.bounds = new Rect(x, y, 1, 1); // tile size: 8px wide 8px high (in world units 1/8*8=1 wide 1/8*8=1 high)
   }
 }
 

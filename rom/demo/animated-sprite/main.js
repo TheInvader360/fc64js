@@ -1,29 +1,3 @@
-class Anim {
-  constructor(frames, frameTicks, looping) {
-    this.frames = frames;
-    this.frameTicks = frameTicks;
-    this.looping = looping;
-  }
-  getKeyFrame(stateTicks) {
-    if (this.frames.length === 1) {
-      return this.frames[0];
-    }
-    let index = Math.floor(stateTicks / this.frameTicks);
-    if (this.looping) {
-      index = index % this.frames.length;
-    } else {
-      index = Math.min(this.frames.length - 1, index);
-    }
-    return this.frames[index];
-  }
-  isFinished(stateTicks) {
-    if (this.looping) {
-      return false;
-    }
-    return stateTicks >= this.frames.length * this.frameTicks;
-  }
-}
-
 const STATE_IDLE = 'IDLE';
 const STATE_KICK = 'KICK';
 const STATE_SLASH = 'SLASH';

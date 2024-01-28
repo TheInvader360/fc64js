@@ -44,7 +44,34 @@ declare function isJustPressed(btn: number): boolean;
 declare function isJustReleased(btn: number): boolean;
 declare function isPressed(btn: number): boolean;
 
-// handy utils
+// useful classes
+declare class Anim {
+  frames: number[][];
+  frameTicks: number;
+  looping: boolean;
+  constructor(frames: number[][], frameTicks: number, looping: boolean);
+  getKeyFrame(stateTicks: number): number[];
+  isFinished(stateTicks: number): boolean;
+}
+declare class Rect {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  constructor(x: number, y: number, width: number, height: number);
+  overlaps(Rect): boolean;
+}
+declare class Vec2 {
+  x: number;
+  y: number;
+  constructor(x: number, y: number);
+  set(x: number, y: number): void;
+  add(x: number, y: number): void;
+  scl(scalar: number): void;
+  equals(Vec2): boolean;
+}
+
+// useful utils
 declare function clamp(value: number, min: number, max: number): number;
 declare function isEmptyObject(object: object): boolean;
 declare function randomInt(min: number, max: number): number;
