@@ -42,3 +42,4 @@ npm run browser-sync-start
 ## Games
 
 * <https://theinvader360.github.io/fc64js/rom/game/a-simple-game/index.html>
+* <https://theinvader360.github.io/fc64js/rom/game/snake/index.html>

@@ -1,4 +1,4 @@
-// See: https://libgdx.com/wiki/start/a-simple-game (ported from java/libgdx to javascript/fc64js)
+// inspired by https://libgdx.com/wiki/start/a-simple-game
 
 class Rectangle {
   constructor(x, y, w, h) {
