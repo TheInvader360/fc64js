@@ -37,6 +37,7 @@ npm run browser-sync-start
 * <https://theinvader360.github.io/fc64js/rom/demo/ray-casting/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/animated-sprite/index.html>
 * <https://theinvader360.github.io/fc64js/rom/demo/flip-image/index.html>
+* <https://theinvader360.github.io/fc64js/rom/demo/platformer/index.html>
 
 ## Games
 
