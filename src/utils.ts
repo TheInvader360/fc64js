@@ -14,11 +14,10 @@ export function swapImageColors(originalPixels: number[], oldValues: number[], n
   if (oldValues.length != newValues.length) {
     throw new Error('mismatched old/new list lengths');
   }
-  const oldPixels: number[] = [...originalPixels];
   const newPixels: number[] = [...originalPixels];
   for (let i = 0; i < oldValues.length; i++) {
-    for (let j = 0; j < oldPixels.length; j++) {
-      if (oldPixels[j] === oldValues[i]) {
+    for (let j = 0; j < originalPixels.length; j++) {
+      if (originalPixels[j] === oldValues[i]) {
         newPixels[j] = newValues[i];
       }
     }
