@@ -2,6 +2,7 @@ import * as audio from './audio';
 import * as button from './button';
 import * as color from './color';
 import * as display from './display';
+import * as gamepadExternal from './gamepadExternal';
 import * as gamepadTouch from './gamepadTouch';
 import * as keyboard from './keyboard';
 import * as memory from './memory';
@@ -34,6 +35,7 @@ function onLoad() {
   keyboard.init();
   initColors();
   initCanvas();
+  gamepadExternal.init();
   gamepadTouch.init(canvas, caseUnscaledWidth, caseUnscaledHeight);
   romInit();
   window.requestAnimationFrame(mainLoop);
@@ -45,6 +47,7 @@ function mainLoop(now: number) {
     memory.poke(memory.ADDRESS_FPS, Math.round(1000 / (now - lastFrameAt)));
     lastFrameAt = now;
     keyboard.update();
+    gamepadExternal.update();
     gamepadTouch.update();
     updateBtn();
     updateAud();
@@ -58,13 +61,13 @@ function updateBtn() {
   for (let i = 0; i < 6; i++) {
     let k = 0;
 
-    if (keyboard.buttons[i].isPressed || gamepadTouch.buttons[i].isPressed) {
+    if (keyboard.buttons[i].isPressed || gamepadExternal.buttons[i].isPressed || gamepadTouch.buttons[i].isPressed) {
       k |= button.STATE_PRESSED;
     }
-    if (keyboard.buttons[i].isJustPressed || gamepadTouch.buttons[i].isJustPressed) {
+    if (keyboard.buttons[i].isJustPressed || gamepadExternal.buttons[i].isJustPressed || gamepadTouch.buttons[i].isJustPressed) {
       k |= button.STATE_JUST_PRESSED;
     }
-    if (keyboard.buttons[i].isJustReleased || gamepadTouch.buttons[i].isJustReleased) {
+    if (keyboard.buttons[i].isJustReleased || gamepadExternal.buttons[i].isJustReleased || gamepadTouch.buttons[i].isJustReleased) {
       k |= button.STATE_JUST_RELEASED;
     }
 
