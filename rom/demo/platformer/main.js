@@ -149,7 +149,7 @@ function updatePlayer() {
   player.stateTicks++;
 
   // check input and apply to velocity and state
-  if ((isPressed(BTN_U) || isPressed(BTN_A)) && player.grounded) {
+  if (isJustPressed(BTN_A) && player.grounded) {
     player.velocity.y += player.jumpVelocity;
     player.changeState(playerState.jump);
     player.grounded = false;
