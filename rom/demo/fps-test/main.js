@@ -50,8 +50,8 @@ function romLoop() {
   }
   clearGfx();
   smileys.forEach((s) => s.update());
-  drawText(`FPS:${getFps()}`, 0, 0, COL_WHT);
-  drawText(`${smileys.length}`, 0, 59, COL_WHT);
+  drawText(0, 0, `FPS:${getFps()}`, COL_WHT);
+  drawText(0, 59, `${smileys.length}`, COL_WHT);
 }
 
 const tryHalveSmileys = () => {

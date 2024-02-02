@@ -41,23 +41,23 @@ function romLoop() {
       tickCountdown = note.duration;
       beep(frequency, note.duration, true);
       clearGfx();
-      drawText(`${tune.nameLine1}`, 1, 2, COL_RED);
-      drawText(`${tune.nameLine2}`, 1, 8, COL_RED);
-      drawText('IPN', 1, 18, COL_CYN);
-      drawText(`${note.ipn}`, 1, 24, COL_CYN);
-      drawText('Frequency', 1, 34, COL_MAG);
-      drawText(frequency > 0 ? `${Math.round(frequency)}hz` : '', 1, 40, COL_MAG);
-      drawText('Duration', 1, 50, COL_YEL);
-      drawText(`${note.duration} ticks`, 1, 56, COL_YEL);
+      drawText(1, 2, `${tune.nameLine1}`, COL_RED);
+      drawText(1, 8, `${tune.nameLine2}`, COL_RED);
+      drawText(1, 18, 'IPN', COL_CYN);
+      drawText(1, 24, `${note.ipn}`, COL_CYN);
+      drawText(1, 34, 'Frequency', COL_MAG);
+      drawText(1, 40, frequency > 0 ? `${Math.round(frequency)}hz` : '', COL_MAG);
+      drawText(1, 50, 'Duration', COL_YEL);
+      drawText(1, 56, `${note.duration} ticks`, COL_YEL);
     }
     tickCountdown--;
   } else {
     clearGfx();
-    drawText(`BEEP-TUNE`, 3, 10, COL_YEL);
-    drawText(`L: PREV TUNE`, 3, 20, COL_WHT);
-    drawText(`R: NEXT TUNE`, 3, 30, COL_WHT);
-    drawText(`A: PLAY/PAUSE`, 3, 40, COL_WHT);
-    drawText(`B: RESTART`, 3, 50, COL_WHT);
+    drawText(3, 10, `BEEP-TUNE`, COL_YEL);
+    drawText(3, 20, `L: PREV TUNE`, COL_WHT);
+    drawText(3, 30, `R: NEXT TUNE`, COL_WHT);
+    drawText(3, 40, `A: PLAY/PAUSE`, COL_WHT);
+    drawText(3, 50, `B: RESTART`, COL_WHT);
   }
 }
 

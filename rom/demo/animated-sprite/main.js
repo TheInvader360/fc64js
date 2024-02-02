@@ -20,7 +20,7 @@ function romLoop() {
   handleInput();
   clearGfx(COL_CYN);
   drawRectangle(0, 46, 64, 18, COL_GRN, COL_GRN);
-  drawText(state, 44, 3, COL_RED);
+  drawText(44, 3, state, COL_RED);
   drawImage(1, 1, 58, 63, animations.get(state).getKeyFrame(stateTicks));
 }
 

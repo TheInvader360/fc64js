@@ -29,9 +29,9 @@ function romLoop() {
 
   const font = fonts[current];
   drawRectangle(0, 0, GFX_W, font.charHeight + 2, COL_WHT, COL_WHT);
-  drawText('HELLO!', 1, 1, COL_BLK, { font: font }); // use font's default tracking
+  drawText(1, 1, 'HELLO!', COL_BLK, { font: font }); // use font's default tracking
   const lineCount = Math.ceil(GFX_H / (font.charHeight + 2));
   for (let i = 1; i < lineCount; i ++) {
-    drawText('HELLO!', 1, i * (font.charHeight + 1) + 1, i, { tracking: i, font: font }); // override tracking
+    drawText(1, i * (font.charHeight + 1) + 1, 'HELLO!', i, { tracking: i, font: font }); // override tracking
   }
 }

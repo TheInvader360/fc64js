@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es2016",
     "checkJs": true
   },
   "include": ["*.js", "../../../lib/fc64.d.ts"]

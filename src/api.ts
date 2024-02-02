@@ -154,7 +154,7 @@ function drawDiagonalLine(x1: number, y1: number, x2: number, y2: number, color:
   }
 }
 
-export function drawPattern(pixels: number[], x: number, y: number, color: number): void {
+export function drawPattern(x: number, y: number, pixels: number[], color: number): void {
   for (let i = 0; i < pixels.length; i += 2) {
     const offsetX = pixels[i];
     const offsetY = pixels[i + 1];
@@ -202,7 +202,7 @@ export function drawRectangle(x: number, y: number, width: number, height: numbe
   }
 }
 
-export function drawText(content: string, x: number, y: number, color: number, options?: { font?: font.fontDefinition; tracking?: number }): void {
+export function drawText(x: number, y: number, content: string, color: number, options?: { font?: font.fontDefinition; tracking?: number }): void {
   const f = options?.font ? options.font : font.defaultFont;
   const t = options?.tracking >= 0 ? options.tracking : f.charTrackingDefault;
   let cursor = x;

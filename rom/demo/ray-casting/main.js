@@ -24,7 +24,7 @@ function romLoop() {
     drawLevelMapView();
   } else {
     drawRectangle(0, 58, 24, 6, COL_BLK, COL_BLK);
-    drawText(`FPS:${getFps()}`, 0, 59, COL_WHT);
+    drawText(0, 59, `FPS:${getFps()}`, COL_WHT);
   }
   if (isJustPressed(BTN_B)) {
     drawSimple = !drawSimple;

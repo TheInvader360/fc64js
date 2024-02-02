@@ -56,10 +56,10 @@ function romLoop() {
   });
 
   // draw the current score
-  drawText(`${score}`, 1, 1, COL_YEL);
+  drawText(1, 1, `${score}`, COL_YEL);
 
   // draw the current frames per second
-  drawText(`FPS:${getFps()}`, 1, GFX_H - 6, COL_WHT);
+  drawText(1, GFX_H - 6, `FPS:${getFps()}`, COL_WHT);
 
   // process user input
   if (isPressed(BTN_L)) {

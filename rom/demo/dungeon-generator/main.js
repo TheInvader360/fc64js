@@ -44,8 +44,8 @@ function loopConfig() {
 
   clearGfx();
   drawRectangle(0, 0, configWidth, configHeight, COL_RED);
-  drawText('D-PAD: RESIZE', 2, 52, COL_WHT);
-  drawText('    A: GENERATE', 2, 58, COL_WHT);
+  drawText(2, 52, 'D-PAD: RESIZE', COL_WHT);
+  drawText(2, 58, '    A: GENERATE', COL_WHT);
 }
 
 function loopLevel() {

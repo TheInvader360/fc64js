@@ -6,8 +6,6 @@
 // world coordinate system: origin (0,0) in bottom left corner
 // screen coordinate system: origin (0,0) in top left corner
 
-
-
 class Level {
   constructor({ width, height, tilemap }) {
     this.width = width;

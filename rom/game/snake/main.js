@@ -83,9 +83,9 @@ function romLoop() {
   ticks++;
   clearGfx(COL_WHT);
   if (gameOver) {
-    drawText('GAME', 24, 26, COL_BLK);
-    drawText('OVER', 24, 32, COL_BLK);
-    drawText(`SCORE:${snake.body.length - 3}`, 16, 44, COL_BLK);
+    drawText(24, 26, 'GAME', COL_BLK);
+    drawText(24, 32, 'OVER', COL_BLK);
+    drawText(16, 44, `SCORE:${snake.body.length - 3}`, COL_BLK);
     if (isJustPressed(BTN_U) || isJustPressed(BTN_D) || isJustPressed(BTN_L) || isJustPressed(BTN_R) || isJustPressed(BTN_A) || isJustPressed(BTN_B)) {
       romInit();
     }

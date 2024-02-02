@@ -17,13 +17,13 @@ function romInit() {
   selected = 0;
   state = 'init';
   clearGfx();
-  drawText(`BEEP-EFFECTS`, 1, 5, COL_YEL);
-  drawText(`U: LIST UP`, 1, 13, COL_WHT);
-  drawText(`D: LIST DOWN`, 1, 21, COL_WHT);
-  drawText(`L: RANDOM FREQ`, 1, 29, COL_WHT);
-  drawText(`R: RANDOM DUR`, 1, 37, COL_WHT);
-  drawText(`A: BEEP (FORCE)`, 1, 45, COL_WHT);
-  drawText(`B: BEEP (TRY)`, 1, 53, COL_WHT);
+  drawText(1, 5, `BEEP-EFFECTS`, COL_YEL);
+  drawText(1, 13, `U: LIST UP`, COL_WHT);
+  drawText(1, 21, `D: LIST DOWN`, COL_WHT);
+  drawText(1, 29, `L: RANDOM FREQ`, COL_WHT);
+  drawText(1, 37, `R: RANDOM DUR`, COL_WHT);
+  drawText(1, 45, `A: BEEP (FORCE)`, COL_WHT);
+  drawText(1, 53, `B: BEEP (TRY)`, COL_WHT);
 }
 
 function romLoop() {
@@ -48,12 +48,12 @@ function romLoop() {
     }
 
     clearGfx();
-    drawText(`BEEP-EFFECTS`, 1, 5, COL_YEL);
-    drawText(`FREQ`,13, 13, COL_RED);
-    drawText(`DUR`, 33, 13, COL_GRN);
+    drawText(1, 5, `BEEP-EFFECTS`, COL_YEL);
+    drawText(13, 13, `FREQ`, COL_RED);
+    drawText(33, 13, `DUR`, COL_GRN);
     for (let i = 0; i < list.length; i++) {
-      drawText(`${list[i].frequency}`, 13, 21 + i * 8, COL_WHT);
-      drawText(`${list[i].duration}`, 33, 21 + i * 8, COL_WHT);
+      drawText(13, 21 + i * 8, `${list[i].frequency}`, COL_WHT);
+      drawText(33, 21 + i * 8, `${list[i].duration}`, COL_WHT);
     }
     drawCircle(6, 23 + selected * 8, 2, COL_CYN);
   }

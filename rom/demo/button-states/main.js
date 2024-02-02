@@ -39,14 +39,14 @@ function romInit() {}
 function romLoop() {
   clearGfx();
 
-  drawText('P', 25, 6, COL_WHT);
-  drawText('JP JR', 35, 6, COL_WHT);
-  drawText('U', 13, 14, COL_BLU);
-  drawText('D', 13, 22, COL_RED);
-  drawText('L', 13, 30, COL_MAG);
-  drawText('R', 13, 38, COL_GRN);
-  drawText('A', 13, 46, COL_CYN);
-  drawText('B', 13, 54, COL_YEL);
+  drawText(25, 6, 'P', COL_WHT);
+  drawText(35, 6, 'JP JR', COL_WHT);
+  drawText(13, 14, 'U', COL_BLU);
+  drawText(13, 22, 'D', COL_RED);
+  drawText(13, 30, 'L', COL_MAG);
+  drawText(13, 38, 'R', COL_GRN);
+  drawText(13, 46, 'A', COL_CYN);
+  drawText(13, 54, 'B', COL_YEL);
 
   if (isPressed(BTN_U)) {
     indicators.get('U-P').trigger(1);

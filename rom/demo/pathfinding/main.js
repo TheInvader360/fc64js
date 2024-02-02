@@ -9,14 +9,14 @@ let result;
 function romInit() {
   state = STATE_INIT;
   clearGfx();
-  drawText('A-STAR', 8, 5, COL_WHT);
-  drawText('PATHFINDING', 8, 11, COL_WHT);
-  drawText('DEMO', 8, 17, COL_WHT);
-  drawText('A:NEW LEVEL', 8, 29, COL_GRN);
-  drawText('B:ADD BLOCK', 8, 35, COL_BLU);
-  drawText('U:SHOW PATH', 8, 41, COL_YEL);
-  drawText('L:SHOW OPEN', 8, 47, COL_CYN);
-  drawText('R:SHOW CLOSED', 8, 53, COL_MAG);
+  drawText(8, 5, 'A-STAR', COL_WHT);
+  drawText(8, 11, 'PATHFINDING', COL_WHT);
+  drawText(8, 17, 'DEMO', COL_WHT);
+  drawText(8, 29, 'A:NEW LEVEL', COL_GRN);
+  drawText(8, 35, 'B:ADD BLOCK', COL_BLU);
+  drawText(8, 41, 'U:SHOW PATH', COL_YEL);
+  drawText(8, 47, 'L:SHOW OPEN', COL_CYN);
+  drawText(8, 53, 'R:SHOW CLOSED', COL_MAG);
 }
 
 function romLoop() {
@@ -62,7 +62,7 @@ function romLoop() {
     }
     if (isPressed(BTN_U)) {
       if (result.path.length == 0) {
-        drawText('unsolvable', 25, 59, COL_YEL);
+        drawText(25, 59, 'unsolvable', COL_YEL);
       } else {
         for (let i = 0; i < result.path.length; i++) {
           drawRectangle(result.path[i].x * 2, result.path[i].y * 2, 1, 1, COL_YEL);
