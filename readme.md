@@ -13,7 +13,7 @@ The minified [library](/lib/fc64.min.js) weighs in at just 15 kilobytes
 
 ## Selected examples
 
-[<img src="/docs/snake.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/snake/) [<img src="/docs/platformer.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/platformer/) [<img src="/docs/ray-casting.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/)
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/snake.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/snake/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs//platformer.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/platformer/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/ray-casting.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/)
 
 Click or tap a gif to play :sunglasses:
 
