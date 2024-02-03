@@ -13,7 +13,7 @@ The minified [library](/lib/fc64.min.js) weighs in at just 15 kilobytes
 
 ## Selected examples
 
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/snake.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/snake/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs//platformer.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/platformer/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/ray-casting.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/)
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/snake.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/snake/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/breakout.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/breakout/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs//platformer.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/platformer/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/ray-casting.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/)
 
 Click or tap a gif to play :sunglasses:
 
@@ -103,6 +103,7 @@ This basic example can be saved locally (e.g. in a file named ```basic-example.h
 
 * [A simple game](https://theinvader360.github.io/fc64js/rom/game/a-simple-game/)
 * [Snake](https://theinvader360.github.io/fc64js/rom/game/snake/)
+* [Breakout](https://theinvader360.github.io/fc64js/rom/game/breakout/)
 
 ## Tools
 
