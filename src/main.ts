@@ -15,6 +15,11 @@ export { COL_BLK, COL_BLU, COL_RED, COL_MAG, COL_GRN, COL_CYN, COL_YEL, COL_WHT 
 export { GFX_W, GFX_H } from './display';
 export { ADDRESS_GFX, ADDRESS_BTN, ADDRESS_AUD, ADDRESS_FPS, peek, poke } from './memory';
 
+declare const window: {
+  romInit: () => void;
+  romLoop: () => void;
+} & Window;
+
 declare function romInit(): void;
 declare function romLoop(): void;
 
@@ -29,6 +34,11 @@ const displayOffsetUnscaledX = 4;
 const displayOffsetUnscaledY = 4;
 
 window.addEventListener('load', onLoad);
+
+export function fc64Init(romInit: () => void, romLoop: () => void) {
+  window.romInit = romInit;
+  window.romLoop = romLoop;
+}
 
 function onLoad() {
   memory.init();
