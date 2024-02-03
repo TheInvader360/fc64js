@@ -66,37 +66,40 @@ const imgFruit = [
   -1, 2, 2,-1,
 ];
 
+const states = {
+  title: 0,
+  playing: 1,
+  gameOver: 2,
+};
+
+let state;
+let stateTicks;
 let snake;
 let fruit;
-let ticks;
-let gameOver;
 
 function romInit() {
+  changeState(states.title);
   snake = new Snake();
   snake.init();
   fruit = new Vec2(randomInt(0, 15), randomInt(0, 15));
-  ticks = 0;
-  gameOver = false;
 }
 
 function romLoop() {
-  ticks++;
+  stateTicks++;
   clearGfx(COL_WHT);
-  if (gameOver) {
-    drawText(24, 26, 'GAME', COL_BLK);
-    drawText(24, 32, 'OVER', COL_BLK);
-    drawText(16, 44, `SCORE:${snake.body.length - 3}`, COL_BLK);
-    if (isJustPressed(BTN_U) || isJustPressed(BTN_D) || isJustPressed(BTN_L) || isJustPressed(BTN_R) || isJustPressed(BTN_A) || isJustPressed(BTN_B)) {
-      romInit();
+  if (state == states.title) {
+    drawText(22, 29, 'SNAKE', COL_BLK);
+    if (stateTicks > 60 && (isJustPressed(BTN_U) || isJustPressed(BTN_D) || isJustPressed(BTN_L) || isJustPressed(BTN_R) || isJustPressed(BTN_A) || isJustPressed(BTN_B))) {
+        changeState(states.playing);
     }
-  } else {
+  } else if (state == states.playing) {
     handleGameplayInput();
     drawImage(fruit.x * 4, fruit.y * 4, 4, 4, imgFruit);
-    if (ticks % 10 == 0) {
+    if (stateTicks % 10 == 0) {
       snake.update();
       if (snake.isDead()) {
         beep(280, 15, true);
-        gameOver = true;
+        changeState(states.gameOver);
       }
       if (snake.body[0].equals(fruit)) {
         beep(1000, 5, true);
@@ -107,6 +110,13 @@ function romLoop() {
       }
     }
     snake.draw();
+  } else if (state == states.gameOver) {
+    drawText(24, 26, 'GAME', COL_BLK);
+    drawText(24, 32, 'OVER', COL_BLK);
+    drawText(16, 44, `SCORE:${snake.body.length - 3}`, COL_BLK);
+    if (stateTicks > 60 && (isJustPressed(BTN_U) || isJustPressed(BTN_D) || isJustPressed(BTN_L) || isJustPressed(BTN_R) || isJustPressed(BTN_A) || isJustPressed(BTN_B))) {
+      romInit();
+    }
   }
 }
 
@@ -123,4 +133,9 @@ function handleGameplayInput() {
   if (isJustPressed(BTN_R)) {
     snake.tryRight();
   }
+}
+
+function changeState(newState) {
+  state = newState;
+  stateTicks = 0;
 }
