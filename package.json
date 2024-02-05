@@ -1,4 +1,11 @@
 {
+  "name": "fc64js",
+  "version": "0.0.3",
+  "description": "fc64js is a small browser based fantasy console",
+  "main": "lib/fc64.min.js",
+  "files": [
+    "/lib"
+  ],
   "scripts": {
     "lint": "eslint . --ext .ts",
     "prettier-check": "prettier --config .prettierrc './src/**/*.ts' --check",
@@ -6,6 +13,17 @@
     "rollup-watch": "rollup -c -w --bundleConfigAsCjs",
     "browser-sync-start": "browser-sync start --server --directory --files \"*\""
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheInvader360/fc64js.git"
+  },
+  "author": "TheInvader360",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheInvader360/fc64js/issues"
+  },
+  "homepage": "https://github.com/TheInvader360/fc64js#readme",
+  "typings": "lib/fc64.d.ts",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-replace": "^5.0.2",
