@@ -24,6 +24,9 @@ declare const BTN_B: number;
 declare function romInit(): void;
 declare function romLoop(): void;
 
+// initialize library
+declare function fc64Init(romInit: () => void, romLoop: () => void): void;
+
 // low level memory access
 declare function peek(address: number): number;
 declare function poke(address: number, value: number): void;
