@@ -73,6 +73,18 @@ This basic example can be saved locally (e.g. in a file named ```basic-example.h
 </html>
 ```
 
+## Javascript modules
+
+See [here](https://github.com/TheInvader360/fc64js/tree/main/rom/demo/basic-example-module-import) for an example that uses javascript modules
+
+The key differences are changes to the html ```script``` elements [here](https://github.com/TheInvader360/fc64js/blob/main/rom/demo/basic-example-module-import/index.html#L10), and the introduction of ```import``` and ```fc64Init``` javascript statements [here](https://github.com/TheInvader360/fc64js/blob/main/rom/demo/basic-example-module-import/main.js#L1-L3)
+
+## Typescript starter
+
+See [here](https://github.com/TheInvader360/fc64js-typescript-starter) for a convenient starter project to help create roms using typescript
+
+The result of following the [fc64js-typescript-starter](https://github.com/TheInvader360/fc64js-typescript-starter) readme instructions is available [here](https://github.com/TheInvader360/fc64js-typescript-basic-example)
+
 ## Demos
 
 * [Minimal display](https://theinvader360.github.io/fc64js/rom/demo/minimal-display/)
