@@ -1,6 +1,9 @@
 import '../../../lib/fc64.js';
 
-fc64Init(romInit, romLoop);
+//fc64Init(romInit, romLoop);
+
+const romPalette = [0xffe2ce, 0xf56214, 0xffc414, 0x3bd827, 0x147658, 0x14c4ce, 0x1d3162, 0xa73176]; // 4pi
+fc64Init(romInit, romLoop, romPalette);
 
 let x = 60;
 let y = 60;
