@@ -20,12 +20,13 @@ declare const BTN_R: number;
 declare const BTN_A: number;
 declare const BTN_B: number;
 
-// rom lifecycle hooks
+// rom hooks
 declare function romInit(): void;
 declare function romLoop(): void;
+declare let romPalette: number[];
 
 // initialize library
-declare function fc64Init(romInit: () => void, romLoop: () => void): void;
+declare function fc64Init(romInit: () => void, romLoop: () => void, romPalette?: number[]): void;
 
 // low level memory access
 declare function peek(address: number): number;
