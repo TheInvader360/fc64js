@@ -18,6 +18,7 @@ export { ADDRESS_GFX, ADDRESS_BTN, ADDRESS_AUD, ADDRESS_FPS, peek, poke } from '
 declare const window: {
   romInit: () => void;
   romLoop: () => void;
+  romPalette: number[];
 } & Window;
 
 declare function romInit(): void;
@@ -25,7 +26,6 @@ declare function romLoop(): void;
 
 let canvas: HTMLCanvasElement;
 let canvasCtx: CanvasRenderingContext2D;
-let colors: color.RGB[];
 let screenImageData: ImageData;
 let lastFrameAt = performance.now();
 const caseUnscaledWidth = 72;
@@ -34,21 +34,25 @@ const displayOffsetUnscaledX = 4;
 const displayOffsetUnscaledY = 4;
 
 window.addEventListener('load', onLoad);
+window.romPalette = [0x000000, 0x0000ff, 0xff0000, 0xff00ff, 0x00ff00, 0x00ffff, 0xffff00, 0xffffff]; // BLK, BLU, RED, MAG, GRN, CYN, YEL, WHT
 
-export function fc64Init(romInit: () => void, romLoop: () => void) {
+export function fc64Init(romInit: () => void, romLoop: () => void, romPalette?: number[]) {
   window.romInit = romInit;
   window.romLoop = romLoop;
+  if (romPalette) {
+    window.romPalette = romPalette;
+  }
 }
 
 function onLoad() {
   memory.init();
   audio.init();
   keyboard.init();
-  initColors();
   initCanvas();
   gamepadExternal.init();
   gamepadTouch.init(canvas, caseUnscaledWidth, caseUnscaledHeight);
   romInit();
+  color.init(window.romPalette);
   window.requestAnimationFrame(mainLoop);
 }
 
@@ -97,7 +101,7 @@ function updateAud() {
 
 function updateGfx() {
   for (let i = memory.ADDRESS_GFX; i < memory.ADDRESS_GFX + display.GFX_W * display.GFX_H; i++) {
-    const pixelColor = colors[memory.peek(i)];
+    const pixelColor = color.palette[memory.peek(i)];
     screenImageData.data[i * 4 + 0] = pixelColor.r;
     screenImageData.data[i * 4 + 1] = pixelColor.g;
     screenImageData.data[i * 4 + 2] = pixelColor.b;
@@ -134,16 +138,4 @@ function initCanvas() {
   setSize();
   document.body.appendChild(canvas);
   screenImageData = canvasCtx.createImageData(display.GFX_W, display.GFX_H);
-}
-
-function initColors() {
-  const rgbHex = [0x000000, 0x0000ff, 0xff0000, 0xff00ff, 0x00ff00, 0x00ffff, 0xffff00, 0xffffff]; // BLK, BLU, RED, MAG, GRN, CYN, YEL, WHT
-  colors = [];
-  for (let i = 0; i <= 7; i++) {
-    const n = rgbHex[i];
-    const r = (n & 0xff0000) >> 16;
-    const g = (n & 0xff00) >> 8;
-    const b = n & 0xff;
-    colors.push({ r, g, b });
-  }
 }
