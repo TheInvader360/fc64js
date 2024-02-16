@@ -87,41 +87,42 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 
 ## Demos
 
-* [Minimal display](https://theinvader360.github.io/fc64js/rom/demo/minimal-display/)
-* [Minimal keyboard](https://theinvader360.github.io/fc64js/rom/demo/minimal-keyboard/)
-* [Minimal audio](https://theinvader360.github.io/fc64js/rom/demo/minimal-audio/)
-* [Basic example](https://theinvader360.github.io/fc64js/rom/demo/basic-example/)
-* [Display noise](https://theinvader360.github.io/fc64js/rom/demo/display-noise/)
-* [Draw shapes](https://theinvader360.github.io/fc64js/rom/demo/draw-shapes/)
-* [Image gallery](https://theinvader360.github.io/fc64js/rom/demo/image-gallery/)
-* [Large image](https://theinvader360.github.io/fc64js/rom/demo/large-image/)
-* [Scrolling viewport tilemap](https://theinvader360.github.io/fc64js/rom/demo/scrolling-viewport-tilemap/)
-* [Swap image colors](https://theinvader360.github.io/fc64js/rom/demo/swap-image-colors/)
-* [Draw text](https://theinvader360.github.io/fc64js/rom/demo/draw-text/)
-* [Custom fonts](https://theinvader360.github.io/fc64js/rom/demo/custom-fonts/)
-* [Button states](https://theinvader360.github.io/fc64js/rom/demo/button-states/)
-* [FPS test](https://theinvader360.github.io/fc64js/rom/demo/fps-test/)
-* [Pixel inspector](https://theinvader360.github.io/fc64js/rom/demo/pixel-inspector/)
-* [Beep effects](https://theinvader360.github.io/fc64js/rom/demo/beep-effects/)
-* [Beep tune](https://theinvader360.github.io/fc64js/rom/demo/beep-tune/)
-* [Dungeon generator](https://theinvader360.github.io/fc64js/rom/demo/dungeon-generator/)
-* [Pathfinding](https://theinvader360.github.io/fc64js/rom/demo/pathfinding/)
-* [Ray casting](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/)
-* [Animated sprite](https://theinvader360.github.io/fc64js/rom/demo/animated-sprite/)
-* [Flip image](https://theinvader360.github.io/fc64js/rom/demo/flip-image/)
-* [Platformer](https://theinvader360.github.io/fc64js/rom/demo/platformer/)
-* [Basic example module import](https://theinvader360.github.io/fc64js/rom/demo/basic-example-module-import/)
-* [Custom palette](https://theinvader360.github.io/fc64js/rom/demo/custom-palette/)
+* [Minimal display](/rom/demo/minimal-display/)
+* [Minimal keyboard](/rom/demo/minimal-keyboard/)
+* [Minimal audio](/rom/demo/minimal-audio/)
+* [Basic example](/rom/demo/basic-example/)
+* [Display noise](/rom/demo/display-noise/)
+* [Draw shapes](/rom/demo/draw-shapes/)
+* [Image gallery](/rom/demo/image-gallery/)
+* [Large image](/rom/demo/large-image/)
+* [Scrolling viewport tilemap](/rom/demo/scrolling-viewport-tilemap/)
+* [Swap image colors](/rom/demo/swap-image-colors/)
+* [Draw text](/rom/demo/draw-text/)
+* [Custom fonts](/rom/demo/custom-fonts/)
+* [Button states](/rom/demo/button-states/)
+* [FPS test](/rom/demo/fps-test/)
+* [Pixel inspector](/rom/demo/pixel-inspector/)
+* [Beep effects](/rom/demo/beep-effects/)
+* [Beep tune](/rom/demo/beep-tune/)
+* [Dungeon generator](/rom/demo/dungeon-generator/)
+* [Pathfinding](/rom/demo/pathfinding/)
+* [Ray casting](/rom/demo/ray-casting/)
+* [Animated sprite](/rom/demo/animated-sprite/)
+* [Flip image](/rom/demo/flip-image/)
+* [Platformer](/rom/demo/platformer/)
+* [Basic example module import](/rom/demo/basic-example-module-import/)
+* [Custom palette](/rom/demo/custom-palette/)
+* TODO: ~~[Dungeon crawl](/rom/demo/dungeon-crawl/)~~
 
 ## Games
 
-* [A simple game](https://theinvader360.github.io/fc64js/rom/game/a-simple-game/)
-* [Snake](https://theinvader360.github.io/fc64js/rom/game/snake/)
-* [Breakout](https://theinvader360.github.io/fc64js/rom/game/breakout/)
+* [A simple game](/rom/game/a-simple-game/)
+* [Snake](/rom/game/snake/)
+* [Breakout](/rom/game/breakout/)
 
 ## Tools
 
-* [Image tool](https://theinvader360.github.io/fc64js/tools/image-tool/index.html)
+* [Image tool](/tools/image-tool/)
 
 ## Developer guides
 
@@ -130,7 +131,19 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 * [Memory map](/docs/memory-map.md)
 * [Custom palette](/docs/custom-palette/custom-palette.md)
 * [Library development](/docs/library-development.md)
-* ~~TODO: Developer API...~~
-* ~~TODO: A simple game...~~
-* ~~TODO: Snake...~~
-* ~~TODO: Image tool...~~
+* TODO: ~~[Tutorial - Snake (js)](/docs/tutorial/snake-js/snake-js.md)~~
+
+## Credits
+
+fc64js is comprised of original code by TheInvader360
+
+Inspiration has been drawn from many sources - real machines like the zx spectrum, commodore 64, bbc micro, and various handhelds, virtual machines like hack (nand2tetris) and chip-8, and fantasy consoles like pico-8, tic-80, and wasm-4
+
+Special mention goes out to the [peekpoke](https://github.com/abagames/peekpoke) minimal fantasy console - a great example of how to architect this kind of project
+
+These credits relate to the fc64js fantasy console itself - credits for specific roms can be found in their accompanying readme files, or in code comments, or both
+
+## License
+
+[MIT](/LICENSE) © TheInvader360
+
