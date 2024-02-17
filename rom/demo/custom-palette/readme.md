@@ -8,4 +8,4 @@ A random palette is assigned on initialization. Reload the browser to reinitiali
 
 [Live preview](https://theinvader360.github.io/fc64js/rom/demo/custom-palette/)
 
-[Custom palette developer guide](../../../docs/custom-palette/custom-palette.md)
+[Custom palette developer guide](../../../docs/custom-palette/)

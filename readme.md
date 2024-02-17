@@ -128,10 +128,10 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 
 * This [declaration file](lib/fc64.d.ts) gives an overview of the developer API
 * These [example roms](rom/) cover all fc64js functionality
-* [Memory map](docs/memory-map.md)
-* [Custom palette](docs/custom-palette/custom-palette.md)
-* [Library development](docs/library-development.md)
-* TODO: ~~[Tutorial - Snake (js)](docs/tutorial/snake-js/snake-js.md)~~
+* [Memory map](docs/memory-map/)
+* [Custom palette](docs/custom-palette/)
+* [Library development](docs/library-development/)
+* TODO: ~~[Tutorial - Snake (js)](docs/tutorial/snake-js/)~~
 
 ## Credits
 
