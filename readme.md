@@ -112,7 +112,7 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 * [Platformer](/rom/demo/platformer/)
 * [Basic example module import](/rom/demo/basic-example-module-import/)
 * [Custom palette](/rom/demo/custom-palette/)
-* TODO: ~~[Dungeon crawl](/rom/demo/dungeon-crawl/)~~
+* [Dungeon crawl](/rom/demo/dungeon-crawl/)
 
 ## Games
 
