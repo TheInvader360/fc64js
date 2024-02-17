@@ -30,4 +30,3 @@ Views are only refreshed if the model is likely to have changed - an unnecessary
 
 * Code by TheInvader360
 * [Palette](https://lospec.com/palette-list/paper-8) by Frosty Rabbid
-

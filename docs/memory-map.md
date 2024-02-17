@@ -13,4 +13,3 @@ The next 6 locations (from 4096 to 4101) each correspond to a single input butto
 The next 2 locations (4102 and 4103) relate to audio output. The first location holds the current beep frequency in hertz - a value of 0 means the beeper is silent. The second location holds the remaining beep duration measured in ticks (which in normal circumstances last 1/60th of a second each) - again, a value of 0 means the beeper is silent
 
 The final location (4104) holds the current frames per second value
-

@@ -9,7 +9,7 @@ fc64js is a small browser based fantasy console
 
 It supports keyboard, touch, and gamepad input across desktop and mobile devices
 
-The minified [library](/lib/fc64.min.js) weighs in at just 15 kilobytes
+The minified [library](lib/fc64.min.js) weighs in at just 15 kilobytes
 
 ## Selected examples
 
@@ -19,9 +19,9 @@ Click or tap a gif to play :sunglasses:
 
 ## Getting started
 
-All you need to get started developing fc64js games is the [library](/lib/fc64.min.js), your text editor or IDE of choice (e.g. [vscode](https://code.visualstudio.com/download)), and a modern web browser to run and debug it on (e.g. [google chrome](https://www.google.com/chrome))
+All you need to get started developing fc64js games is the [library](lib/fc64.min.js), your text editor or IDE of choice (e.g. [vscode](https://code.visualstudio.com/download)), and a modern web browser to run and debug it on (e.g. [google chrome](https://www.google.com/chrome))
 
-fc64js "roms" (i.e. games/demos) are simply [javascript scripts](/rom/game/a-simple-game/main.js) that are included on a [html page](/rom/game/a-simple-game/index.html) alongside the [fc64js library](/lib/fc64.min.js)
+fc64js "roms" (i.e. games/demos) are simply [javascript scripts](rom/game/a-simple-game/main.js) that are included on a [html page](rom/game/a-simple-game/index.html) alongside the [fc64js library](lib/fc64.min.js)
 
 Each rom must include a ```romInit()``` function (called once on page load/reload) and a ```romLoop()``` function (called continuously at a targeted 60 frames per second)
 
@@ -75,9 +75,9 @@ This basic example can be saved locally (e.g. in a file named ```basic-example.h
 
 ## Javascript modules
 
-See [here](https://github.com/TheInvader360/fc64js/tree/main/rom/demo/basic-example-module-import) for an example that uses javascript modules
+See [here](rom/demo/basic-example-module-import/) for an example that uses javascript modules
 
-The key differences are changes to the html ```script``` elements [here](https://github.com/TheInvader360/fc64js/blob/main/rom/demo/basic-example-module-import/index.html#L10), and the introduction of ```import``` and ```fc64Init``` javascript statements [here](https://github.com/TheInvader360/fc64js/blob/main/rom/demo/basic-example-module-import/main.js#L1-L3)
+The key differences are changes to the html ```script``` elements [here](rom/demo/basic-example-module-import/index.html), and the introduction of ```import``` and ```fc64Init``` javascript statements [here](rom/demo/basic-example-module-import/main.js)
 
 ## Typescript starter
 
@@ -87,51 +87,51 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 
 ## Demos
 
-* [Minimal display](/rom/demo/minimal-display/)
-* [Minimal keyboard](/rom/demo/minimal-keyboard/)
-* [Minimal audio](/rom/demo/minimal-audio/)
-* [Basic example](/rom/demo/basic-example/)
-* [Display noise](/rom/demo/display-noise/)
-* [Draw shapes](/rom/demo/draw-shapes/)
-* [Image gallery](/rom/demo/image-gallery/)
-* [Large image](/rom/demo/large-image/)
-* [Scrolling viewport tilemap](/rom/demo/scrolling-viewport-tilemap/)
-* [Swap image colors](/rom/demo/swap-image-colors/)
-* [Draw text](/rom/demo/draw-text/)
-* [Custom fonts](/rom/demo/custom-fonts/)
-* [Button states](/rom/demo/button-states/)
-* [FPS test](/rom/demo/fps-test/)
-* [Pixel inspector](/rom/demo/pixel-inspector/)
-* [Beep effects](/rom/demo/beep-effects/)
-* [Beep tune](/rom/demo/beep-tune/)
-* [Dungeon generator](/rom/demo/dungeon-generator/)
-* [Pathfinding](/rom/demo/pathfinding/)
-* [Ray casting](/rom/demo/ray-casting/)
-* [Animated sprite](/rom/demo/animated-sprite/)
-* [Flip image](/rom/demo/flip-image/)
-* [Platformer](/rom/demo/platformer/)
-* [Basic example module import](/rom/demo/basic-example-module-import/)
-* [Custom palette](/rom/demo/custom-palette/)
-* [Dungeon crawl](/rom/demo/dungeon-crawl/)
+* [Minimal display](rom/demo/minimal-display/)
+* [Minimal keyboard](rom/demo/minimal-keyboard/)
+* [Minimal audio](rom/demo/minimal-audio/)
+* [Basic example](rom/demo/basic-example/)
+* [Display noise](rom/demo/display-noise/)
+* [Draw shapes](rom/demo/draw-shapes/)
+* [Image gallery](rom/demo/image-gallery/)
+* [Large image](rom/demo/large-image/)
+* [Scrolling viewport tilemap](rom/demo/scrolling-viewport-tilemap/)
+* [Swap image colors](rom/demo/swap-image-colors/)
+* [Draw text](rom/demo/draw-text/)
+* [Custom fonts](rom/demo/custom-fonts/)
+* [Button states](rom/demo/button-states/)
+* [FPS test](rom/demo/fps-test/)
+* [Pixel inspector](rom/demo/pixel-inspector/)
+* [Beep effects](rom/demo/beep-effects/)
+* [Beep tune](rom/demo/beep-tune/)
+* [Dungeon generator](rom/demo/dungeon-generator/)
+* [Pathfinding](rom/demo/pathfinding/)
+* [Ray casting](rom/demo/ray-casting/)
+* [Animated sprite](rom/demo/animated-sprite/)
+* [Flip image](rom/demo/flip-image/)
+* [Platformer](rom/demo/platformer/)
+* [Basic example module import](rom/demo/basic-example-module-import/)
+* [Custom palette](rom/demo/custom-palette/)
+* [Dungeon crawl](rom/demo/dungeon-crawl/)
 
 ## Games
 
-* [A simple game](/rom/game/a-simple-game/)
-* [Snake](/rom/game/snake/)
-* [Breakout](/rom/game/breakout/)
+* [A simple game](rom/game/a-simple-game/)
+* [Snake](rom/game/snake/)
+* [Breakout](rom/game/breakout/)
 
 ## Tools
 
-* [Image tool](/tools/image-tool/)
+* [Image tool](tools/image-tool/)
 
 ## Developer guides
 
-* This [declaration file](/lib/fc64.d.ts) gives an overview of the developer API
-* These [example roms](/rom) cover all fc64js functionality
-* [Memory map](/docs/memory-map.md)
-* [Custom palette](/docs/custom-palette/custom-palette.md)
-* [Library development](/docs/library-development.md)
-* TODO: ~~[Tutorial - Snake (js)](/docs/tutorial/snake-js/snake-js.md)~~
+* This [declaration file](lib/fc64.d.ts) gives an overview of the developer API
+* These [example roms](rom/) cover all fc64js functionality
+* [Memory map](docs/memory-map.md)
+* [Custom palette](docs/custom-palette/custom-palette.md)
+* [Library development](docs/library-development.md)
+* TODO: ~~[Tutorial - Snake (js)](docs/tutorial/snake-js/snake-js.md)~~
 
 ## Credits
 
@@ -145,5 +145,4 @@ These credits relate to the fc64js fantasy console itself - credits for specific
 
 ## License
 
-[MIT](/LICENSE) © TheInvader360
-
+[MIT](LICENSE) © TheInvader360

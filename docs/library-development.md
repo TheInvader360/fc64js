@@ -13,4 +13,3 @@ npm ci
 [Browsersync](https://browsersync.io/) watches for file changes and reloads your browser automatically as required, and facilitates testing on devices other than localhost (e.g. a phone or tablet). You can start it running with this command - ```npm run browser-sync-start```
 
 Having made your changes you can run [eslint](https://eslint.org/) and [prettier](https://prettier.io/) with these commands - ```npm run lint```, ```npm run prettier-check```, and ```npm run prettier-write```
-
