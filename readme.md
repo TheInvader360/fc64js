@@ -131,7 +131,7 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 * [Memory map](docs/memory-map/)
 * [Custom palette](docs/custom-palette/)
 * [Library development](docs/library-development/)
-* TODO: ~~[Tutorial - Snake (js)](docs/tutorial/snake-js/)~~
+* [Tutorial - Snake (js)](docs/tutorial/snake-js/)
 
 ## Credits
 

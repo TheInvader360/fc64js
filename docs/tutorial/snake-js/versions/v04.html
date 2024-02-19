@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>snake</title>
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1, maximum-scale=1" />
+    <script src="https://theinvader360.github.io/fc64js/lib/fc64.min.js"></script>
+    <script>
+      class Snake {
+        constructor() {
+          this.body = [];
+          this.direction = {};
+        }
+        init() {
+          this.body = [new Vec2(2, 0), new Vec2(1, 0), new Vec2(0, 0)];
+          this.direction = new Vec2(1, 0);
+        }
+        draw() {
+          for (const segment of this.body) {
+            drawRectangle(segment.x * 4, segment.y * 4, 4, 4, COL_GRN, COL_YEL);
+          }
+          drawRectangle(this.body[0].x * 4, this.body[0].y * 4, 4, 4, COL_GRN, COL_GRN);
+        }
+        update() {
+          for (let i = this.body.length - 1; i > 0; i--) {
+            this.body[i].x = this.body[i - 1].x;
+            this.body[i].y = this.body[i - 1].y;
+          }
+          const head = this.body[0];
+          head.x = wrap(head.x + this.direction.x, 0, 16);
+          head.y = wrap(head.y + this.direction.y, 0, 16);
+        }
+      }
+
+      let snake;
+
+      function romInit() {
+        snake = new Snake();
+        snake.init();
+      }
+
+      function romLoop() {
+        clearGfx(COL_WHT);
+        snake.update();
+        snake.draw();
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+
