@@ -26,3 +26,4 @@
 * [Basic example module import](basic-example-module-import/)
 * [Custom palette](custom-palette/)
 * [Dungeon crawl](dungeon-crawl/)
+* [Isometric](isometric/)

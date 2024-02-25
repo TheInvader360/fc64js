@@ -13,7 +13,7 @@ The minified [library](lib/fc64.min.js) weighs in at just 15 kilobytes
 
 ## Selected examples
 
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/snake.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/snake/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/breakout.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/breakout/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs//platformer.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/platformer/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/ray-casting.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/)
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/snake.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/snake/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/breakout.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/breakout/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs//platformer.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/platformer/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/ray-casting.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/dungeon-crawl.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/isometric.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/isometric/)
 
 Click or tap a gif to play :sunglasses:
 
@@ -113,6 +113,7 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 * [Basic example module import](rom/demo/basic-example-module-import/)
 * [Custom palette](rom/demo/custom-palette/)
 * [Dungeon crawl](rom/demo/dungeon-crawl/)
+* [Isometric](rom/demo/isometric/)
 
 ## Games
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>isometric draw order algorithm</title>
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1, maximum-scale=1" />
+    <script>
+      
+      //          0,0
+      //       0,1 | 1,0
+      //    0,2 | 1,1 | 2,0
+      // 0,3 | 1,2 | 2,1 | 3,0
+      //    1,3 | 2,2 | 3,1
+      //       2,3 | 3,2
+      //          3,3
+      
+      const testMap = [
+        ['0,0', '1,0', '2,0', '3,0'],
+        ['0,1', '1,1', '2,1', '3,1'],
+        ['0,2', '1,2', '2,2', '3,2'],
+        ['0,3', '1,3', '2,3', '3,3'],
+      ];
+      
+      const size = testMap.length;
+      for (let i = 0; i < size; i++) {
+        for (let j = 0; j < i + 1; j++) {
+          console.log(`${j},${i - j} - ${testMap[i - j][j]}`);
+        }
+      }
+      for (let i = 1; i < size + 1; i++) {
+        for (let j = 0; j < size - i; j++) {
+          console.log(`${i + j},${size - j - 1} - ${testMap[size - j - 1][i + j]}`);
+        }
+      }
+      
+    </script>
+  </head>
+  <body>
+    view page source + console log output
+  </body>
+</html>
