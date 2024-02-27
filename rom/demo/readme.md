@@ -20,6 +20,7 @@
 * [Dungeon generator](dungeon-generator/)
 * [Pathfinding](pathfinding/)
 * [Ray casting](ray-casting/)
+* [A simple game](a-simple-game/)
 * [Animated sprite](animated-sprite/)
 * [Flip image](flip-image/)
 * [Platformer](platformer/)

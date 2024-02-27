@@ -21,7 +21,7 @@ Click or tap a gif to play :sunglasses:
 
 All you need to get started developing fc64js games is the [library](lib/fc64.min.js), your text editor or IDE of choice (e.g. [vscode](https://code.visualstudio.com/download)), and a modern web browser to run and debug it on (e.g. [google chrome](https://www.google.com/chrome))
 
-fc64js "roms" (i.e. games/demos) are simply [javascript scripts](rom/game/a-simple-game/main.js) that are included on a [html page](rom/game/a-simple-game/index.html) alongside the [fc64js library](lib/fc64.min.js)
+fc64js "roms" (i.e. games/demos) are simply [javascript scripts](rom/demo/a-simple-game/main.js) that are included on a [html page](rom/demo/a-simple-game/index.html) alongside the [fc64js library](lib/fc64.min.js)
 
 Each rom must include a ```romInit()``` function (called once on page load/reload) and a ```romLoop()``` function (called continuously at a targeted 60 frames per second)
 
@@ -107,6 +107,7 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 * [Dungeon generator](rom/demo/dungeon-generator/)
 * [Pathfinding](rom/demo/pathfinding/)
 * [Ray casting](rom/demo/ray-casting/)
+* [A simple game](rom/demo/a-simple-game/)
 * [Animated sprite](rom/demo/animated-sprite/)
 * [Flip image](rom/demo/flip-image/)
 * [Platformer](rom/demo/platformer/)
@@ -117,7 +118,6 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 
 ## Games
 
-* [A simple game](rom/game/a-simple-game/)
 * [Snake](rom/game/snake/)
 * [Breakout](rom/game/breakout/)
 
