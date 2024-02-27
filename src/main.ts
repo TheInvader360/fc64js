@@ -27,7 +27,8 @@ declare function romLoop(): void;
 let canvas: HTMLCanvasElement;
 let canvasCtx: CanvasRenderingContext2D;
 let screenImageData: ImageData;
-let lastFrameAt = performance.now();
+let lastFrameAt: number;
+const recentFps = [60, 60, 60, 60, 60];
 const caseUnscaledWidth = 72;
 const caseUnscaledHeight = 128;
 const displayOffsetUnscaledX = 4;
@@ -53,14 +54,19 @@ function onLoad() {
   gamepadTouch.init(canvas, caseUnscaledWidth, caseUnscaledHeight);
   romInit();
   color.init(window.romPalette);
-  window.requestAnimationFrame(mainLoop);
+  lastFrameAt = performance.now();
+  mainLoop(lastFrameAt);
 }
 
 function mainLoop(now: number) {
-  // throttle framerate to max 60fps
-  if (now - lastFrameAt > 1000 / 61) {
-    memory.poke(memory.ADDRESS_FPS, Math.round(1000 / (now - lastFrameAt)));
+  const targetIntervalMillis = 1000 / 60;
+  const elapsedMillis = now - lastFrameAt;
+  if (Math.ceil(elapsedMillis) > targetIntervalMillis) {
+    recentFps.shift();
+    recentFps.push(Math.round(1000 / elapsedMillis));
+    const recentFpsAverage = Math.round(recentFps.reduce((a, b) => a + b) / recentFps.length);
     lastFrameAt = now;
+    memory.poke(memory.ADDRESS_FPS, recentFpsAverage);
     keyboard.update();
     gamepadExternal.update();
     gamepadTouch.update();
