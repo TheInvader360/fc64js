@@ -9,7 +9,7 @@ An implementation of the classic [snake](https://en.wikipedia.org/wiki/Snake_(vi
 ## Overview
 
 * Use the U/D/L/R buttons to control the snake
-* The aim of the game is for the snake eat as much fruit as possible
+* The aim of the game is for the snake to eat as much fruit as possible
 * The game is over if the snake bites itself
 
 ## Tutorial
