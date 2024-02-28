@@ -1,10 +1,10 @@
 # Dungeon Crawl (fc64js demo rom)
 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/dungeon-crawl/docs/dungeon-crawl.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/)
+
 First person grid based dungeon crawler demo for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
 
 Reminiscent of classic games like [3D Monster Maze](https://en.wikipedia.org/wiki/3D_Monster_Maze), [Dungeon Master](https://en.wikipedia.org/wiki/Dungeon_Master_(video_game)), and [Eye of the Beholder](https://en.wikipedia.org/wiki/Eye_of_the_Beholder_(video_game))
-
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/dungeon-crawl/docs/dungeon-crawl.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/)
 
 [Live preview](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/)
 

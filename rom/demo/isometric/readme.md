@@ -1,10 +1,10 @@
 # Isometric (fc64js demo rom)
 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/isometric/docs/isometric.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/isometric/)
+
 Isometric demo for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
 
 Loosely inspired by [Ant Attack](https://en.wikipedia.org/wiki/Ant_Attack)
-
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/isometric/docs/isometric.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/isometric/)
 
 [Live preview](https://theinvader360.github.io/fc64js/rom/demo/isometric/)
 
