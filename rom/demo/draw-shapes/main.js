@@ -52,19 +52,9 @@ function drawScene() {
   drawLine(44, 11, 42, 11, COL_YEL); // ray (from sun left)
   drawLine(46, 5, 45, 4, COL_YEL); // ray (from sun up-left)
 
-  for (let i = 0; i < 7; i++) {
-    drawLine(i + 4, 17 - i * 2, i + 4, 18, COL_MAG); // roof fill (left)
-  }
-  drawRectangle(11, 4, 23, 15, COL_MAG, COL_MAG); // roof fill (middle)
-  for (let i = 0; i < 7; i++) {
-    drawLine(i + 34, 5 + i * 2, i + 34, 18, COL_MAG); // roof fill (right)
-  }
+  drawPolygon([{ x: 3, y: 18 }, { x: 10, y: 3 }, { x: 34, y: 3 }, { x: 41, y: 18 }], COL_BLK, COL_MAG); // roof with outline
 
-  drawLine(3, 18, 10, 3, COL_BLK); // roof outline (left)
-  drawLine(11, 3, 33, 3, COL_BLK); // roof outline (top)
-  drawLine(34, 3, 41, 18, COL_BLK); // roof outline (right)
-
-  drawRectangle(3, 19, 39, 33, COL_BLK, COL_YEL); // wall with outline
+  drawRectangle(3, 18, 39, 34, COL_BLK, COL_YEL); // wall with outline
 
   drawRectangle(21, 37, -15, -11, COL_BLK, COL_BLU); // window with outline
   drawLine(8, 32, 20, 32, COL_BLK); // window lead (horizontal)
