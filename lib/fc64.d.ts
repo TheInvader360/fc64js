@@ -40,6 +40,7 @@ declare function drawImage(x: number, y: number, width: number, height: number, 
 declare function drawLine(x1: number, y1: number, x2: number, y2: number, color: number): void;
 declare function drawPattern(x: number, y: number, pixels: number[], color: number): void;
 declare function drawPixel(x: number, y: number, color: number): void;
+declare function drawPolygon(vertices: vertex2[], edgeColor: number, fillColor?: number): void;
 declare function drawRectangle(x: number, y: number, width: number, height: number, edgeColor: number, fillColor?: number): void;
 declare function drawText(x: number, y: number, content: string, color: number, options?: { font?: fontDefinition, tracking?: number }): void;
 declare function getFps(): number;
@@ -88,4 +89,10 @@ declare type fontDefinition = {
   charHeight: number;
   charTrackingDefault: number;
   charMap: number[][]; // characters defined in ascii code order from 32 (space) to 126 (tilde)
+};
+
+// interfaces
+declare interface vertex2 {
+  x: number;
+  y: number;
 };

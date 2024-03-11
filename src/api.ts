@@ -4,6 +4,11 @@ import * as display from './display';
 import * as font from './font';
 import * as memory from './memory';
 
+interface vertex2 {
+  x: number;
+  y: number;
+}
+
 export function beep(frequency: number, duration: number, force: boolean): void {
   // play beep if one isn't currently playing, or replace the currently playing one if set to force
   if (memory.peek(memory.ADDRESS_AUD + 1) <= 0 || force) {
@@ -140,7 +145,7 @@ function drawDiagonalLine(x1: number, y1: number, x2: number, y2: number, color:
   let e = dx - dy;
   drawPixel(x1, y1, color);
   drawPixel(x2, y2, color);
-  while (x1 !== x2 && y1 !== y2) {
+  while (x1 !== x2 || y1 !== y2) {
     const e2 = e << 1;
     if (e2 > -dy) {
       e -= dy;
@@ -169,6 +174,64 @@ export function drawPixel(x: number, y: number, color: number): void {
   memory.poke(memory.ADDRESS_GFX + (x | 0) + (y | 0) * display.GFX_W, color);
 }
 
+export function drawPolygon(vertices: vertex2[], edgeColor: number, fillColor?: number): void {
+  if (fillColor) {
+    drawPolygonFilled(vertices, edgeColor, fillColor);
+  } else {
+    drawPolygonOutline(vertices, edgeColor);
+  }
+}
+
+function drawPolygonFilled(vertices: vertex2[], edgeColor: number, fillColor: number): void {
+  // scanline algorithm for filling the polygon
+  let minY = display.GFX_H;
+  let maxY = 0;
+  // find the min and max y-coordinates
+  for (const vertex of vertices) {
+    minY = Math.min(minY, vertex.y);
+    maxY = Math.max(maxY, vertex.y);
+  }
+  for (let y = minY; y <= maxY; y++) {
+    let intersections: number[] = [];
+    // find polygon edge intersections on the scanline
+    for (let i = 0; i < vertices.length; i++) {
+      const currentVertex = vertices[i];
+      const nextVertex = vertices[(i + 1) % vertices.length];
+      if ((currentVertex.y < y && nextVertex.y >= y) || (nextVertex.y < y && currentVertex.y >= y)) {
+        const xIntersection = ((y - currentVertex.y) * (nextVertex.x - currentVertex.x)) / (nextVertex.y - currentVertex.y) + currentVertex.x;
+        intersections.push(xIntersection);
+      }
+    }
+    intersections = intersections.sort((a, b) => a - b); // sort intersection points in ascending order
+    // fill the scanline between intersection point pairs
+    for (let i = 0; i < intersections.length; i += 2) {
+      const startX = Math.ceil(intersections[i]);
+      const endX = Math.floor(intersections[i + 1]);
+      let inside = false;
+      // use the even-odd rule to determine if inside the polygon
+      for (let j = 0, k = vertices.length - 1; j < vertices.length; k = j++) {
+        const vi = vertices[j];
+        const vj = vertices[k];
+        if (vi.y > y !== vj.y > y && startX < ((vj.x - vi.x) * (y - vi.y)) / (vj.y - vi.y) + vi.x) {
+          inside = !inside;
+        }
+      }
+      if (inside) {
+        drawLine(startX, y, endX, y, fillColor);
+      }
+    }
+  }
+  drawPolygonOutline(vertices, edgeColor);
+}
+
+function drawPolygonOutline(vertices: vertex2[], color: number): void {
+  for (let i = 0; i < vertices.length; i++) {
+    const currentVertex = vertices[i];
+    const nextVertex = vertices[(i + 1) % vertices.length];
+    drawLine(currentVertex.x, currentVertex.y, nextVertex.x, nextVertex.y, color);
+  }
+}
+
 export function drawRectangle(x: number, y: number, width: number, height: number, edgeColor: number, fillColor?: number): void {
   let minX = 0;
   let minY = 0;
@@ -193,7 +256,7 @@ export function drawRectangle(x: number, y: number, width: number, height: numbe
 
   for (let i = minX; i <= maxX; i++) {
     for (let j = minY; j <= maxY; j++) {
-      if (i == minX || i == maxX || j == minY || j == maxY) {
+      if (i === minX || i === maxX || j === minY || j === maxY) {
         drawPixel(i, j, edgeColor);
       } else if (fillColor >= 0) {
         drawPixel(i, j, fillColor);

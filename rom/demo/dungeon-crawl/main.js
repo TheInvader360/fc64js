@@ -219,44 +219,30 @@ function drawWall(x, y, drawOrderIndex, faceColor, sideColor) {
   }
   if (drawOrderIndex == 8) {
     drawRectangle(x, y + 10, 10, 21, faceColor, faceColor);
-    drawLine(x + 10, y + 11, x + 10, y + 29, sideColor);
-    drawLine(x + 11, y + 12, x + 11, y + 28, sideColor);
+    drawPolygon([{ x: x + 10, y: y + 11 }, { x: x + 10, y: y + 29 }, { x: x + 11, y: y + 28 }, { x: x + 11, y: y + 12 }], sideColor);
   }
   if (drawOrderIndex == 9) {
     drawRectangle(x + 31, y + 10, 10, 21, faceColor, faceColor);
-    drawLine(x + 30, y + 11, x + 30, y + 29, sideColor);
-    drawLine(x + 29, y + 12, x + 29, y + 28, sideColor);
+    drawPolygon([{ x: x + 30, y: y + 11 }, { x: x + 30, y: y + 29 }, { x: x + 29, y: y + 28 }, { x: x + 29, y: y + 12 }], sideColor);
   }
   if (drawOrderIndex == 10) {
     drawRectangle(x + 10, y + 10, 21, 21, faceColor, faceColor);
   }
   if (drawOrderIndex == 11) {
     drawRectangle(x, y + 6, 5, 29, faceColor, faceColor);
-    drawLine(x + 5, y + 7, x + 5, y + 33, sideColor);
-    drawLine(x + 6, y + 8, x + 6, y + 32, sideColor);
-    drawLine(x + 7, y + 9, x + 7, y + 31, sideColor);
-    drawLine(x + 8, y + 10, x + 8, y + 30, sideColor);
+    drawPolygon([{ x: x + 5, y: y + 7 }, { x: x + 5, y: y + 33 }, { x: x + 8, y: y + 30 }, { x: x + 8, y: y + 10 }], sideColor, sideColor);
   }
   if (drawOrderIndex == 12) {
     drawRectangle(x + 36, y + 6, 5, 29, faceColor, faceColor);
-    drawLine(x + 35, y + 7, x + 35, y + 33, sideColor);
-    drawLine(x + 34, y + 8, x + 34, y + 32, sideColor);
-    drawLine(x + 33, y + 9, x + 33, y + 31, sideColor);
-    drawLine(x + 32, y + 10, x + 32, y + 30, sideColor);
+    drawPolygon([{ x: x + 35, y: y + 7 }, { x: x + 35, y: y + 33 }, { x: x + 32, y: y + 30 }, { x: x + 32, y: y + 10 }], sideColor, sideColor);
   }
   if (drawOrderIndex == 13) {
     drawRectangle(x + 5, y + 6, 31, 29, faceColor, faceColor);
   }
   if (drawOrderIndex == 14) {
-    drawLine(x, y + 2, x, y + 38, sideColor);
-    drawLine(x + 1, y + 3, x + 1, y + 37, sideColor);
-    drawLine(x + 2, y + 4, x + 2, y + 36, sideColor);
-    drawLine(x + 3, y + 5, x + 3, y + 35, sideColor);
+    drawPolygon([{ x: x, y: y + 2 }, { x: x, y: y + 38 }, { x: x + 3, y: y + 35 }, { x: x + 3, y: y + 5 }], sideColor, sideColor);
   }
   if (drawOrderIndex == 15) {
-    drawLine(x + 40, y + 2, x + 40, y + 38, sideColor);
-    drawLine(x + 39, y + 3, x + 39, y + 37, sideColor);
-    drawLine(x + 38, y + 4, x + 38, y + 36, sideColor);
-    drawLine(x + 37, y + 5, x + 37, y + 35, sideColor);
+    drawPolygon([{ x: x + 40, y: y + 2 }, { x: x + 40, y: y + 38 }, { x: x + 37, y: y + 35 }, { x: x + 37, y: y + 5 }], sideColor, sideColor);
   }
 }

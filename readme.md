@@ -9,7 +9,7 @@ fc64js is a small browser based fantasy console
 
 It supports keyboard, touch, and gamepad input across desktop and mobile devices
 
-The minified [library](lib/fc64.min.js) weighs in at just 15 kilobytes
+The minified [library](lib/fc64.min.js) weighs in at just 16 kilobytes
 
 ## Selected examples
 

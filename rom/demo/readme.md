@@ -28,3 +28,5 @@
 * [Custom palette](custom-palette/)
 * [Dungeon crawl](dungeon-crawl/)
 * [Isometric](isometric/)
+* [Draw polygons](draw-polygons/)
+* [Rotating cube](rotating-cube/)
