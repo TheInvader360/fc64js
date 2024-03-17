@@ -35,10 +35,10 @@ function drawCircleFilled(centerX: number, centerY: number, radius: number, colo
   let y = radius;
   let d = 1 - radius;
   while (x <= y) {
-    drawHorizontalLine(centerX - x, centerX + x, centerY - y, color);
-    drawHorizontalLine(centerX - y, centerX + y, centerY - x, color);
-    drawHorizontalLine(centerX - y, centerX + y, centerY + x, color);
-    drawHorizontalLine(centerX - x, centerX + x, centerY + y, color);
+    drawLineHorizontal(centerX - x, centerX + x, centerY - y, color);
+    drawLineHorizontal(centerX - y, centerX + y, centerY - x, color);
+    drawLineHorizontal(centerX - y, centerX + y, centerY + x, color);
+    drawLineHorizontal(centerX - x, centerX + x, centerY + y, color);
     if (d < 0) {
       d += 2 * x + 1;
     } else {
@@ -106,37 +106,15 @@ export function drawImage(x: number, y: number, width: number, height: number, p
 
 export function drawLine(x1: number, y1: number, x2: number, y2: number, color: number): void {
   if (x1 === x2) {
-    drawVerticalLine(x1, y1, y2, color);
+    drawLineVertical(x1, y1, y2, color);
   } else if (y1 === y2) {
-    drawHorizontalLine(x1, x2, y1, color);
+    drawLineHorizontal(x1, x2, y1, color);
   } else {
-    drawDiagonalLine(x1, y1, x2, y2, color);
+    drawLineDiagonal(x1, y1, x2, y2, color);
   }
 }
 
-function drawVerticalLine(x: number, y1: number, y2: number, color: number): void {
-  if (y1 > y2) {
-    const temp = y1;
-    y1 = y2;
-    y2 = temp;
-  }
-  for (let i = y1; i <= y2; i++) {
-    drawPixel(x, i, color);
-  }
-}
-
-function drawHorizontalLine(x1: number, x2: number, y: number, color: number): void {
-  if (x1 > x2) {
-    const temp = x1;
-    x1 = x2;
-    x2 = temp;
-  }
-  for (let i = x1; i <= x2; i++) {
-    drawPixel(i, y, color);
-  }
-}
-
-function drawDiagonalLine(x1: number, y1: number, x2: number, y2: number, color: number): void {
+function drawLineDiagonal(x1: number, y1: number, x2: number, y2: number, color: number): void {
   // bresenham's line drawing algorithm
   const dx = Math.abs(x2 - x1);
   const dy = Math.abs(y2 - y1);
@@ -156,6 +134,28 @@ function drawDiagonalLine(x1: number, y1: number, x2: number, y2: number, color:
       y1 += sy;
     }
     drawPixel(x1, y1, color);
+  }
+}
+
+function drawLineHorizontal(x1: number, x2: number, y: number, color: number): void {
+  if (x1 > x2) {
+    const temp = x1;
+    x1 = x2;
+    x2 = temp;
+  }
+  for (let i = x1; i <= x2; i++) {
+    drawPixel(i, y, color);
+  }
+}
+
+function drawLineVertical(x: number, y1: number, y2: number, color: number): void {
+  if (y1 > y2) {
+    const temp = y1;
+    y1 = y2;
+    y2 = temp;
+  }
+  for (let i = y1; i <= y2; i++) {
+    drawPixel(x, i, color);
   }
 }
 
@@ -270,12 +270,12 @@ export function drawText(x: number, y: number, content: string, color: number, o
   const t = options?.tracking >= 0 ? options.tracking : f.charTrackingDefault;
   let cursor = x;
   for (let i = 0; i < content.length; i++) {
-    drawChar(content.charAt(i), f, cursor, y, color);
+    drawTextChar(content.charAt(i), f, cursor, y, color);
     cursor += f.charWidth + t;
   }
 }
 
-function drawChar(char: string, font: font.fontDefinition, x: number, y: number, color: number): void {
+function drawTextChar(char: string, font: font.fontDefinition, x: number, y: number, color: number): void {
   const pattern = font.charMap[char.charCodeAt(0) - 32];
   for (let i = 0; i < font.charWidth; i++) {
     for (let j = 0; j < font.charHeight; j++) {

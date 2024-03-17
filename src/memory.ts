@@ -6,7 +6,8 @@ const ADDRESS_MAX = 4104;
 
 const ram: number[] = [];
 
-export function init() {
+export function init(): void {
+  ram.length = 0;
   for (let i = 0; i <= ADDRESS_MAX; i++) {
     ram.push(0);
   }

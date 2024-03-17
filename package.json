@@ -11,7 +11,8 @@
     "prettier-check": "prettier --config .prettierrc './src/**/*.ts' --check",
     "prettier-write": "prettier --config .prettierrc './src/**/*.ts' --write",
     "rollup-watch": "rollup -c -w --bundleConfigAsCjs",
-    "browser-sync-start": "browser-sync start --server --directory --files \"*\""
+    "browser-sync-start": "browser-sync start --server --directory --files \"*\"",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -25,18 +26,26 @@
   "homepage": "https://github.com/TheInvader360/fc64js#readme",
   "typings": "lib/fc64.d.ts",
   "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-typescript": "^7.23.3",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-replace": "^5.0.2",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.0",
+    "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
+    "babel-jest": "^29.7.0",
     "browser-sync": "^3.0.2",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.1",
+    "jest": "^29.7.0",
     "prettier": "^3.1.1",
     "rollup": "^3.21.5",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "tslib": "^2.5.0"
   }
 }

@@ -87,34 +87,7 @@ The result of following the [fc64js-typescript-starter](https://github.com/TheIn
 
 ## Demos
 
-* [Minimal display](rom/demo/minimal-display/)
-* [Minimal keyboard](rom/demo/minimal-keyboard/)
-* [Minimal audio](rom/demo/minimal-audio/)
-* [Basic example](rom/demo/basic-example/)
-* [Display noise](rom/demo/display-noise/)
-* [Draw shapes](rom/demo/draw-shapes/)
-* [Image gallery](rom/demo/image-gallery/)
-* [Large image](rom/demo/large-image/)
-* [Scrolling viewport tilemap](rom/demo/scrolling-viewport-tilemap/)
-* [Swap image colors](rom/demo/swap-image-colors/)
-* [Draw text](rom/demo/draw-text/)
-* [Custom fonts](rom/demo/custom-fonts/)
-* [Button states](rom/demo/button-states/)
-* [FPS test](rom/demo/fps-test/)
-* [Pixel inspector](rom/demo/pixel-inspector/)
-* [Beep effects](rom/demo/beep-effects/)
-* [Beep tune](rom/demo/beep-tune/)
-* [Dungeon generator](rom/demo/dungeon-generator/)
-* [Pathfinding](rom/demo/pathfinding/)
-* [Ray casting](rom/demo/ray-casting/)
-* [A simple game](rom/demo/a-simple-game/)
-* [Animated sprite](rom/demo/animated-sprite/)
-* [Flip image](rom/demo/flip-image/)
-* [Platformer](rom/demo/platformer/)
-* [Basic example module import](rom/demo/basic-example-module-import/)
-* [Custom palette](rom/demo/custom-palette/)
-* [Dungeon crawl](rom/demo/dungeon-crawl/)
-* [Isometric](rom/demo/isometric/)
+Various demos are available [here](rom/demo/)
 
 ## Games
 
