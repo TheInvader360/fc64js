@@ -177,9 +177,8 @@ export function drawPixel(x: number, y: number, color: number): void {
 export function drawPolygon(vertices: vertex2[], edgeColor: number, fillColor?: number): void {
   if (fillColor) {
     drawPolygonFilled(vertices, edgeColor, fillColor);
-  } else {
-    drawPolygonOutline(vertices, edgeColor);
   }
+  drawPolygonOutline(vertices, edgeColor);
 }
 
 function drawPolygonFilled(vertices: vertex2[], edgeColor: number, fillColor: number): void {
@@ -200,6 +199,9 @@ function drawPolygonFilled(vertices: vertex2[], edgeColor: number, fillColor: nu
       if ((currentVertex.y < y && nextVertex.y >= y) || (nextVertex.y < y && currentVertex.y >= y)) {
         const xIntersection = ((y - currentVertex.y) * (nextVertex.x - currentVertex.x)) / (nextVertex.y - currentVertex.y) + currentVertex.x;
         intersections.push(xIntersection);
+      } else if (currentVertex.y === y && nextVertex.y === y) {
+        intersections.push(currentVertex.x);
+        intersections.push(nextVertex.x);
       }
     }
     intersections = intersections.sort((a, b) => a - b); // sort intersection points in ascending order
@@ -221,7 +223,6 @@ function drawPolygonFilled(vertices: vertex2[], edgeColor: number, fillColor: nu
       }
     }
   }
-  drawPolygonOutline(vertices, edgeColor);
 }
 
 function drawPolygonOutline(vertices: vertex2[], color: number): void {
