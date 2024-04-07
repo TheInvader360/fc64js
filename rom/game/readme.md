@@ -2,3 +2,4 @@
 
 * [Snake](snake/)
 * [Breakout](breakout/)
+* [Simon](simon/)
