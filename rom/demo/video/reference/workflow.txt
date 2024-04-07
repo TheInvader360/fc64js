@@ -1,0 +1,19 @@
+https://commons.wikimedia.org/wiki/File:Excerpt_from_Steamboat_Willie_(1928),_used_as_part_of_Walt_Disney_Animation_Studios_Logo.gif
+
+https://ezgif.com/optimize
+* crop    - left 36, top 0, width 360, height 360
+* frames  - retain 44-98 with 5ms delay
+* resize  - width 64, height 64
+* effects - brightness 5, contrast 25, sharpen 1
+* split   - png
+download zip then extract to ./source/
+
+```bash
+mogrify -dither FloydSteinberg -remap ./converter/fixtures/palette.png -path ./converter/input/ ./source/*.png
+cd converter
+go test ./... --cover
+for f in ./input/*.png; do go run cmd/png2text/main.go -source=$f; done
+```
+
+use the output in a fc64js rom with a custom palette:
+```romPalette = [0x000000, 0x222222, 0x444444, 0x666666, 0x888888, 0xaaaaaa, 0xcccccc, 0xeeeeee];```

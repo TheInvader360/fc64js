@@ -30,3 +30,5 @@
 * [Isometric](isometric/)
 * [Draw polygons](draw-polygons/)
 * [Rotating cube](rotating-cube/)
+* [Collision detection](collision-detection)
+* [Video](video)
