@@ -14,6 +14,7 @@
         init() {
           this.body = [new Vec2(2, 0), new Vec2(1, 0), new Vec2(0, 0)];
           this.direction = new Vec2(1, 0);
+          this.turning = false;
         }
         draw() {
           for (const segment of this.body) {
@@ -29,30 +30,44 @@
           const head = this.body[0];
           head.x = wrap(head.x + this.direction.x, 0, 16);
           head.y = wrap(head.y + this.direction.y, 0, 16);
+          this.turning = false;
         }
         tryUp() {
-          if (this.direction.y == 0) {
+          if (this.direction.y == 0 && !this.turning) {
+            this.turning = true;
             this.direction.x = 0;
             this.direction.y = -1;
           }
         }
         tryDown() {
-          if (this.direction.y == 0) {
+          if (this.direction.y == 0 && !this.turning) {
+            this.turning = true;
             this.direction.x = 0;
             this.direction.y = 1;
           }
         }
         tryLeft() {
-          if (this.direction.x == 0) {
+          if (this.direction.x == 0 && !this.turning) {
+            this.turning = true;
             this.direction.x = -1;
             this.direction.y = 0;
           }
         }
         tryRight() {
-          if (this.direction.x == 0) {
+          if (this.direction.x == 0 && !this.turning) {
+            this.turning = true;
             this.direction.x = 1;
             this.direction.y = 0;
           }
+        }
+        isDead() {
+          const head = this.body[0];
+          for (let i = 1; i < this.body.length; i++) {
+            if (this.body[i].equals(head)) {
+              return true;
+            }
+          }
+          return false;
         }
       }
 
@@ -63,25 +78,58 @@
         -1, 2, 2,-1,
       ];
 
-      let ticks = 0;
+      const states = {
+        title: 0,
+        playing: 1,
+        gameOver: 2,
+      };
+
+      let state;
+      let stateTicks;
       let snake;
       let fruit;
 
       function romInit() {
+        changeState(states.title);
         snake = new Snake();
         snake.init();
         fruit = new Vec2(randomInt(0, 15), randomInt(0, 15));
       }
 
       function romLoop() {
-        ticks++;
+        stateTicks++;
         clearGfx(COL_WHT);
-        handleGameplayInput();
-        drawImage(fruit.x * 4, fruit.y * 4, 4, 4, imgFruit);
-        if (ticks % 10 == 0) {
-          snake.update();
+        if (state == states.title) {
+          drawText(22, 29, 'SNAKE', COL_BLK);
+          if (stateTicks > 60 && (isJustPressed(BTN_U) || isJustPressed(BTN_D) || isJustPressed(BTN_L) || isJustPressed(BTN_R) || isJustPressed(BTN_A) || isJustPressed(BTN_B))) {
+            changeState(states.playing);
+          }
+        } else if (state == states.playing) {
+          handleGameplayInput();
+          drawImage(fruit.x * 4, fruit.y * 4, 4, 4, imgFruit);
+          if (stateTicks % 10 == 0) {
+            snake.update();
+            if (snake.isDead()) {
+              beep(280, 15, true);
+              changeState(states.gameOver);
+            }
+            if (snake.body[0].equals(fruit)) {
+              beep(1000, 5, true);
+              const tailTip = snake.body[snake.body.length - 1];
+              snake.body.push(new Vec2(tailTip.x, tailTip.y));
+              fruit.x = randomInt(0, 15);
+              fruit.y = randomInt(0, 15);
+            }
+          }
+          snake.draw();
+        } else if (state == states.gameOver) {
+          drawText(24, 26, 'GAME', COL_BLK);
+          drawText(24, 32, 'OVER', COL_BLK);
+          drawText(16, 44, `SCORE:${snake.body.length - 3}`, COL_BLK);
+          if (stateTicks > 60 && (isJustPressed(BTN_U) || isJustPressed(BTN_D) || isJustPressed(BTN_L) || isJustPressed(BTN_R) || isJustPressed(BTN_A) || isJustPressed(BTN_B))) {
+            romInit();
+          }
         }
-        snake.draw();
       }
 
       function handleGameplayInput() {
@@ -97,6 +145,11 @@
         if (isJustPressed(BTN_R)) {
           snake.tryRight();
         }
+      }
+
+      function changeState(newState) {
+        state = newState;
+        stateTicks = 0;
       }
     </script>
   </head>

@@ -8,6 +8,7 @@ class Snake {
   init() {
     this.body = [new Vec2(2, 0), new Vec2(1, 0), new Vec2(0, 0)];
     this.direction = new Vec2(1, 0);
+    this.turning = false;
   }
   draw() {
     for (const segment of this.body) {
@@ -23,27 +24,32 @@ class Snake {
     const head = this.body[0];
     head.x = wrap(head.x + this.direction.x, 0, 16);
     head.y = wrap(head.y + this.direction.y, 0, 16);
+    this.turning = false;
   }
   tryUp() {
-    if (this.direction.y == 0) {
+    if (this.direction.y == 0 && !this.turning) {
+      this.turning = true;
       this.direction.x = 0;
       this.direction.y = -1;
     }
   }
   tryDown() {
-    if (this.direction.y == 0) {
+    if (this.direction.y == 0 && !this.turning) {
+      this.turning = true;
       this.direction.x = 0;
       this.direction.y = 1;
     }
   }
   tryLeft() {
-    if (this.direction.x == 0) {
+    if (this.direction.x == 0 && !this.turning) {
+      this.turning = true;
       this.direction.x = -1;
       this.direction.y = 0;
     }
   }
   tryRight() {
-    if (this.direction.x == 0) {
+    if (this.direction.x == 0 && !this.turning) {
+      this.turning = true;
       this.direction.x = 1;
       this.direction.y = 0;
     }
