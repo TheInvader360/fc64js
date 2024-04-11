@@ -15,5 +15,44 @@ go test ./... --cover
 for f in ./input/*.png; do go run cmd/png2text/main.go -source=$f; done
 ```
 
-use the output in a fc64js rom with a custom palette:
-```romPalette = [0x000000, 0x222222, 0x444444, 0x666666, 0x888888, 0xaaaaaa, 0xcccccc, 0xeeeeee];```
+-----
+
+hex encode the pixel color arrays using this function:
+
+```js
+const pixelColorsToHexString = (pixelColors) => {
+  let hexString = '';
+  pixelColors.forEach((value) => {
+    if (value < 0 || value > 15) {
+      hexString += 'f';
+    } else {
+      hexString += value.toString(16);
+    }
+  });
+  return hexString;
+}
+```
+
+then use the hex strings in a fc64js rom with custom palette: ```romPalette = [0x000000, 0x222222, 0x444444, 0x666666, 0x888888, 0xaaaaaa, 0xcccccc, 0xeeeeee];```
+
+along with a hex string decode function:
+
+```js
+const hexStringToPixelColors = (hexString) => {
+  const pixelColors = [];
+  for (const hexDigit of hexString) {
+    if (hexDigit === 'f') {
+      pixelColors.push(-1);
+    } else {
+      pixelColors.push(parseInt(hexDigit, 16));
+    }
+  }
+  return pixelColors;
+}
+```
+
+-----
+
+the fact that the entire screen is redrawn each frame, and that each frame's image is of a known size does offer up some more simple possibilities for further reduction in file size (why limit ourselves to 0-f?) without resorting to "real" compression
+
+the real limiting factors are the console's tiny color palette, low resolution, and minimal beeper... fc64js isn't really suited for use as a multimedia player, so this is probably not an area that warrants much investigation, but it *is* a fun diversion :)

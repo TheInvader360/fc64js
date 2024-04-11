@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <script>
+
+// 3 bit color palette plus support for "no color" transparent pixels means the data for each image pixel can be packed into a nibble (i.e. half a byte, or one hexadecimal digit)
+// hex values 0-7 map cleanly to the decimal palette index values (defaults for 0-7: black, blue, red, magenta, green, cyan, yellow, white)
+// hex values 8-e are not in use (there's scope for possible widening of the palette in future while remaining totally backwards compatible - *cough* https://lospec.com/palette-list/zx-spectrum *cough*)
+// hex value f is remapped to decimal -1 when decoding - by convention this is the "no draw" transparent pixel value
+// decimal values below 0 or above 15 (so that includes the -1's...) are mapped to hex f when encoding
+// there's a very noticeable reduction in file size at the cost of an imperceptible performace hit (and even that non-issue can be mitigated by decoding images only once each)
+// nice and simple, no compression, no dependencies - the *only* downside I can think of is that a nicely formatted integer array is "squint right and you can see it in a text editor" friendly whereas a hex string is not... 
+
+const hexStringLarge = 'fffffffff7767fffffffffffffffffffffff766672776766667ffffffffffffff22227677766677766fffffffffffff222227222262266666ffffffffffff0027077766777227776ffffffffff07727777762726662276ffffffffff0770777777726272222776ffffffff077077777772272222772267ffffff0700777722272227272772227ffffff020000227222222277272227ffffff7720002222222727222222772ffff62277222220022222272220222fff777207200022002222022222727fff772020000020000022222222007ff0272220020022202222222722230f07700222222022200000222222007507302220000002220002222202731677020222222000222222022222207407702200220222222220200202237000202222000222222222022022220500202200000022222222222222220002722222002202222222222220060402227770072220222022220202065652027670002200020222020000066470026600022227722020000004060057206060062270770000000740000640700200070707770007077777000000727770057777700000000077500064000007555700000707000007500647700777557207077700024000505';
+
+const pixelColorsLarge = [
+ -1,-1,-1,-1,-1,-1,-1,-1,-1, 7, 7, 6, 7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1,-1,-1, 7, 6, 6, 6, 7, 2, 7, 7, 6, 7, 6, 6, 6, 6, 7,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1,-1, 2, 2, 2, 2, 7, 6, 7, 7, 7, 6, 6, 6, 7, 7, 7, 6, 6,-1,-1,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1,-1, 2, 2, 2, 2, 2, 7, 2, 2, 2, 2, 6, 2, 2, 6, 6, 6, 6, 6,-1,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1,-1, 0, 0, 2, 7, 0, 7, 7, 7, 6, 6, 7, 7, 7, 2, 2, 7, 7, 7, 6,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1, 0, 7, 7, 2, 7, 7, 7, 7, 7, 6, 2, 7, 2, 6, 6, 6, 2, 2, 7, 6,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1, 0, 7, 7, 0, 7, 7, 7, 7, 7, 7, 7, 2, 6, 2, 7, 2, 2, 2, 2, 7, 7, 6,-1,-1,-1,-1,
+ -1,-1,-1,-1, 0, 7, 7, 0, 7, 7, 7, 7, 7, 7, 7, 2, 2, 7, 2, 2, 2, 2, 7, 7, 2, 2, 6, 7,-1,-1,
+ -1,-1,-1,-1, 0, 7, 0, 0, 7, 7, 7, 7, 2, 2, 2, 7, 2, 2, 2, 7, 2, 7, 2, 7, 7, 2, 2, 2, 7,-1,
+ -1,-1,-1,-1,-1, 0, 2, 0, 0, 0, 0, 2, 2, 7, 2, 2, 2, 2, 2, 2, 2, 7, 7, 2, 7, 2, 2, 2, 7,-1,
+ -1,-1,-1,-1,-1, 7, 7, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 7, 2, 7, 2, 2, 2, 2, 2, 2, 7, 7, 2,
+ -1,-1,-1,-1, 6, 2, 2, 7, 7, 2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2, 2, 2, 7, 2, 2, 2, 0, 2, 2, 2,
+ -1,-1,-1, 7, 7, 7, 2, 0, 7, 2, 0, 0, 0, 2, 2, 0, 0, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 7, 2, 7,
+ -1,-1,-1, 7, 7, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 7,
+ -1,-1, 0, 2, 7, 2, 2, 2, 0, 0, 2, 0, 0, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 7, 2, 2, 2, 3, 0,
+ -1, 0, 7, 7, 0, 0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 7,
+  5, 0, 7, 3, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 0, 2, 7, 3, 1,
+  6, 7, 7, 0, 2, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0, 7,
+  4, 0, 7, 7, 0, 2, 2, 0, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0, 0, 2, 0, 2, 2, 3, 7,
+  0, 0, 0, 2, 0, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 0,
+  5, 0, 0, 2, 0, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+  0, 0, 2, 7, 2, 2, 2, 2, 2, 0, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 6, 0,
+  4, 0, 2, 2, 2, 7, 7, 7, 0, 0, 7, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 0, 2, 0, 2, 0, 6, 5,
+  6, 5, 2, 0, 2, 7, 6, 7, 0, 0, 0, 2, 2, 0, 0, 0, 2, 0, 2, 2, 2, 0, 2, 0, 0, 0, 0, 0, 6, 6,
+  4, 7, 0, 0, 2, 6, 6, 0, 0, 0, 2, 2, 2, 2, 7, 7, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 4, 0, 6, 0,
+  0, 5, 7, 2, 0, 6, 0, 6, 0, 0, 6, 2, 2, 7, 0, 7, 7, 0, 0, 0, 0, 0, 0, 0, 7, 4, 0, 0, 0, 0,
+  6, 4, 0, 7, 0, 0, 2, 0, 0, 0, 7, 0, 7, 0, 7, 7, 7, 0, 0, 0, 7, 0, 7, 7, 7, 7, 7, 0, 0, 0,
+  0, 0, 0, 7, 2, 7, 7, 7, 0, 0, 5, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 5, 0, 0,
+  0, 6, 4, 0, 0, 0, 0, 0, 7, 5, 5, 5, 7, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 7, 5, 0, 0,
+  6, 4, 7, 7, 0, 0, 7, 7, 7, 5, 5, 7, 2, 0, 7, 0, 7, 7, 7, 0, 0, 0, 2, 4, 0, 0, 0, 5, 0, 5,
+];
+
+const pixelColorsToHexString = (pixelColors) => {
+  let hexString = '';
+  pixelColors.forEach((value) => {
+    if (value < 0 || value > 15) {
+      hexString += 'f';
+    } else {
+      hexString += value.toString(16);
+    }
+  });
+  return hexString;
+}
+
+const hexStringToPixelColors = (hexString) => {
+  const pixelColors = [];
+  for (const hexDigit of hexString) {
+    if (hexDigit === 'f') {
+      pixelColors.push(-1);
+    } else {
+      pixelColors.push(parseInt(hexDigit, 16));
+    }
+  }
+  return pixelColors;
+}
+
+let testData = [
+  { id: 1, hexString: '34322444444444443532334544532245', pixelColors: [3, 4, 3, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 5, 3, 2, 3, 3, 4, 5, 4, 4, 5, 3, 2, 2, 4, 5] }, // 3,4,3,2,2,4,4,4,4,4,4,4,4,4,4,4,3,5,3,2,3,3,4,5,4,4,5,3,2,2,4,5
+  { id: 2, hexString: '0123456789abcdef',                 pixelColors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, -1]                                           }, // 0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f*
+  { id: 3, hexString: 'fedcba9876543210',                 pixelColors: [-1, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]                                           }, // f*,e,d,c,b,a,9,8,7,6,5,4,3,2,1,0
+  { id: 4, hexString: 'deadbeefcafe123',                  pixelColors: [13, 14, 10, 13, 11, 14, 14, -1, 12, 10, -1, 14, 1, 2, 3]                                        }, // d,e,a,d,b,e,e,f*,c,a,f*,e,1,2,3
+  { id: 5, hexString: '0123f4567',                        pixelColors: [0, 1, 2, 3, -1, 4, 5, 6, 7]                                                                     }, // 0,1,2,3,f*,4,5,6,7
+  { id: 6, hexString: hexStringLarge,                     pixelColors: pixelColorsLarge,                                                                                },
+];
+
+testData.forEach((data) => {
+  const encodeResult = pixelColorsToHexString(data.pixelColors);
+  const encodePassed = encodeResult === data.hexString;
+  console.log(`ENCODE ${data.id}:`, encodePassed ? 'PASS' : `FAIL - result: ${encodeResult}, expected: ${data.hexString}`);
+  const decodeResult = hexStringToPixelColors(data.hexString);
+  const decodePassed = decodeResult.toString() === data.pixelColors.toString();
+  console.log(`DECODE ${data.id}:`, decodePassed ? 'PASS' : `FAIL - result: ${decodeResult}, expected: ${data.pixelColors}`);
+});
+
+    </script>
+  </head>
+  <body>
+    view test results in console
+  </body>
+</html>
