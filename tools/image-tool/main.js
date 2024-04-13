@@ -64,7 +64,31 @@ function populateImagePaletteRefs() {
     imagePaletteRefs[i] = (ref == undefined) ? -1 : ref;
   }
 }
-  
+
+function hexStringEncode() {
+  let hexString = '';
+  imagePaletteRefs.forEach((value) => {
+    if (value < 0 || value > 15) {
+      hexString += 'f';
+    } else {
+      hexString += value.toString(16);
+    }
+  });
+  return hexString;
+}
+
+function b64StringEncode() {
+  let binaryString = '';
+  for (let i = 0; i < imagePaletteRefs.length; i += 2) {
+    const pixel1 = (imagePaletteRefs[i] < 0 || imagePaletteRefs[i] > 15) ? 15 : imagePaletteRefs[i];
+    const pixel2 = (i + 1 >= imagePaletteRefs.length || imagePaletteRefs[i + 1] < 0 || imagePaletteRefs[i + 1] > 15) ? 15 : imagePaletteRefs[i + 1];
+    const byte = (pixel1 << 4) | pixel2;
+    binaryString += String.fromCharCode(byte);
+  }
+  const base64String = btoa(binaryString);
+  return base64String.replaceAll('=', '');
+}
+
 function updateSummary() {
   let content = 'Image Summary\n=============\n\n';
   content = content.concat(`W: ${image.width}\n`);
@@ -77,5 +101,9 @@ function updateSummary() {
     }
     content = content.concat('\n');
   }
+
+  content = content.concat(`\nHex Encoded:\n${hexStringEncode()}\n`);
+  content = content.concat(`\nB64 Encoded:\n${b64StringEncode()}\n`);
+
   summaryElement.innerText = content;
 }
