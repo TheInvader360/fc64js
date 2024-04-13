@@ -32,3 +32,4 @@
 * [Rotating cube](rotating-cube/)
 * [Collision detection](collision-detection)
 * [Video](video)
+* [Encoded image](encoded-image)

@@ -100,3 +100,7 @@ The same integer array as a b64 encoded string (69 bytes):
 **Q: Will a means of drawing encoded images be added to the fc64js library?**
 
 **A:** Maybe. If I find that it gets used a lot and the ```hexStringToPixelColors()``` / ```b64StringToPixelColors()``` functions keep getting copied and pasted into lots of roms I might add them to the library itself. In the meantime copy and paste away :D
+
+## Credits
+
+* Code by TheInvader360
