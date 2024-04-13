@@ -1,0 +1,134 @@
+<html>
+  <head>
+    <script>
+
+// 3 bit color palette plus support for "no color" transparent pixels means the data for each image pixel can be packed into a nibble (i.e. half a byte)
+// binary values 0000-0111 map to the decimal palette index values (defaults for 0-7: black, blue, red, magenta, green, cyan, yellow, white)
+// binary values 1000-1110 are not in use (there's scope for possible widening of the palette in future while remaining totally backwards compatible - *cough* https://lospec.com/palette-list/zx-spectrum *cough*)
+// binary value 1111 is remapped to -1, by convention this is the "no draw" transparent pixel value
+// there's a very noticeable reduction in file size at the cost of an imperceptible performace hit (and even that non-issue can be mitigated by decoding images only once each)
+// nice and simple, no compression, no dependencies - the *only* downside I can think of is that a nicely formatted integer array is "squint right and you can see it in a text editor" friendly whereas a base64 encoded string is not... 
+
+// the palette index value for two pixels can be packed into a single byte
+// if there's an odd number of pixels in the image data the last byte can be padded with a trailing 0b1111 nibble (an extra no draw pixel) or any garbage value really (any extraneous pixels can be discarded when decoding or drawing)
+// the packed "2 pixel" bytes can be base64 encoded (simple text format that works well with source control - it uses a 64 character alphabet A-Z, a-z, 0-9, and + and / to encode binary data into a reasonably friendly text string)
+// base64 encoding packs 6 bits of source binary data into each character in the encoded string, this compares favourably with hexadecimal's 4 bits per character:
+// hex - the 16 possible character values cover 0b0000-0b1111 or decimal 0+0+0+0 (i.e. 0) to 8+4+2+1 (i.e. 15)
+// b64 - the 64 possible character values cover 0b000000-0b111111 or decimal 0+0+0+0+0+0 (i.e. 0) to 32+16+8+4+2+1 (i.e. 63)
+// 6 bits per base64 encoded character means we're encoding 24 bits (or 3 bytes) in each set of 4 base64 encoded ascii characters
+// if the source data doesn't fit cleanly into a multiple of 3 bytes there is the option of padding the encoded string with trailing = characters - since the object of the exercise is to reduce the length of the encoded strings we won't be doing that
+// we can pass in a pixel count when decoding if we want to discard any potential padding pixels then, alternatively we can simply leave them in place and safely ignore them (DrawImage specifies width and height, any extra pixels are ignored)
+
+const b64StringLarge = '//////d2f///////////////dmZyd2dmZn/////////yIidnd2Znd2b////////yIiJyIiYiZmZv///////wAnB3dmd3Ind2//////8Hcnd3dicmZiJ2//////8HcHd3d3JiciIndv////8HcHd3d3InIiJ3Imf///8HAHd3IiciJycnciJ////wIAACJyIiIidyciJ////3cgACIiIicnIiIidy//9iJ3IiIgAiIiJyIgIi//d3IHIAAiACIiAiIicn//dyAgAAAgAAAiIiIiAH/wJyIgAgAiICIiIiciIw8HcAIiIiAiIAAAIiIiAHUHMCIgAAACIgACIiICcxZ3AgIiIiAAIiIiAiIiIHQHcCIAIgIiIiIgIAICI3AAICIiAAIiIiIiAiAiIgUAICIAAAAiIiIiIiIiIgACciIiACICIiIiIiIgBgQCIndwByIgIiAiIgICBlZSAnZwACIAAgIiAgAABmRwAmYAAiInciAgAAAEBgBXIGBgBiJwdwAAAAdAAAZAcAIABwcHdwAHB3d3AAAAcndwBXd3cAAAAAB3UABkAAAHVVcAAAcHAAAHUAZHcAd3VXIHB3cAAkAAUF';
+
+const pixelColorsLarge = [
+ -1,-1,-1,-1,-1,-1,-1,-1,-1, 7, 7, 6, 7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1,-1,-1, 7, 6, 6, 6, 7, 2, 7, 7, 6, 7, 6, 6, 6, 6, 7,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1,-1, 2, 2, 2, 2, 7, 6, 7, 7, 7, 6, 6, 6, 7, 7, 7, 6, 6,-1,-1,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1,-1, 2, 2, 2, 2, 2, 7, 2, 2, 2, 2, 6, 2, 2, 6, 6, 6, 6, 6,-1,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1,-1, 0, 0, 2, 7, 0, 7, 7, 7, 6, 6, 7, 7, 7, 2, 2, 7, 7, 7, 6,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1, 0, 7, 7, 2, 7, 7, 7, 7, 7, 6, 2, 7, 2, 6, 6, 6, 2, 2, 7, 6,-1,-1,-1,-1,-1,-1,
+ -1,-1,-1,-1, 0, 7, 7, 0, 7, 7, 7, 7, 7, 7, 7, 2, 6, 2, 7, 2, 2, 2, 2, 7, 7, 6,-1,-1,-1,-1,
+ -1,-1,-1,-1, 0, 7, 7, 0, 7, 7, 7, 7, 7, 7, 7, 2, 2, 7, 2, 2, 2, 2, 7, 7, 2, 2, 6, 7,-1,-1,
+ -1,-1,-1,-1, 0, 7, 0, 0, 7, 7, 7, 7, 2, 2, 2, 7, 2, 2, 2, 7, 2, 7, 2, 7, 7, 2, 2, 2, 7,-1,
+ -1,-1,-1,-1,-1, 0, 2, 0, 0, 0, 0, 2, 2, 7, 2, 2, 2, 2, 2, 2, 2, 7, 7, 2, 7, 2, 2, 2, 7,-1,
+ -1,-1,-1,-1,-1, 7, 7, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 7, 2, 7, 2, 2, 2, 2, 2, 2, 7, 7, 2,
+ -1,-1,-1,-1, 6, 2, 2, 7, 7, 2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2, 2, 2, 7, 2, 2, 2, 0, 2, 2, 2,
+ -1,-1,-1, 7, 7, 7, 2, 0, 7, 2, 0, 0, 0, 2, 2, 0, 0, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 7, 2, 7,
+ -1,-1,-1, 7, 7, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 7,
+ -1,-1, 0, 2, 7, 2, 2, 2, 0, 0, 2, 0, 0, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 7, 2, 2, 2, 3, 0,
+ -1, 0, 7, 7, 0, 0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 7,
+  5, 0, 7, 3, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 0, 2, 7, 3, 1,
+  6, 7, 7, 0, 2, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0, 7,
+  4, 0, 7, 7, 0, 2, 2, 0, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0, 0, 2, 0, 2, 2, 3, 7,
+  0, 0, 0, 2, 0, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 0,
+  5, 0, 0, 2, 0, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+  0, 0, 2, 7, 2, 2, 2, 2, 2, 0, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 6, 0,
+  4, 0, 2, 2, 2, 7, 7, 7, 0, 0, 7, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 0, 2, 0, 2, 0, 6, 5,
+  6, 5, 2, 0, 2, 7, 6, 7, 0, 0, 0, 2, 2, 0, 0, 0, 2, 0, 2, 2, 2, 0, 2, 0, 0, 0, 0, 0, 6, 6,
+  4, 7, 0, 0, 2, 6, 6, 0, 0, 0, 2, 2, 2, 2, 7, 7, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 4, 0, 6, 0,
+  0, 5, 7, 2, 0, 6, 0, 6, 0, 0, 6, 2, 2, 7, 0, 7, 7, 0, 0, 0, 0, 0, 0, 0, 7, 4, 0, 0, 0, 0,
+  6, 4, 0, 7, 0, 0, 2, 0, 0, 0, 7, 0, 7, 0, 7, 7, 7, 0, 0, 0, 7, 0, 7, 7, 7, 7, 7, 0, 0, 0,
+  0, 0, 0, 7, 2, 7, 7, 7, 0, 0, 5, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 5, 0, 0,
+  0, 6, 4, 0, 0, 0, 0, 0, 7, 5, 5, 5, 7, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 7, 5, 0, 0,
+  6, 4, 7, 7, 0, 0, 7, 7, 7, 5, 5, 7, 2, 0, 7, 0, 7, 7, 7, 0, 0, 0, 2, 4, 0, 0, 0, 5, 0, 5,
+];
+
+const pixelColorsToB64String = (pixelColors) => {
+  let binaryString = '';
+  for (let i = 0; i < pixelColors.length; i += 2) {
+    const pixel1 = (pixelColors[i] < 0 || pixelColors[i] > 15) ? 15 : pixelColors[i];
+    const pixel2 = (i + 1 >= pixelColors.length || pixelColors[i + 1] < 0 || pixelColors[i + 1] > 15) ? 15 : pixelColors[i + 1];
+    const byte = (pixel1 << 4) | pixel2;
+    binaryString += String.fromCharCode(byte);
+  }
+  const base64String = btoa(binaryString);
+  return base64String.replaceAll('=', '');
+}
+
+const b64StringToPixelColors = (b64String, pixelCount) => {
+  const padCount = Math.ceil(b64String.length / 4) * 4;
+  const b64StringPadded = b64String.padEnd(padCount, '=');
+  const binaryString = atob(b64StringPadded);
+  const pixelColors = [];
+  for (let i = 0; i < binaryString.length; i++) {
+    const byte = binaryString.charCodeAt(i);
+    let pixel1 = (byte >> 4) & 0b00001111;
+    let pixel2 = byte & 0b00001111;
+    pixelColors.push(pixel1 === 15 ? -1 : pixel1, pixel2 === 15 ? -1 : pixel2);
+  }
+  pixelColors.length = pixelCount;
+  return pixelColors;
+}
+
+let testData = [
+  {
+    // 0011,0100,0011,0010,0010,0100,0100,0100,0100,0100,0100,0100,0100,0100,0100,0100,0011,0101,0011,0010,0011,0011,0100,0101,0100,0100,0101,0011,0010,0010,0100,0101
+    // 00110100 00110010 00100100 01000100 01000100 01000100 01000100 01000100 00110101 00110010 00110011 01000101 01000100 01010011 00100010 01000101
+    // NDIkREREREQ1MjNFRFMiRQ== (https://cryptii.com/pipes/base64-to-binary)
+    id: 1, b64String: 'NDIkREREREQ1MjNFRFMiRQ', pixelColors: [3, 4, 3, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 5, 3, 2, 3, 3, 4, 5, 4, 4, 5, 3, 2, 2, 4, 5]
+  },
+  {
+    // 0000,0001,0010,0011,0100,0101,0110,0111,1000,1001,1010,1011,1100,1101,1110,1111*
+    // 00000001 00100011 01000101 01100111 10001001 10101011 11001101 11101111
+    // ASNFZ4mrze8= (https://cryptii.com/pipes/base64-to-binary)
+    id: 2, b64String: 'ASNFZ4mrze8',            pixelColors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, -1]
+  },
+  {
+    // 1111*,1110,1101,1100,1011,1010,1001,1000,0111,0110,0101,0100,0011,0010,0001,0000
+    // 11111110 11011100 10111010 10011000 01110110 01010100 00110010 00010000
+    // /ty6mHZUMhA= (https://cryptii.com/pipes/base64-to-binary)
+    id: 3, b64String: '/ty6mHZUMhA',            pixelColors: [-1, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+  },
+  {
+    // 1101,1110,1010,1101,1011,1110,1110,1111*,1100,1010,1111*,1110,0001,0010,0011,1111#
+    // 11011110 10101101 10111110 11101111 11001010 11111110 00010010 00111111
+    // 3q2+78r+Ej8= (https://cryptii.com/pipes/base64-to-binary)
+    id: 4, b64String: '3q2+78r+Ej8',            pixelColors: [13, 14, 10, 13, 11, 14, 14, -1, 12, 10, -1, 14, 1, 2, 3]
+  },
+  {
+    // 0000,0001,0010,0011,1111*,0100,0101,0110,0111,1111#
+    // 00000001 00100011 11110100 01010110 01111111
+    // ASP0Vn8= (https://cryptii.com/pipes/base64-to-binary)
+    id: 5, b64String: 'ASP0Vn8',                pixelColors: [0, 1, 2, 3, -1, 4, 5, 6, 7]
+  },
+  {
+    id: 6, b64String: b64StringLarge,           pixelColors: pixelColorsLarge,
+  },
+];
+
+testData.forEach((data) => {
+  const encodeResult = pixelColorsToB64String(data.pixelColors);
+  const encodePassed = encodeResult === data.b64String;
+  console.log(`ENCODE ${data.id}:`, encodePassed ? 'PASS' : `FAIL - result: ${encodeResult}, expected: ${data.b64String}`);
+  const decodeResult = b64StringToPixelColors(data.b64String, data.pixelColors.length);
+  const decodePassed = decodeResult.toString() === data.pixelColors.toString();
+  console.log(`DECODE ${data.id}:`, decodePassed ? 'PASS' : `FAIL - result: ${decodeResult}, expected: ${data.pixelColors}`);
+});
+
+    </script>
+  </head>
+  <body>
+    view test results in console
+  </body>
+</html>

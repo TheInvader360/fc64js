@@ -53,6 +53,36 @@ const hexStringToPixelColors = (hexString) => {
 
 -----
 
-the fact that the entire screen is redrawn each frame, and that each frame's image is of a known size does offer up some more simple possibilities for further reduction in file size (why limit ourselves to 0-f?) without resorting to "real" compression
+alternatively, base64 encode/decode using these functions to further reduce the file size:
 
-the real limiting factors are the console's tiny color palette, low resolution, and minimal beeper... fc64js isn't really suited for use as a multimedia player, so this is probably not an area that warrants much investigation, but it *is* a fun diversion :)
+```js
+const pixelColorsToB64String = (pixelColors) => {
+  let binaryString = '';
+  for (let i = 0; i < pixelColors.length; i += 2) {
+    const pixel1 = (pixelColors[i] < 0 || pixelColors[i] > 15) ? 15 : pixelColors[i];
+    const pixel2 = (i + 1 >= pixelColors.length || pixelColors[i + 1] < 0 || pixelColors[i + 1] > 15) ? 15 : pixelColors[i + 1];
+    const byte = (pixel1 << 4) | pixel2;
+    binaryString += String.fromCharCode(byte);
+  }
+  const base64String = btoa(binaryString);
+  return base64String.replaceAll('=', '');
+}
+
+const b64StringToPixelColors = (b64String) => {
+  const padCount = Math.ceil(b64String.length / 4) * 4;
+  const b64StringPadded = b64String.padEnd(padCount, '=');
+  const binaryString = atob(b64StringPadded);
+  const pixelColors = [];
+  for (let i = 0; i < binaryString.length; i++) {
+    const byte = binaryString.charCodeAt(i);
+    let pixel1 = (byte >> 4) & 0b00001111;
+    let pixel2 = byte & 0b00001111;
+    pixelColors.push(pixel1 === 15 ? -1 : pixel1, pixel2 === 15 ? -1 : pixel2);
+  }
+  return pixelColors;
+}
+```
+
+-----
+
+The fact that a video redraws the entire screen each frame and there is no need for transparent pixel support does offer a possibility for further reduction in file size without resorting to "real" compression (only 3 rgb bits not 4 rgba bits needed per pixel). I won't be pursuing this as I think a simple generic function that supports transparency (and maybe a wider palette in future) is the better fit for fc64js. The real limiting factors are the console's tiny color palette, low resolution, and minimal beeper... fc64js isn't really suited for use as a multimedia player, so this is probably not an area that warrants any more investigation. It has been a fun diversion though :)
