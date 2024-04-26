@@ -52,7 +52,8 @@ function drawScene() {
   drawLine(44, 11, 42, 11, COL_YEL); // ray (from sun left)
   drawLine(46, 5, 45, 4, COL_YEL); // ray (from sun up-left)
 
-  drawPolygon([{ x: 3, y: 18 }, { x: 10, y: 3 }, { x: 34, y: 3 }, { x: 41, y: 18 }], COL_BLK, COL_MAG); // roof with outline
+  //drawPolygon([{ x: 3, y: 18 }, { x: 10, y: 3 }, { x: 34, y: 3 }, { x: 41, y: 18 }], COL_BLK, COL_MAG); // roof with outline - original method
+  drawPolygon([3, 18, 10, 3, 34, 3, 41, 18], COL_BLK, COL_MAG); // roof with outline - alternative method
 
   drawRectangle(3, 18, 39, 34, COL_BLK, COL_YEL); // wall with outline
 

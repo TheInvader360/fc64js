@@ -262,7 +262,7 @@ function drawGameWorld() {
 
 function drawGameInfoPanel() {
   drawText(4, 59, 'SCORE', COL_YEL);
-  drawPattern(24, 61, [0, -1, 0, 1], COL_YEL);
+  drawPattern(24, 61, [{ x: 0, y: -1 }, { x: 0, y: 1 }], COL_YEL);
   drawText(26, 59, `${score < 999999 ? score : 999999}`, COL_WHT);
   if (lives > 0) {
     drawImage(50, 59, 5, 5, imgHeart);

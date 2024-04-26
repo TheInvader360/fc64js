@@ -4,7 +4,7 @@ import * as display from './display';
 import * as font from './font';
 import * as memory from './memory';
 
-interface vertex2 {
+interface point2 {
   x: number;
   y: number;
 }
@@ -159,11 +159,19 @@ function drawLineVertical(x: number, y1: number, y2: number, color: number): voi
   }
 }
 
-export function drawPattern(x: number, y: number, pixels: number[], color: number): void {
-  for (let i = 0; i < pixels.length; i += 2) {
-    const offsetX = pixels[i];
-    const offsetY = pixels[i + 1];
-    drawPixel(x + offsetX, y + offsetY, color);
+export function drawPattern(x: number, y: number, offsets: number[] | point2[], color: number): void {
+  if (offsets.length < 1) {
+    return;
+  }
+
+  if (typeof offsets[0] === 'number') {
+    for (let i = 0; i < offsets.length - 1; i += 2) {
+      drawPixel(x + (offsets[i] as number), y + (offsets[i + 1] as number), color);
+    }
+  } else {
+    for (let i = 0; i < offsets.length; i++) {
+      drawPixel(x + (offsets[i] as point2).x, y + (offsets[i] as point2).y, color);
+    }
   }
 }
 
@@ -174,14 +182,27 @@ export function drawPixel(x: number, y: number, color: number): void {
   memory.poke(memory.ADDRESS_GFX + (x | 0) + (y | 0) * display.GFX_W, color);
 }
 
-export function drawPolygon(vertices: vertex2[], edgeColor: number, fillColor?: number): void {
+export function drawPolygon(path: number[] | point2[], edgeColor: number, fillColor?: number): void {
+  if (path.length < 1) {
+    return;
+  }
+
+  let vertices: point2[] = [];
+  if (typeof path[0] === 'number') {
+    for (let i = 0; i < path.length - 1; i += 2) {
+      vertices.push({ x: path[i] as number, y: path[i + 1] as number });
+    }
+  } else {
+    vertices = path as point2[];
+  }
+
   if (fillColor) {
     drawPolygonFilled(vertices, edgeColor, fillColor);
   }
   drawPolygonOutline(vertices, edgeColor);
 }
 
-function drawPolygonFilled(vertices: vertex2[], edgeColor: number, fillColor: number): void {
+function drawPolygonFilled(vertices: point2[], edgeColor: number, fillColor: number): void {
   // scanline algorithm for filling the polygon
   let minY = display.GFX_H;
   let maxY = 0;
@@ -225,7 +246,7 @@ function drawPolygonFilled(vertices: vertex2[], edgeColor: number, fillColor: nu
   }
 }
 
-function drawPolygonOutline(vertices: vertex2[], color: number): void {
+function drawPolygonOutline(vertices: point2[], color: number): void {
   for (let i = 0; i < vertices.length; i++) {
     const currentVertex = vertices[i];
     const nextVertex = vertices[(i + 1) % vertices.length];

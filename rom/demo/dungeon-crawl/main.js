@@ -219,30 +219,30 @@ function drawWall(x, y, drawOrderIndex, faceColor, sideColor) {
   }
   if (drawOrderIndex == 8) {
     drawRectangle(x, y + 10, 10, 21, faceColor, faceColor);
-    drawPolygon([{ x: x + 10, y: y + 11 }, { x: x + 10, y: y + 29 }, { x: x + 11, y: y + 28 }, { x: x + 11, y: y + 12 }], sideColor);
+    drawPolygon([x + 10, y + 11, x + 10, y + 29, x + 11, y + 28, x + 11, y + 12], sideColor);
   }
   if (drawOrderIndex == 9) {
     drawRectangle(x + 31, y + 10, 10, 21, faceColor, faceColor);
-    drawPolygon([{ x: x + 30, y: y + 11 }, { x: x + 30, y: y + 29 }, { x: x + 29, y: y + 28 }, { x: x + 29, y: y + 12 }], sideColor);
+    drawPolygon([x + 30, y + 11, x + 30, y + 29, x + 29, y + 28, x + 29, y + 12], sideColor);
   }
   if (drawOrderIndex == 10) {
     drawRectangle(x + 10, y + 10, 21, 21, faceColor, faceColor);
   }
   if (drawOrderIndex == 11) {
     drawRectangle(x, y + 6, 5, 29, faceColor, faceColor);
-    drawPolygon([{ x: x + 5, y: y + 7 }, { x: x + 5, y: y + 33 }, { x: x + 8, y: y + 30 }, { x: x + 8, y: y + 10 }], sideColor, sideColor);
+    drawPolygon([x + 5, y + 7, x + 5, y + 33, x + 8, y + 30, x + 8, y + 10], sideColor, sideColor);
   }
   if (drawOrderIndex == 12) {
     drawRectangle(x + 36, y + 6, 5, 29, faceColor, faceColor);
-    drawPolygon([{ x: x + 35, y: y + 7 }, { x: x + 35, y: y + 33 }, { x: x + 32, y: y + 30 }, { x: x + 32, y: y + 10 }], sideColor, sideColor);
+    drawPolygon([x + 35, y + 7, x + 35, y + 33, x + 32, y + 30, x + 32, y + 10], sideColor, sideColor);
   }
   if (drawOrderIndex == 13) {
     drawRectangle(x + 5, y + 6, 31, 29, faceColor, faceColor);
   }
   if (drawOrderIndex == 14) {
-    drawPolygon([{ x: x, y: y + 2 }, { x: x, y: y + 38 }, { x: x + 3, y: y + 35 }, { x: x + 3, y: y + 5 }], sideColor, sideColor);
+    drawPolygon([x, y + 2, x, y + 38, x + 3, y + 35, x + 3, y + 5], sideColor, sideColor);
   }
   if (drawOrderIndex == 15) {
-    drawPolygon([{ x: x + 40, y: y + 2 }, { x: x + 40, y: y + 38 }, { x: x + 37, y: y + 35 }, { x: x + 37, y: y + 5 }], sideColor, sideColor);
+    drawPolygon([x + 40, y + 2, x + 40, y + 38, x + 37, y + 35, x + 37, y + 5], sideColor, sideColor);
   }
 }

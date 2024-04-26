@@ -23,7 +23,7 @@ function romLoop() {
   pos.y = wrap(pos.y, 0, 57);
 
   drawImage(0, 0, 64, 57, img);
-  drawPattern(pos.x, pos.y, [0, -1, -1, 0, 1, 0, 0, 1], cyclingColor());
+  drawPattern(pos.x, pos.y, [{ x: 0, y: -1}, {x: -1, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1}], cyclingColor());
   const pixelColor = getPixel(pos.x, pos.y);
   const panelColor = pixelColor < 4 ? COL_WHT : COL_BLK;
   drawRectangle(0, 57, 64, 7, panelColor, panelColor);

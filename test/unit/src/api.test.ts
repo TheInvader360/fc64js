@@ -152,13 +152,21 @@ describe('drawLine', () => {
 describe('drawPattern', () => {
   beforeAll(() => memory.init());
   test('draw multiple patterns', () => {
-    const p1 = [-2,-1, -1,-2, 1,-2, 2,-1, 2,1, 1,2, -1,2, -2,1];
+    const p0 = [];
+    const p1 = [{ x: -2, y: -1 }, {x: -1, y: -2 }, { x: 1, y: -2 }, { x: 2, y: -1 }, { x: 2, y: 1 }, { x: 1, y: 2 }, { x: -1, y: 2 }, {x: -2, y: 1 }];
     const p2 = [0,-1, 0,-2, -1,0, -2,0, 1,0, 2,0, 0,1, 0,2];
     const p3 = [0,-2, 1,-1, 2,0, 1,1, 0,2, -1,1, -2,0, -1,-1];
     const p4 = [0,0, -2,-1, -3,-2, 2,-1, 3,-2, -2,1, -3,2, 2,1, 3,2];
     const p5 = [0,0, -1,-1, -2,-1, -1,-2, 1,-1, 2,-1, 1,-2, 1,1, 2,1, 1,2, -1,1, -2,1, -1,2];
     const p6 = [0,0, -1,-1, -1,-2, -1,-3, 1,-1, 1,-2, 1,-3, 1,1, 1,2, 1,3, -1,1, -1,2, -1,3];
-    const p7 = [-1,-1, 1,-1, 1,1, -1,1];
+    const p7 = [{ x: -1, y: -1 }, { x: 1, y: -1 }, { x: 1, y: 1 }, { x: -1, y: 1 }];
+    api.drawPattern(4, 4, p0, 1);
+    api.drawPattern(8, 8, p0, 2);
+    api.drawPattern(12, 12, p0, 3);
+    api.drawPattern(16, 16, p0, 4);
+    api.drawPattern(20, 20, p0, 5);
+    api.drawPattern(24, 24, p0, 6);
+    api.drawPattern(28, 28, p0, 7);
     api.drawPattern(58, 5, p1, 1);
     api.drawPattern(27, 16, p1, 1);
     api.drawPattern(58, 34, p1, 1);
@@ -247,15 +255,16 @@ describe('drawPixel', () => {
 describe('drawPolygon', () => {
   beforeEach(() => memory.init());
   test('draw multiple polygons (filled and outline)', () => {
-    api.drawPolygon([{ x: 15, y:  1 }, { x: 30, y: 11 }, { x: 24, y: 29 }, { x:  6, y: 29 }, { x:  0, y: 11 }], 4);
-    api.drawPolygon([{ x: 48, y:  1 }, { x: 63, y: 11 }, { x: 57, y: 29 }, { x: 39, y: 29 }, { x: 33, y: 11 }], 2, 1);
-    api.drawPolygon([{ x:  0, y: 33 }, { x: 12, y: 61 }, { x: 20, y: 48 }, { x: 25, y: 58 }, { x: 30, y: 39 }], 6);
-    api.drawPolygon([{ x: 33, y: 33 }, { x: 45, y: 61 }, { x: 53, y: 48 }, { x: 58, y: 58 }, { x: 63, y: 39 }], 3, 5);
+    api.drawPolygon([], 1);
+    api.drawPolygon([15, 1, 30, 11, 24, 29, 6, 29, 0, 11], 4);
+    api.drawPolygon([{ x: 48, y: 1 }, { x: 63, y: 11 }, { x: 57, y: 29 }, { x: 39, y: 29 }, { x: 33, y: 11 }], 2, 1);
+    api.drawPolygon([{ x: 0, y: 33 }, { x: 12, y: 61 }, { x: 20, y: 48 }, { x: 25, y: 58 }, { x: 30, y: 39 }], 6);
+    api.drawPolygon([33, 33, 45, 61, 53, 48, 58, 58, 63, 39], 3, 5);
     expect(getRamGfx()).toEqual(polygons1);
   });
   test('draw multiple filled polygons (consecutive vertices on same scanline)', () => {
-    api.drawPolygon([{ x:  0, y:  4 }, { x:  0, y:  8 }, { x:  4, y:  8 }, { x:  8, y: 12 }, { x: 12, y: 12 }, { x: 16, y:  8 }, { x: 20, y:  8 }, { x: 20, y:  4 }, { x: 16, y:  4 }, { x: 12, y:  0 }, { x:  8, y:  0 }, { x:  4, y:  4 }], 1, 2);
-    api.drawPolygon([{ x: 32, y:  0 }, { x: 44, y: 15 }, { x: 63, y: 15 }, { x: 53, y: 28 }, { x: 63, y: 41 }, { x: 44, y: 41 }, { x: 32, y: 56 }, { x: 20, y: 41 }, { x:  1, y: 41 }, { x: 11, y: 28 }, { x:  1, y: 15 }, { x: 20, y: 15 }], 3, 4);
+    api.drawPolygon([{ x: 0, y: 4 }, { x: 0, y: 8 }, { x: 4, y: 8 }, { x: 8, y: 12 }, { x: 12, y: 12 }, { x: 16, y: 8 }, { x: 20, y: 8 }, { x: 20, y: 4 }, { x: 16, y: 4 }, { x: 12, y: 0 }, { x: 8, y: 0 }, { x: 4, y: 4 }], 1, 2);
+    api.drawPolygon([32, 0, 44, 15, 63, 15, 53, 28, 63, 41, 44, 41, 32, 56, 20, 41, 1, 41, 11, 28, 1, 15, 20, 15], 3, 4);
     api.drawPolygon([{ x: 42, y: 58 }, { x: 34, y: 58 }, { x: 63, y: 44 }, { x: 53, y: 63 },], 5, 6);
     expect(getRamGfx()).toEqual(polygons2);
   });
