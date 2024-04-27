@@ -13,7 +13,17 @@ The minified [library](lib/fc64.min.js) weighs in at just 16 kilobytes
 
 ## Selected examples
 
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/snake.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/snake/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/breakout.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/breakout/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/simon.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/simon/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/platformer.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/platformer/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/ray-casting.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/dungeon-crawl.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/isometric.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/isometric/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/rotating-cube.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/rotating-cube/) [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/collision-detection.gif" width="144"/>](https://theinvader360.github.io/fc64js-collision-detection/dist/)
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/snake/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/game/snake/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/breakout/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/game/breakout/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/simon/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/game/simon/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/ray-casting/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/platformer/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/platformer/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/dungeon-crawl/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/isometric/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/isometric/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/rotating-cube/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/rotating-cube/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/collision-detection/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/collision-detection/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/video/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/video/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/tcc-2023/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/tcc-2023/) 
 
 Click or tap a gif to play :sunglasses:
 

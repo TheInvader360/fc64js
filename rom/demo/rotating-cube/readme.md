@@ -1,8 +1,12 @@
 # Rotating Cube (fc64js demo rom)
 
-TODO
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/rotating-cube/docs/demo.gif" width="256"/>](https://theinvader360.github.io/fc64js/rom/demo/rotating-cube/)
 
-[Live preview](https://theinvader360.github.io/fc64js/rom/demo/rotating-cube/)
+[Play in browser](https://theinvader360.github.io/fc64js/rom/demo/rotating-cube/)
+
+## Overview
+
+TODO
 
 ## Credits
 

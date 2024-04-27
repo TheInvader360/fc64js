@@ -1,14 +1,14 @@
 # Isometric (fc64js demo rom)
 
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/isometric/docs/isometric.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/isometric/)
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/isometric/docs/demo.gif" width="256"/>](https://theinvader360.github.io/fc64js/rom/demo/isometric/)
+
+[Play in browser](https://theinvader360.github.io/fc64js/rom/demo/isometric/)
+
+## Overview
 
 Isometric demo for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
 
 Loosely inspired by [Ant Attack](https://en.wikipedia.org/wiki/Ant_Attack)
-
-[Live preview](https://theinvader360.github.io/fc64js/rom/demo/isometric/)
-
-## Overview
 
 The player rotates at a fixed 90 degrees (press L/R), and movement is limited to full grid cell steps forwards or backwards (press U/D)
 

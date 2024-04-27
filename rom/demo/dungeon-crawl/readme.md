@@ -1,14 +1,14 @@
 # Dungeon Crawl (fc64js demo rom)
 
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/dungeon-crawl/docs/dungeon-crawl.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/)
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/dungeon-crawl/docs/demo.gif" width="256"/>](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/)
+
+[Play in browser](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/)
+
+## Overview
 
 First person grid based dungeon crawler demo for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
 
 Reminiscent of classic games like [3D Monster Maze](https://en.wikipedia.org/wiki/3D_Monster_Maze), [Dungeon Master](https://en.wikipedia.org/wiki/Dungeon_Master_(video_game)), and [Eye of the Beholder](https://en.wikipedia.org/wiki/Eye_of_the_Beholder_(video_game))
-
-[Live preview](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/)
-
-## Overview
 
 The player rotates at a fixed 90 degrees (press L/R), and movement is limited to full grid cell steps forwards or backwards (press U/D)
 

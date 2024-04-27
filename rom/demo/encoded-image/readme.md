@@ -1,5 +1,11 @@
 # Encoded Image (fc64js demo rom)
 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/encoded-image/docs/demo.gif" width="256"/>](https://theinvader360.github.io/fc64js/rom/demo/encoded-image/)
+
+[Play in browser](https://theinvader360.github.io/fc64js/rom/demo/encoded-image/)
+
+## Overview
+
 An encoded image demo rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
 
 * By default an image is drawn using an unencoded pixel color array (i.e. what ```DrawImage()``` expects as an argument after ```x```, ```y```, ```width```, and ```height```)
@@ -7,8 +13,6 @@ An encoded image demo rom for the [fc64js](https://github.com/TheInvader360/fc64
 * If B is pressed exactly the same image is drawn, but the pixel color data will have been decoded from a [Base64](https://en.wikipedia.org/wiki/Base64) encoded string
 
 To give an idea of the space savings involved - the example parrot image (30x30px, 8 colors, 130 transparent pixels) takes up 2,764 bytes when saved to file in a nicely formatted integer array "grid", 1,932 bytes as an integer array stripped of all whitespace and the trailing comma, 903 bytes as a hex encoded string, and 603 bytes as a b64 encoded string
-
-[Live preview](https://theinvader360.github.io/fc64js/rom/demo/encoded-image/)
 
 ## Example
 

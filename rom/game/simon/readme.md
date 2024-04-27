@@ -1,12 +1,12 @@
 # Simon (fc64js game rom)
 
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/simon/docs/simon.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/simon/)
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/simon/docs/demo.gif" width="256"/>](https://theinvader360.github.io/fc64js/rom/game/simon/)
 
-An implementation of the classic [simon](https://en.wikipedia.org/wiki/Simon_(game)) game for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
-
-[Live preview](https://theinvader360.github.io/fc64js/rom/game/simon/)
+[Play in browser](https://theinvader360.github.io/fc64js/rom/game/simon/)
 
 ## Overview
+
+An implementation of the classic [simon](https://en.wikipedia.org/wiki/Simon_(game)) game for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
 
 Repeat the light sequence (using U/D/L/R buttons) without any mistakes to progress to the next level
 

@@ -1,12 +1,12 @@
 # Snake (fc64js game rom)
 
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/snake/docs/snake.gif" width="144"/>](https://theinvader360.github.io/fc64js/rom/game/snake/)
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/snake/docs/demo.gif" width="256"/>](https://theinvader360.github.io/fc64js/rom/game/snake/)
 
-An implementation of the classic [snake](https://en.wikipedia.org/wiki/Snake_(video_game_genre)) game for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
-
-[Live preview](https://theinvader360.github.io/fc64js/rom/game/snake/)
+[Play in browser](https://theinvader360.github.io/fc64js/rom/game/snake/)
 
 ## Overview
+
+An implementation of the classic [snake](https://en.wikipedia.org/wiki/Snake_(video_game_genre)) game for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
 
 * Use the U/D/L/R buttons to control the snake
 * The aim of the game is for the snake to eat as much fruit as possible
