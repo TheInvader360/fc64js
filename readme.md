@@ -1,5 +1,7 @@
 # fc64js
 
+<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/docs/fc64js.gif" width="144"/>
+
 fc64js is a small browser based fantasy console
 
 * 64x64 pixels
