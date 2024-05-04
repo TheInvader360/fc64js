@@ -6,8 +6,14 @@
 
 ## Overview
 
-TODO
+A test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console that draws an image larger than the screen
+
+* Press U/D/L/R to pan the viewport
+* Press A/B to reset the viewport to it's default position
+
+Uses the ```clearGfx```, ```drawImage```, and ```isPressed``` API functions, and button and graphics related constants
 
 ## Credits
 
 * Code by TheInvader360
+* Image - [Y Ddraig Goch](https://en.wikipedia.org/wiki/Welsh_Dragon)

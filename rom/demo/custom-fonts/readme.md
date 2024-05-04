@@ -6,8 +6,12 @@
 
 ## Overview
 
-TODO
+A test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console that demonstrates use of the ```drawText``` API function using custom fonts
+
+* Press U/D/L/R to switch to a specific custom font
+* Press A/B to switch to a random custom font
 
 ## Credits
 
 * Code by TheInvader360
+* [Boxy Bold](https://opengameart.org/content/boxy-bold-font) font by Clint Bellanger
