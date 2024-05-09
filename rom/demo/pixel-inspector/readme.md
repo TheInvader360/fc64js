@@ -6,7 +6,11 @@
 
 ## Overview
 
-TODO
+A test rom for the fc64js fantasy console that demonstrates use of the ```getPixel```, ```drawPattern```, and ```wrap``` API functions
+
+* Press U/D/L/R to move the cursor
+
+Information about the currently selected pixel is displayed at the bottom of the screen
 
 ## Credits
 

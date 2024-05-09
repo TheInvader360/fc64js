@@ -6,7 +6,13 @@
 
 ## Overview
 
-TODO
+Dungeon Generator demo for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
+
+Procedurally generates fully traversable tile based levels (of a specified size) by carving out a set of directed and random walk paths, then randomly placing a start point, an exit point, and allocating a number of enemy/gold/item locations (each number being a function of the level's size).
+
+* Press U/D to adjust level height
+* Press L/R to adjust level width
+* Press A to generate a new level
 
 ## Credits
 
