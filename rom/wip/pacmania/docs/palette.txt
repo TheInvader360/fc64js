@@ -1,0 +1,19 @@
+COL_BLK          - background, ghost, pacman, pill, power pill.
+COL_BLU          - block, gate, ghost.
+COL_RED          - 
+COL_MAG          - 
+COL_GRN          - 
+COL_CYN          - block.
+COL_YEL          - pacman, pill, power pill.
+COL_WHT (e6e6e6) - eyes, hud.
+
+Need at least one other colour (e.g. red) for ghosts
+
+The original pacman had:
+Blinky: Red
+Pinky:  Pink
+Inky:   Cyan
+Clyde:  Orange
+
+I could have ghosts in each of these colours, or maybe it would be better to save the remaining colours for different colour levels?
+
