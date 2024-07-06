@@ -68,9 +68,9 @@ const pressKey = (key) => {
 }
 
 const cycle = () => {
-	const instruction = fetchInstruction();
-	const opcode = decodeInstruction(instruction);
-	execute(opcode, instruction);
+  const instruction = fetchInstruction();
+  const opcode = decodeInstruction(instruction);
+  execute(opcode, instruction);
 }
 
 const fetchInstruction = () => {
@@ -210,24 +210,24 @@ const exec2NNN = (instruction) => { // call subroutine (put current pc on stack,
 }
 
 const exec3XNN = (instruction) => { // if (vx == nn) skip next instruction
-	const x = (instruction & 0x0F00) >> 8;
+  const x = (instruction & 0x0F00) >> 8;
   const nn = instruction & 0x00FF;
-	if (state.vRegisters[x] == nn) state.pc += 2;
-	state.pc += 2;
+  if (state.vRegisters[x] == nn) state.pc += 2;
+  state.pc += 2;
 }
 
 const exec4XNN = (instruction) => { // if (vx != nn) skip next instruction
-	const x = (instruction & 0x0F00) >> 8;
+  const x = (instruction & 0x0F00) >> 8;
   const nn = instruction & 0x00FF;
-	if (state.vRegisters[x] != nn) state.pc += 2;
-	state.pc += 2;
+  if (state.vRegisters[x] != nn) state.pc += 2;
+  state.pc += 2;
 }
 
 const exec5XY0 = (instruction) => { // if (vx == vy) skip next instruction
-	const x = (instruction & 0x0F00) >> 8;
-	const y = (instruction & 0x00F0) >> 4;
-	if (state.vRegisters[x] == state.vRegisters[y]) state.pc += 2;
-	state.pc += 2;
+  const x = (instruction & 0x0F00) >> 8;
+  const y = (instruction & 0x00F0) >> 4;
+  if (state.vRegisters[x] == state.vRegisters[y]) state.pc += 2;
+  state.pc += 2;
 }
 
 const exec6XNN = (instruction) => { // vx = nn
@@ -292,8 +292,8 @@ const exec8XY5 = (instruction) => { // vx -= vy (if vx > vy then vF = 1)
 const exec8XY6 = (instruction) => { // vx >>= 1 (vF = the lsb of vx, then vx is divided by 2)
   const x = (instruction & 0x0F00) >> 8;
   state.vRegisters[0xF] = state.vRegisters[x] & 0b00000001;
-	state.vRegisters[x] >>= 1;
-	state.pc += 2;
+  state.vRegisters[x] >>= 1;
+  state.pc += 2;
 }
 
 const exec8XY7 = (instruction) => { // vx = vy - vx (if vy > vx then vF = 1)
@@ -313,20 +313,20 @@ const exec8XYE = (instruction) => { // vx <<= 1 (vF = the msb of vx, then vx is 
 }
 
 const exec9XY0 = (instruction) => { // if (vx != vy) skip next instruction
-	const x = (instruction & 0x0F00) >> 8;
-	const y = (instruction & 0x00F0) >> 4;
-	if (state.vRegisters[x] != state.vRegisters[y]) state.pc += 2;
-	state.pc += 2;
+  const x = (instruction & 0x0F00) >> 8;
+  const y = (instruction & 0x00F0) >> 4;
+  if (state.vRegisters[x] != state.vRegisters[y]) state.pc += 2;
+  state.pc += 2;
 }
 
 const execANNN = (instruction) => { // i = nnn
   state.ir = instruction & 0x0FFF;
-	state.pc += 2;
+  state.pc += 2;
 }
 
 const execBNNN = (instruction) => { // pc = v0 + nnn
   const nnn = instruction & 0x0FFF;
-	state.pc = state.vRegisters[0x0] + nnn;
+  state.pc = state.vRegisters[0x0] + nnn;
 }
 
 const execCXNN = (instruction) => { // vx = rand() & nn
@@ -364,16 +364,16 @@ const execDXYN = (instruction) => { // draw(vx, vy, n)
 }
 
 const execEX9E = (instruction) => { // if the key stored in vx is pressed skip next instruction
-	const x = (instruction & 0x0F00) >> 8;
+  const x = (instruction & 0x0F00) >> 8;
   const vx = state.vRegisters[x];
-	if (state.keys[vx] == 1) state.pc += 2;
-	state.pc += 2;
+  if (state.keys[vx] == 1) state.pc += 2;
+  state.pc += 2;
 }
 
 const execEXA1 = (instruction) => { // if the key stored in vx is not pressed skip next instruction
-	const x = (instruction & 0x0F00) >> 8;
-	if (state.keys[state.vRegisters[x]] == 0) state.pc += 2;
-	state.pc += 2;
+  const x = (instruction & 0x0F00) >> 8;
+  if (state.keys[state.vRegisters[x]] == 0) state.pc += 2;
+  state.pc += 2;
 }
 
 const execFX07 = (instruction) => { // vx = delay_timer
@@ -407,14 +407,14 @@ const execFX18 = (instruction) => { // sound_timer = vx
 
 const execFX1E = (instruction) => { // i += vx
   const x = (instruction & 0x0F00) >> 8;
-	state.ir += state.vRegisters[x];
+  state.ir += state.vRegisters[x];
   state.pc += 2;
 }
 
 const execFX29 = (instruction) => { // i = sprite_addr[vx] (point i at 5 byte font sprite for hex char at vx)
   const x = (instruction & 0x0F00) >> 8;
-	state.ir = state.vRegisters[x] * 5;
-	state.pc += 2;
+  state.ir = state.vRegisters[x] * 5;
+  state.pc += 2;
 }
 
 const execFX30 = () => state.pc += 2; // intentional stub (super chip opcode - skip to next instruction)
@@ -422,22 +422,22 @@ const execFX30 = () => state.pc += 2; // intentional stub (super chip opcode - s
 const execFX33 = (instruction) => { // store binary-coded decimal of vx value in memory[i:i+2] (e.g. if i=0 and vx=128, m[0]=1 m[1]=2 m[2]=8)
   const x = (instruction & 0x0F00) >> 8;
   const vx = state.vRegisters[x];
-	state.memory[state.ir] = Math.floor(vx / 100);         // e.g. Math.floor(128 / 100) = 1                     i.e. m[i+0] = 1
-	state.memory[state.ir + 1] = Math.floor(vx / 10) % 10; // e.g. Math.floor(128 / 10) = 12, then 12 % 10 = 2   i.e. m[i+1] = 2
-	state.memory[state.ir + 2] = vx % 10;                  // e.g. 128 % 10 = 8                                  i.e. m[i+2] = 8
-	state.pc += 2;
+  state.memory[state.ir] = Math.floor(vx / 100);         // e.g. Math.floor(128 / 100) = 1                     i.e. m[i+0] = 1
+  state.memory[state.ir + 1] = Math.floor(vx / 10) % 10; // e.g. Math.floor(128 / 10) = 12, then 12 % 10 = 2   i.e. m[i+1] = 2
+  state.memory[state.ir + 2] = vx % 10;                  // e.g. 128 % 10 = 8                                  i.e. m[i+2] = 8
+  state.pc += 2;
 }
 
 const execFX55 = (instruction) => { // reg_dump(vx,&i) (store v0:vx inclusive in memory[i] onwards, i is not modified)
   const x = (instruction & 0x0F00) >> 8;
-	for (let i = 0; i <= x; i++) state.memory[state.ir + i] = state.vRegisters[i];
-	state.pc += 2;
+  for (let i = 0; i <= x; i++) state.memory[state.ir + i] = state.vRegisters[i];
+  state.pc += 2;
 }
 
 const execFX65 = (instruction) => { // reg_load(vx,&i) (fill v0:vx inclusive from memory[i] onwards, i is not modified)
   const x = (instruction & 0x0F00) >> 8;
-	for (let i = 0; i <= x; i++) state.vRegisters[i] = state.memory[state.ir + i];
-	state.pc += 2;
+  for (let i = 0; i <= x; i++) state.vRegisters[i] = state.memory[state.ir + i];
+  state.pc += 2;
 }
 
 const execFX75 = () => state.pc += 2; // intentional stub (super chip opcode - skip to next instruction)

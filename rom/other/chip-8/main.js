@@ -63,9 +63,9 @@ function romLoop() {
     updateInputsChip8();
     while (cyclesCountdown > 0) {
       vm.cycle();
-			cyclesCountdown--;
-		}
-		cyclesCountdown = cyclesPerTick;
+      cyclesCountdown--;
+    }
+    cyclesCountdown = cyclesPerTick;
     if (vm.state.dt > 0) vm.state.dt--;
     if (vm.state.st > 0) vm.state.st--;
     beep(400, vm.state.st, true);
@@ -95,8 +95,8 @@ const drawPanelChip8 = () => {
     for (let x = 0; x < 64; x++) {
       if (vm.state.display[y * 64 + x] == 1) drawPixel(x, y + 16, COL_GRN); // overdraw any currently lit chip8 pixels (reduces flicker)
       displayBufferChip8[y * 64 + x] = vm.state.display[y * 64 + x] == 1 ? COL_GRN : COL_BLK; // update buffer
-		}
-	}
+    }
+  }
 }
 
 const updateInputsChip8 = () => {
