@@ -7,20 +7,20 @@ Each supported rom has an entry in `romMetadata.js` that maps fc64js buttons to 
 
 Note also that the [Octo assembler](https://github.com/JohnEarnest/Octo) and my [desktop chip-8 emulator](https://github.com/TheInvader360/chip8) map chip-8 keys to qwerty keyboards as follows:
 
-`
+```bash
 CHIP-8    QWERTY
 -------   -------
 1 2 3 C   1 2 3 4
 4 5 6 D   q w e r
 7 8 9 E   a s d f
 A 0 B F   z x c v
-`
+```
 
 ## Examples
 
 ### Hello Octo
 
-`'buttonKeyMapping': ['5', '8', '7', '9', '-', '-'], // WSAD--`
+`'buttonKeyMapping': ['5', '8', '7', '9', '-', '-'], // QWERTY:WSAD--`
 
 | fc64js | chip-8 | qwerty |
 | ------ | ------ | ------ |
@@ -33,7 +33,7 @@ A 0 B F   z x c v
 
 ### Pong
 
-`'buttonKeyMapping': ['1', '4', '-', '-', 'C', 'D'], // 1Q--4R`
+`'buttonKeyMapping': ['1', '4', '-', '-', 'C', 'D'], // QWERTY:1Q--4R`
 
 | fc64js | chip-8 | qwerty |
 | ------ | ------ | ------ |

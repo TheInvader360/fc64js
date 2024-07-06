@@ -27,7 +27,7 @@ Controls for each rom are displayed on screen (inputs differ from one rom to the
 
 Reload fc64js to 'reset' the machine and return to the main menu
 
-The fc64js Chip-8 (VM) rom persists the most recently opened Chip-8 (game) rom in local storage for much improved user experience
+The fc64js Chip-8 (VM) rom persists the most recently opened Chip-8 (game) rom in local storage for a much improved user experience
 
 34 public domain roms have been included, the input mappings along with other meta data for each are defined in `romMetadata.js`
 

@@ -74,20 +74,20 @@ const cycle = () => {
 }
 
 const fetchInstruction = () => {
-	/*
-		fetch and merge two bytes from memory locations pointed at by pc & pc+1 e.g. memory[pc] = 0b10100010, memory[pc+1] = 0b11110000
-		shift first byte left 8 times e.g. 0b1010001000000000
-		use bitwise OR operation to merge the bytes e.g. 0b1010001000000000 | 0b11110000 = 0b1010001011110000
-	*/
+  /*
+    fetch and merge two bytes from memory locations pointed at by pc & pc+1 e.g. memory[pc] = 0b10100010, memory[pc+1] = 0b11110000
+    shift first byte left 8 times e.g. 0b1010001000000000
+    use bitwise OR operation to merge the bytes e.g. 0b1010001000000000 | 0b11110000 = 0b1010001011110000
+  */
   return (state.memory[state.pc] << 8) | (state.memory[state.pc + 1] << 0);
 }
 
 const decodeInstruction = (instruction) => {
-	/*
-		read the first 4 bits of the current instruction using bitwise AND operation e.g. 0x2105 & 0xF000 = 0x2000
-		go on to examine other relevant nibbles where necessary
+  /*
+    read the first 4 bits of the current instruction using bitwise AND operation e.g. 0x2105 & 0xF000 = 0x2000
+    go on to examine other relevant nibbles where necessary
     return the opcode extracted from the instruction
-	*/
+  */
   const n1 = (instruction & 0xF000) >> 12;
   const n2 = (instruction & 0x0F00) >> 8;
   const n3 = (instruction & 0x00F0) >> 4;
@@ -237,7 +237,7 @@ const exec6XNN = (instruction) => { // vx = nn
   state.pc += 2;
 }
 
-const exec7XNN = (instruction) => {	// vx += nn
+const exec7XNN = (instruction) => { // vx += nn
   const x = (instruction & 0x0F00) >> 8;
   const nn = instruction & 0x00FF;
   state.vRegisters[x] += nn;
@@ -337,13 +337,13 @@ const execCXNN = (instruction) => { // vx = rand() & nn
 }
 
 const execDXYN = (instruction) => { // draw(vx, vy, n)
-	/*
-		read n bytes (data) from memory, starting at ir.
-		display bytes (data) as sprites on screen at coordinates vx,vy.
-		sprites are XORed onto the existing screen.
-		if any pixels are erased, v[F] is set to 1, otherwise it is set to 0.
-		sprites wrap to opposite side of screen if they overlap an edge.
-	*/
+  /*
+    read n bytes (data) from memory, starting at ir.
+    display bytes (data) as sprites on screen at coordinates vx,vy.
+    sprites are XORed onto the existing screen.
+    if any pixels are erased, v[F] is set to 1, otherwise it is set to 0.
+    sprites wrap to opposite side of screen if they overlap an edge.
+  */
   const vx = state.vRegisters[(instruction & 0x0F00) >> 8];
   const vy = state.vRegisters[(instruction & 0x00F0) >> 4];
   const n = instruction & 0x000F;
