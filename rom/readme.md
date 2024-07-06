@@ -2,3 +2,4 @@
 
 * [Demos](demo/)
 * [Games](game/)
+* [Other](other/)

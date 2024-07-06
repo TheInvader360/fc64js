@@ -27,6 +27,7 @@ The minified [library](lib/fc64.min.js) weighs in at just 16 kilobytes
 [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/collision-detection/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/collision-detection/) 
 [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/video/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/video/) 
 [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/tcc-2023/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/tcc-2023/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/other/chip-8/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/other/chip-8/) 
 
 Click or tap a gif to play :sunglasses:
 
@@ -98,16 +99,22 @@ See [here](https://github.com/TheInvader360/fc64js-typescript-starter) for a con
 
 The result of following the [fc64js-typescript-starter](https://github.com/TheInvader360/fc64js-typescript-starter) readme instructions is available [here](https://github.com/TheInvader360/fc64js-typescript-basic-example)
 
-## Demos
+## Roms
+
+### Demos
 
 Various demos are available [here](rom/demo/)
 
-## Games
+### Games
 
 * [Snake](rom/game/snake/)
 * [Breakout](rom/game/breakout/)
 * [Simon](rom/game/simon/)
 * [Flappy Bird](rom/game/flappy-bird/)
+
+### Other
+
+Various other roms that don't cleanly fit into the other categories are available [here](rom/other/)
 
 ## Tools
 
