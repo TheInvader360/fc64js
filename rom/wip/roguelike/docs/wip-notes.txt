@@ -1,0 +1,103 @@
+EXPLORE SCREEN
+
+u/d/l/r = move player / attack
+      a = action (stairs / get / wait)
+      b = open status screen
+
+Player explores the level.
+Cannot walk through walls.
+Health bar always visible.
+If trying to move into an enemy occupied space, turn based combat.
+If standing over item, action button tries getting item (fails if inventory full - flash alert).
+If standing over stairs, action button uses stairs.
+If standing over nothing, action button waits one turn (enemies move).
+
+-----
+
+STATUS SCREEN
+
+u/d/l/r = move cursor
+      a = select item
+      b = return to explore screen
+
+Status screen can be quickly and easily viewed/dismissed by tapping B.
+The status screen gives useful information and should be checked regularly.
+Directional buttons are used to navigate inventory slots (all items - equipped and stored).
+Tapping A opens the item screen.
+
+-----
+
+ITEM SCREEN
+
+    u/d = cycle menu options
+      a = try performing selected action
+      b = return to status screen
+
+context sensitive item menu:
+           equipped item: store / drop / cancel
+  stored equippable item: equip / drop / cancel
+             potion item: drink / drop / cancel
+
+if trying to store but inventory full -                          notify = action failed: storage full
+if trying to equip but equip slots full -                        notify = action failed: fully equipped
+if trying to drink but health full -                             notify = action failed: at full health
+if trying to drop on an already occupied space (stairs / item) - notify = action failed: occupied space
+
+note: storage full notification also displayed on explore screen if trying to get an item when storage full
+
+-----
+
+MAP
+
+map: 25x25 cells (0,0 to 24,24)
+
+spawn player at 12,12
+
+empty = 0
+floor = 1
+wall  = 2
+
+0000000000000000000022222
+0000222222220000222221112
+0000211111120022211111112
+0222211111120021111111112
+0211111111120021111111112
+0211111111120221111111112
+0222211111122211111111112
+0000211111111111111111112
+0000211111111111111111112
+0002211111111111111111112
+0002111111111111111111112
+0022111111111111111111122
+022111111111X111111111120
+2211111111111111111111120
+2111111111111111111111120
+2111111111111111111111120
+2222211111111111111111120
+0000211111111111111111120
+0000211111111111111111120
+0000211111111111111111120
+0000211111111111111122220
+0000211111111111222220000
+0000211111111111200000000
+0000222211112222200000000
+0000000222222000000000000
+
+viewport size = 8x8 cells (64x64 pixels)
+
+focus viewport on player - player would normally be centered, but if nearing any edge of the map the viewport would be prevented from spilling over
+
+-----
+
+TODO
+
+ Explore screen
+  u/d/l/r - attack (enemies)
+  a - wait
+
+ Level generation
+
+ Turn based combat
+
+-----
+
