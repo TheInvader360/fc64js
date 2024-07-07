@@ -79,7 +79,7 @@ const fetchInstruction = () => {
     shift first byte left 8 times e.g. 0b1010001000000000
     use bitwise OR operation to merge the bytes e.g. 0b1010001000000000 | 0b11110000 = 0b1010001011110000
   */
-  return (state.memory[state.pc] << 8) | (state.memory[state.pc + 1] << 0);
+  return (state.memory[state.pc] << 8) | (state.memory[state.pc + 1]);
 }
 
 const decodeInstruction = (instruction) => {
@@ -101,8 +101,8 @@ const decodeInstruction = (instruction) => {
   if (n1 == 0x0 && n2 == 0x0 && n3 == 0xF && n4 == 0xD) opcode = 0x00FD; // 00FD
   if (n1 == 0x0 && n2 == 0x0 && n3 == 0xF && n4 == 0xE) opcode = 0x00FE; // 00FE
   if (n1 == 0x0 && n2 == 0x0 && n3 == 0xF && n4 == 0xF) opcode = 0x00FF; // 00FF
-  if (n1 == 0x8 && n4 == 0x1)                           opcode = 0x8001; // 8XY1
   if (n1 == 0x8 && n4 == 0x0)                           opcode = 0x8000; // 8XY0
+  if (n1 == 0x8 && n4 == 0x1)                           opcode = 0x8001; // 8XY1
   if (n1 == 0x8 && n4 == 0x2)                           opcode = 0x8002; // 8XY2
   if (n1 == 0x8 && n4 == 0x3)                           opcode = 0x8003; // 8XY3
   if (n1 == 0x8 && n4 == 0x4)                           opcode = 0x8004; // 8XY4
