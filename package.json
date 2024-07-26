@@ -1,6 +1,6 @@
 {
   "name": "fc64js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "fc64js is a small browser based fantasy console",
   "main": "lib/fc64.min.js",
   "files": [
