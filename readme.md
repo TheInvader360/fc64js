@@ -37,9 +37,9 @@ All you need to get started developing fc64js games is the [library](lib/fc64.mi
 
 fc64js "roms" (i.e. games/demos) are simply [javascript scripts](rom/demo/a-simple-game/main.js) that are included on a [html page](rom/demo/a-simple-game/index.html) alongside the [fc64js library](lib/fc64.min.js)
 
-Each rom must include a ```romInit()``` function (called once on page load/reload) and a ```romLoop()``` function (called continuously at a targeted 60 frames per second)
+Each rom must include a `romInit()` function (called once on page load/reload) and a `romLoop()` function (called continuously at a targeted 60 frames per second)
 
-This basic example can be saved locally (e.g. in a file named ```basic-example.html```) and simply opened in a web browser:
+This basic example can be saved locally (e.g. in a file named `basic-example.html`) and simply opened in a web browser:
 
 ```html
 <!DOCTYPE html>
@@ -91,7 +91,7 @@ This basic example can be saved locally (e.g. in a file named ```basic-example.h
 
 See [here](rom/demo/basic-example-module-import/) for an example that uses javascript modules
 
-The key differences are changes to the html ```script``` elements [here](rom/demo/basic-example-module-import/index.html), and the introduction of ```import``` and ```fc64Init``` javascript statements [here](rom/demo/basic-example-module-import/main.js)
+The key differences are changes to the html `script` elements [here](rom/demo/basic-example-module-import/index.html), and the introduction of `import` and `fc64Init` javascript statements [here](rom/demo/basic-example-module-import/main.js)
 
 ## Typescript starter
 

@@ -13,7 +13,7 @@ A minimal audio test rom for the [fc64js](https://github.com/TheInvader360/fc64j
 * Press U/R to increase the tone's frequency (up to a maximum 1750hz)
 * Press D/L to decrease the tone's frequency (down to a minimum 1250hz)
 
-Uses the ```peek``` and ```poke``` API functions, and audio and button related constants
+Uses the `peek` and `poke` API functions, and audio and button related constants
 
 ## Credits
 

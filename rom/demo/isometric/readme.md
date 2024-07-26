@@ -16,11 +16,11 @@ The player can hop up or down a single block's height per move
 
 The view can be toggled between isometric and orthographic modes (press A/B)
 
-The isometric view is composed of a number of overlaid images, mostly the 8x8 pixel ```imgIsoBlock``` - here's an example scaled up by a factor of 5:
+The isometric view is composed of a number of overlaid images, mostly the 8x8 pixel `imgIsoBlock` - here's an example scaled up by a factor of 5:
 
 ![imgIsoBlock-x5.png](docs/imgIsoBlock-x5.png)
 
-The view is drawn one ```levelMap``` tile at a time. Each tile's stack is comprised of either an ```imgIsoFloor``` or a stack of 1 to 6 ```imgIsoBlock```s (overlaying each other with a y-axis offset), plus an optional occupying ```entity``` on top. When these tile stacks are drawn over each other in the correct order, a third person isometric view is formed:
+The view is drawn one `levelMap` tile at a time. Each tile's stack is comprised of either an `imgIsoFloor` or a stack of 1 to 6 `imgIsoBlock`s (overlaying each other with a y-axis offset), plus an optional occupying `entity` on top. When these tile stacks are drawn over each other in the correct order, a third person isometric view is formed:
 
 ![iso.png](docs/iso.png)
 

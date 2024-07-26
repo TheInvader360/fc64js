@@ -6,7 +6,7 @@
 
 ## Overview
 
-A test rom for the fc64js fantasy console that demonstrates how the ```beep``` API function can be used to play simple musical tunes
+A test rom for the fc64js fantasy console that demonstrates how the `beep` API function can be used to play simple musical tunes
 
 * Press L/R to move between tunes
 * Press A to play or pause the currently selected tune

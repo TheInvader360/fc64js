@@ -11,7 +11,7 @@ A simple image gallery rom for the [fc64js](https://github.com/TheInvader360/fc6
 * Press U/R/B to page up
 * Press D/L/A to page down
 
-Uses the ```drawImage``` and ```isJustPressed``` API functions, and button related constants
+Uses the `drawImage` and `isJustPressed` API functions, and button related constants
 
 ## Credits
 

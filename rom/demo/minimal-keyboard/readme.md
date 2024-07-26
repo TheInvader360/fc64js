@@ -10,7 +10,7 @@ A minimal keyboard test rom for the [fc64js](https://github.com/TheInvader360/fc
 
 Fills the screen with specific color pixels if a button is pressed (or black if no button is pressed)
 
-Uses the ```peek``` and ```poke``` API functions, and button, graphics, and color related constants
+Uses the `peek` and `poke` API functions, and button, graphics, and color related constants
 
 ## Credits
 

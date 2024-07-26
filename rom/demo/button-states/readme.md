@@ -6,7 +6,7 @@
 
 ## Overview
 
-A button states test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console that demonstrates use of the ```isPressed```, ```isJustPressed``` and ```isJustReleased``` API functions
+A button states test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console that demonstrates use of the `isPressed`, `isJustPressed` and `isJustReleased` API functions
 
 A table of buttons (U/D/L/R/A/B) and their states (Pressed/JustPressed/JustReleased) is displayed onscreen with a corresponding true/false indicator for each pairing
 

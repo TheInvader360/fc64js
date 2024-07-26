@@ -78,6 +78,8 @@ declare class Vec2 {
 
 // useful utils
 declare function clamp(value: number, min: number, max: number): number;
+declare function imageFromB64String(b64String: string): number[];
+declare function imageFromHexString(hexString: string): number[];
 declare function isEmptyObject(object: object): boolean;
 declare function randomInt(min: number, max: number): number;
 declare function swapImageColors(originalPixels: number[], oldValues: number[], newValues: number[]): number[];

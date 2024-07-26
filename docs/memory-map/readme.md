@@ -1,6 +1,6 @@
 # fc64js - memory map
 
-The following information may be of interest if you intend to ```peek``` and ```poke``` at a low level. For most practical purposes it isn't really required knowledge as the specifics have been abstracted away via various developer API functions (e.g. ```drawPixel``` and other drawing functions, ```getPixel```, ```isPressed``` and other input functions, ```beep```, ```getFps```, etc)
+The following information may be of interest if you intend to `peek` and `poke` at a low level. For most practical purposes it isn't really required knowledge as the specifics have been abstracted away via various developer API functions (e.g. `drawPixel` and other drawing functions, `getPixel`, `isPressed` and other input functions, `beep`, `getFps`, etc)
 
 The fc64js memory map is defined [here](../../src/memory.ts)
 

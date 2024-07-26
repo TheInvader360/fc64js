@@ -8,8 +8,8 @@ cd fc64js
 npm ci
 ```
 
-[Rollup](https://rollupjs.org/) watches for code changes and recompiles the library bundle automatically as required. You can start it running with this command - ```npm run rollup-watch```
+[Rollup](https://rollupjs.org/) watches for code changes and recompiles the library bundle automatically as required. You can start it running with this command - `npm run rollup-watch`
 
-[Browsersync](https://browsersync.io/) watches for file changes and reloads your browser automatically as required, and facilitates testing on devices other than localhost (e.g. a phone or tablet). You can start it running with this command - ```npm run browser-sync-start```
+[Browsersync](https://browsersync.io/) watches for file changes and reloads your browser automatically as required, and facilitates testing on devices other than localhost (e.g. a phone or tablet). You can start it running with this command - `npm run browser-sync-start`
 
-Having made your changes you can run [eslint](https://eslint.org/), [prettier](https://prettier.io/), and [jest](https://jestjs.io/) tests with these commands - ```npm run lint```, ```npm run prettier-check```, ```npm run prettier-write```, and ```npm run test```
+Having made your changes you can run [eslint](https://eslint.org/), [prettier](https://prettier.io/), and [jest](https://jestjs.io/) tests with these commands - `npm run lint`, `npm run prettier-check`, `npm run prettier-write`, and `npm run test`

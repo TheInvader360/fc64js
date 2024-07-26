@@ -6,7 +6,7 @@
 
 ## Overview
 
-A test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console that demonstrates use of the ```drawText``` API function using custom fonts
+A test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console that demonstrates use of the `drawText` API function using custom fonts
 
 * Press U/D/L/R to switch to a specific custom font
 * Press A/B to switch to a random custom font

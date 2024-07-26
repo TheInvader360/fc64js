@@ -2,7 +2,7 @@
 
 fc64js supports up to 8 colors
 
-The default palette offers the 3-bit RGB colors - black and white, the RGB primary colors red, green, and blue, and their complementary colors cyan, magenta, and yellow. The colors in index order from 0 to 7 are black, blue, red, magenta, green, cyan, yellow, and white, and convenient constants referencing these indexes are available (```COL_BLK```, ```COL_BLU```, ```COL_RED```, ```COL_MAG```, ```COL_GRN```, ```COL_CYN```, ```COL_YEL```, ```COL_WHT```)
+The default palette offers the 3-bit RGB colors - black and white, the RGB primary colors red, green, and blue, and their complementary colors cyan, magenta, and yellow. The colors in index order from 0 to 7 are black, blue, red, magenta, green, cyan, yellow, and white, and convenient constants referencing these indexes are available (`COL_BLK`, `COL_BLU`, `COL_RED`, `COL_MAG`, `COL_GRN`, `COL_CYN`, `COL_YEL`, `COL_WHT`)
 
 This minimal rom draws the default palette:
 
@@ -24,7 +24,7 @@ Limiting yourself to just the default palette can be a fun challenge, but couple
 
 There is the option of setting a custom palette on a per rom basis - still only 8 colors, but colors of your choosing
 
-Simply override the ```romPalette``` array to set the desired colors:
+Simply override the `romPalette` array to set the desired colors:
 
 ```js
 romPalette = [0xffe2ce, 0xf56214, 0xffc414, 0x3bd827, 0x147658, 0x14c4ce, 0x1d3162, 0xa73176]; // 4pi
@@ -60,7 +60,7 @@ function romLoop() {}
 
 ## Providing more than 8 colors
 
-Note that 8 colors is an intentional limitation of fc64js. ```romPalette``` can be set to a larger array of colors, but only the first 8 will be considered by the console's initialization code
+Note that 8 colors is an intentional limitation of fc64js. `romPalette` can be set to a larger array of colors, but only the first 8 will be considered by the console's initialization code
 
 This minimal rom shows the first 8 colors of the provided 16 being set as the rom's palette:
 
@@ -96,7 +96,7 @@ function romLoop() {}
 
 ## Providing less than 8 colors
 
-If less than 8 colors are provided in ```romPalette``` the remaining indexes default to black (0x000000):
+If less than 8 colors are provided in `romPalette` the remaining indexes default to black (0x000000):
 
 ```js
 romPalette = [0x702963, 0xffbf00]; // bitzantine
@@ -114,11 +114,11 @@ function romLoop() {}
 
 ## Overriding the palette post-initialization
 
-The color palette is configured during fc64js initialization i.e. before control is handed over to the main loop that repeatedly calls ```romLoop```
+The color palette is configured during fc64js initialization i.e. before control is handed over to the main loop that repeatedly calls `romLoop`
 
 Any attempt to change the color palette after initialization will fail
 
-In the following example ```romPalette``` is initially set to yellow/purple, then there's an attempt to override to peach/navy in ```romLoop``` - note that it is the original yellow/purple palette that is later drawn to screen:
+In the following example `romPalette` is initially set to yellow/purple, then there's an attempt to override to peach/navy in `romLoop` - note that it is the original yellow/purple palette that is later drawn to screen:
 
 ```js
 romPalette = [0x702963, 0xffbf00]; // bitzantine (yellow/purple)
@@ -137,7 +137,7 @@ function romLoop() {
 
 ## Custom palettes and fc64Init()
 
-When using modules and calling ```fc64Init()``` the optional ```romPalette``` parameter should be set:
+When using modules and calling `fc64Init()` the optional `romPalette` parameter should be set:
 
 ```js
 import 'fc64js';

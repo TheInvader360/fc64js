@@ -8,7 +8,7 @@
 
 An encoded image demo rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console
 
-* By default an image is drawn using an unencoded pixel color array (i.e. what ```DrawImage()``` expects as an argument after ```x```, ```y```, ```width```, and ```height```)
+* By default an image is drawn using an unencoded pixel color array (i.e. what `DrawImage()` expects as an argument after `x`, `y`, `width`, and `height`)
 * If A is pressed exactly the same image is drawn, but the pixel color data will have been decoded from a [Hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) encoded string
 * If B is pressed exactly the same image is drawn, but the pixel color data will have been decoded from a [Base64](https://en.wikipedia.org/wiki/Base64) encoded string
 
@@ -87,7 +87,7 @@ The same integer array as a b64 encoded string (69 bytes):
 
 **Q: What's the performance like?**
 
-**A:** I haven't gone to the effort of trying to measure the overhead, and there has to be *some* overhead, but it's imperceptible. You can mitigate this by decoding image data once only on rom init, as can be seen in the demo. Memory is plentiful on modern machines, and fc64js roms are usually going to be pretty small and with very little image data - this won't be a problem. That said, I've played with the [video demo](https://theinvader360.github.io/fc64js/rom/demo/video/), both decoding all frames up front in ```romInit``` and decoding on the fly each tick in ```romLoop```, and performance was identical to the human eye, even when playing at 1 tick per frame (i.e. the fastest possible 4x speed)
+**A:** I haven't gone to the effort of trying to measure the overhead, and there has to be *some* overhead, but it's imperceptible. You can mitigate this by decoding image data once only on rom init, as can be seen in the demo. Memory is plentiful on modern machines, and fc64js roms are usually going to be pretty small and with very little image data - this won't be a problem. That said, I've played with the [video demo](https://theinvader360.github.io/fc64js/rom/demo/video/), both decoding all frames up front in `romInit` and decoding on the fly each tick in `romLoop`, and performance was identical to the human eye, even when playing at 1 tick per frame (i.e. the fastest possible 4x speed)
 
 **Q: Are there any disadvantages?**
 
@@ -95,15 +95,15 @@ The same integer array as a b64 encoded string (69 bytes):
 
 **Q: Should I bother encoding images in my rom?**
 
-**A:** It's up to you. If you have a rom with very little image data in it ([example](https://github.com/TheInvader360/fc64js/blob/main/rom/demo/a-simple-game/main.js)) it's probably not worth the bother. If you have a rom with quite a lot of image data in it ([example](https://github.com/TheInvader360/fc64js/blob/main/rom/demo/video/data.js)) maybe it is worth the bother. An extreme example of 55 full screen images results in a reduction from about 670kb for nicely formatted grids (```(((64×3+3)×64)+3)×55 = 686,565 bytes```) down to about 147kb when b64 encoded (```((2731+6)×55)+3 = 150,538 bytes```) - this is a huge comparative reduction, but in absolute terms a few kilobytes doesn't really amount to much in most scenarios these days...
+**A:** It's up to you. If you have a rom with very little image data in it ([example](https://github.com/TheInvader360/fc64js/blob/main/rom/demo/a-simple-game/main.js)) it's probably not worth the bother. If you have a rom with quite a lot of image data in it ([example](https://github.com/TheInvader360/fc64js/blob/main/rom/demo/video/data.js)) maybe it is worth the bother. An extreme example of 55 full screen images results in a reduction from about 670kb for nicely formatted grids (`(((64×3+3)×64)+3)×55 = 686,565 bytes`) down to about 147kb when b64 encoded (`((2731+6)×55)+3 = 150,538 bytes`) - this is a huge comparative reduction, but in absolute terms a few kilobytes doesn't really amount to much in most scenarios these days...
 
 **Q: How can I encode my images?**
 
 **A:** Very easily, the [fc64js image tool](https://github.com/TheInvader360/fc64js/tree/main/tools/image-tool) has been updated to include both hex and b64 encoded strings in the image summary output. You could also take the encoding functions from there (or the reference notes accompanying this demo) and embed in your own tool chain if you like
 
-**Q: Will a means of drawing encoded images be added to the fc64js library?**
+**Q: Does fc64js offer an inbuilt means of decoding encoded images?**
 
-**A:** Maybe. If I find that it gets used a lot and the ```hexStringToPixelColors()``` / ```b64StringToPixelColors()``` functions keep getting copied and pasted into lots of roms I might add them to the library itself. In the meantime copy and paste away :D
+**A:** Yes, `imageFromB64String` and `imageFromHexString` are available as fc64js util functions
 
 ## Credits
 

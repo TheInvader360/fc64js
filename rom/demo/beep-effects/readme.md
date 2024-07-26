@@ -6,7 +6,7 @@
 
 ## Overview
 
-A test rom for the fc64js fantasy console that demonstrates use of the ```beep``` API function
+A test rom for the fc64js fantasy console that demonstrates use of the `beep` API function
 
 * Press U/D to move between list items
 * Press L to randomise the frequency of the currently selected list item

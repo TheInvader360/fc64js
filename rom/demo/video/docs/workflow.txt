@@ -33,7 +33,7 @@ const pixelColorsToHexString = (pixelColors) => {
 }
 ```
 
-then use the hex strings in a fc64js rom with custom palette: ```romPalette = [0x000000, 0x222222, 0x444444, 0x666666, 0x888888, 0xaaaaaa, 0xcccccc, 0xeeeeee];```
+then use the hex strings in a fc64js rom with custom palette: `romPalette = [0x000000, 0x222222, 0x444444, 0x666666, 0x888888, 0xaaaaaa, 0xcccccc, 0xeeeeee];`
 
 along with a hex string decode function:
 

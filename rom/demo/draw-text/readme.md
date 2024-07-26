@@ -6,7 +6,7 @@
 
 ## Overview
 
-A test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console that demonstrates use of the ```drawText``` API function using the default inbuilt font
+A test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy console that demonstrates use of the `drawText` API function using the default inbuilt font
 
 * Press nothing to draw the full character set
 * Press U/D/L/R to draw text with overridden tracking values

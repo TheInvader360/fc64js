@@ -11,7 +11,7 @@ A test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fantasy con
 * Press U/D/L/R to pan the viewport
 * Press A/B to reset the viewport to it's default position
 
-Uses the ```clearGfx```, ```drawImage```, and ```isPressed``` API functions, and button and graphics related constants
+Uses the `clearGfx`, `drawImage`, and `isPressed` API functions, and button and graphics related constants
 
 ## Credits
 

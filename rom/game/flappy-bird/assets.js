@@ -11,27 +11,13 @@ const animations = new Map();
 
 const loadAssets = () => {
   images.clear();
-  images.set('background', imgFromB64(background_B64));
-  images.set('bird0', imgFromB64(bird0_B64));
-  images.set('bird1', imgFromB64(bird1_B64));
-  images.set('bird2', imgFromB64(bird2_B64));
-  images.set('ground', imgFromB64(ground_B64));
-  images.set('logo', imgFromB64(logo_B64));
-  images.set('pipe', imgFromB64(pipe_B64));
+  images.set('background', imageFromB64String(background_B64));
+  images.set('bird0', imageFromB64String(bird0_B64));
+  images.set('bird1', imageFromB64String(bird1_B64));
+  images.set('bird2', imageFromB64String(bird2_B64));
+  images.set('ground', imageFromB64String(ground_B64));
+  images.set('logo', imageFromB64String(logo_B64));
+  images.set('pipe', imageFromB64String(pipe_B64));
   animations.clear();
   animations.set('bird', new Anim([images.get('bird0'), images.get('bird1'), images.get('bird2'), images.get('bird1')], 6, true));
-}
-
-const imgFromB64 = (b64) => {
-  const padCount = Math.ceil(b64.length / 4) * 4;
-  const padded = b64.padEnd(padCount, '=');
-  const binStr = atob(padded);
-  const img = [];
-  for (let i = 0; i < binStr.length; i++) {
-    const byte = binStr.charCodeAt(i);
-    let pix1 = (byte >> 4) & 0b00001111;
-    let pix2 = byte & 0b00001111;
-    img.push(pix1 === 15 ? -1 : pix1, pix2 === 15 ? -1 : pix2);
-  }
-  return img;
 }

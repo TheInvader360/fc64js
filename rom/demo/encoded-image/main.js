@@ -52,8 +52,8 @@ let parrotDecodedHexStringPixelColors;
 let parrotDecodedB64StringPixelColors;
 
 function romInit() {
-  parrotDecodedHexStringPixelColors = hexStringToPixelColors(parrotHexString);
-  parrotDecodedB64StringPixelColors = b64StringToPixelColors(parrotB64String);
+  parrotDecodedHexStringPixelColors = imageFromHexString(parrotHexString);
+  parrotDecodedB64StringPixelColors = imageFromB64String(parrotB64String);
 }
 
 function romLoop() {
@@ -83,6 +83,7 @@ function romLoop() {
   }
 }
 
+/*
 const hexStringToPixelColors = (hexString) => {
   const pixelColors = [];
   for (const hexDigit of hexString) {
@@ -108,5 +109,6 @@ const b64StringToPixelColors = (b64String) => {
   }
   return pixelColors;
 }
+*/
 
 const drawTextCentered = (y, content, color) => drawText((64 - content.length * 4) / 2, y, content, color);

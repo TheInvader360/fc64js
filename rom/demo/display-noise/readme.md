@@ -10,10 +10,10 @@ A display test rom for the [fc64js](https://github.com/TheInvader360/fc64js) fan
 
 Similar to the [minimal-display](../minimal-display/) demo but using higher level API functions
 
-* Fills the screen with random color pixels, refreshed each ```romLoop``` tick
+* Fills the screen with random color pixels, refreshed each `romLoop` tick
 * Press any button to toggle between display modes (color/b&w)
 
-Uses the ```drawPixel```, ```isJustPressed```, and ```randomInt``` API functions, and button, graphics, and color related constants
+Uses the `drawPixel`, `isJustPressed`, and `randomInt` API functions, and button, graphics, and color related constants
 
 ## Credits
 
