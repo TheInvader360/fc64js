@@ -24,12 +24,26 @@ describe('clamp', () => {
   });
 });
 
+const imgSmiley = [
+  -1,-1,-1, 0, 0, 0, 0,-1,-1,-1,
+  -1,-1, 0, 7, 7, 7, 7, 0,-1,-1,
+  -1, 0, 7, 7, 7, 7, 7, 7, 0,-1,
+   0, 7, 7, 0, 7, 7, 0, 7, 7, 0,
+   0, 7, 7, 0, 7, 7, 0, 7, 7, 0,
+   0, 7, 7, 7, 7, 7, 7, 7, 7, 0,
+   0, 7, 7, 0, 7, 7, 0, 7, 7, 0,
+  -1, 0, 7, 7, 0, 0, 7, 7, 0,-1,
+  -1,-1, 0, 7, 7, 7, 7, 0,-1,-1,
+  -1,-1,-1, 0, 0, 0, 0,-1,-1,-1,
+];
+
 describe('imageFromB64String', () => {
   test('empty', () => {
     expect(utils.imageFromB64String('')).toEqual([]);
   });
   test('smiley', () => {
-    expect(utils.imageFromB64String('//AAD///B3dw//B3d3cPB3B3B3AHcHcHcAd3d3dwB3B3B3DwdwB3D/8Hd3D///AAD/8')).toEqual([-1,-1,-1,0,0,0,0,-1,-1,-1,-1,-1,0,7,7,7,7,0,-1,-1,-1,0,7,7,7,7,7,7,0,-1,0,7,7,0,7,7,0,7,7,0,0,7,7,0,7,7,0,7,7,0,0,7,7,7,7,7,7,7,7,0,0,7,7,0,7,7,0,7,7,0,-1,0,7,7,0,0,7,7,0,-1,-1,-1,0,7,7,7,7,0,-1,-1,-1,-1,-1,0,0,0,0,-1,-1,-1]);
+    const encoded = '//AAD///B3dw//B3d3cPB3B3B3AHcHcHcAd3d3dwB3B3B3DwdwB3D/8Hd3D///AAD/8';
+    expect(utils.imageFromB64String(encoded)).toEqual(imgSmiley);
   });
 });
 
@@ -38,7 +52,8 @@ describe('imageFromHexString', () => {
     expect(utils.imageFromHexString('')).toEqual([]);
   });
   test('smiley', () => {
-    expect(utils.imageFromHexString('fff0000fffff077770fff07777770f0770770770077077077007777777700770770770f07700770fff077770fffff0000fff')).toEqual([-1,-1,-1,0,0,0,0,-1,-1,-1,-1,-1,0,7,7,7,7,0,-1,-1,-1,0,7,7,7,7,7,7,0,-1,0,7,7,0,7,7,0,7,7,0,0,7,7,0,7,7,0,7,7,0,0,7,7,7,7,7,7,7,7,0,0,7,7,0,7,7,0,7,7,0,-1,0,7,7,0,0,7,7,0,-1,-1,-1,0,7,7,7,7,0,-1,-1,-1,-1,-1,0,0,0,0,-1,-1,-1]);
+    const encoded = 'fff0000fffff077770fff07777770f0770770770077077077007777777700770770770f07700770fff077770fffff0000fff';
+    expect(utils.imageFromHexString(encoded)).toEqual(imgSmiley);
   });
 });
 
