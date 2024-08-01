@@ -12,7 +12,7 @@ The example audio manager in this demo offers a means of triggering *slightly* m
 
 Each audio clip's ```data``` is simply an array of frequencies (measured in hertz) to be played in sequence, and each entry is to be played for the number of ticks specified during initialisation (i.e. ```ticksPerEntry```)
 
-Prioritisation rules:
+### Prioritisation rules
 
 * If no audio clip is currently playing when a ```tryPlay()``` call is made: trigger succeeds (requested clip is played)
 * If an audio clip is currently playing with a lower or equal priority than that specified in the subsequent ```tryPlay()``` call: trigger succeeds (requested clip is played)
@@ -20,11 +20,11 @@ Prioritisation rules:
 
 (Note that higher priorities have lower numerical values e.g. a priority 1 call is a higher priority than a priority 2 call)
 
-Example:
+### Example scenario
 
-Consider a platform game where the player character collects coins that are plentiful, and is occasionally rewarded with an extra life. In this game you might want each new coin collision to trigger a sound effect, and the gaining of an extra life to trigger a different sound effect. In some areas the coins could be so tightly spaced that subsequent coin collisions could occur before the current coin audio clip has finished playing - in this situation the new ```tryPlay()``` call should override the current clip. Since the extra life event is a rare achievement it's ```tryPlay()``` call should override any lesser currently playing audio clip (e.g. if a coin had been collected immediately prior to the extra life being awarded), but it should not itself be overridden by calls originating from lesser events (e.g. picking up a coin immediately after gaining an extra life). To achieve something along these lines simply call e.g. ```tryPlay(sfxCoin, 2)``` whenever a coin is collected, and e.g. ```tryPlay(sfxOneUp, 1);``` whenever an extra life is awarded. To simulate this scenario using the demo - continuously tap the L button in quick succession, and occasionally tap the U button
+Consider a platform game where the player character collects coins that are plentiful, and is occasionally rewarded with an extra life. In this game you might want each new coin collision to trigger a sound effect, and the gaining of an extra life to trigger a different sound effect. In some areas the coins could be so tightly spaced that subsequent coin collisions could occur before the current coin audio clip has finished playing - in this situation the new ```tryPlay()``` call should override the current clip. Since the extra life event is a rare achievement it's ```tryPlay()``` call should override any lesser currently playing audio clip (e.g. if a coin had been collected immediately prior to the extra life being awarded), but it should not itself be overridden by calls originating from lesser events (e.g. picking up a coin immediately after gaining an extra life). To achieve something along these lines simply call e.g. ```tryPlay(sfxCoin, 2)``` whenever a coin is collected, and e.g. ```tryPlay(sfxOneUp, 1)``` whenever an extra life is awarded. To simulate this scenario using the demo: continuously tap the L button in quick succession, and occasionally tap the U button
 
-Demo controls:
+### Demo controls
 
 * Press U/D to try playing equally high priority (i.e. priority 1) sound clips
 * Press L/R to try playing equally middling priority (i.e. priority 2) sound clips
@@ -33,4 +33,4 @@ Demo controls:
 ## Credits
 
 * Code by TheInvader360
-* Example sound effects from [themushroomkingdom.net - Super Mario Bros NES](https://themushroomkingdom.net/media/smb/wav)
+* Example sound effects from [themushroomkingdom.net (Super Mario Bros NES)](https://themushroomkingdom.net/media/smb/wav)
