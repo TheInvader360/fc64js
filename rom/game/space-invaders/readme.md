@@ -1,6 +1,6 @@
 # Space Invaders (fc64js game rom)
 
-[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/space-invaders/docs/demo.png" width="256"/>](https://theinvader360.github.io/fc64js/rom/game/space-invaders/)
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/space-invaders/docs/demo.gif" width="256"/>](https://theinvader360.github.io/fc64js/rom/game/space-invaders/)
 
 [Play in browser](https://theinvader360.github.io/fc64js/rom/game/space-invaders/)
 
