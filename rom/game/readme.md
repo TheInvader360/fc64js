@@ -4,3 +4,4 @@
 * [Breakout](breakout/)
 * [Simon](simon/)
 * [Flappy Bird](flappy-bird/)
+* [Space Invaders](space-invaders/)

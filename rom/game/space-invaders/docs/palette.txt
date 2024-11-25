@@ -1,0 +1,9 @@
+0 COL_BLK 1b1c33 black
+1 COL_BLU 2d93dd blue
+2 COL_RED d32734 red
+3 COL_MAG 7b53ad purple
+4 COL_GRN 28c641 green
+5 COL_CYN da6658 orange
+6 COL_YEL e6da29 yellow
+7 COL_WHT e2e2c9 white
+

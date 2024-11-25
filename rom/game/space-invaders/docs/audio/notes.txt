@@ -1,0 +1,16 @@
+[cloudconvert](https://cloudconvert.com/wav-converter) - convert sound clips to mono wav (pcm_s16le, 128, mono, no change, 22050hz)
+
+```bash
+sudo apt install python3-pip
+pip install numpy
+pip install scipy
+python3 process.py ./source/sfxExplosionInvader.wav 50
+python3 process.py ./source/sfxExplosionPlayer.wav 50
+python3 process.py ./source/sfxLaser.wav 50
+python3 process.py ./source/sfxMoveInvaderA.wav 50
+python3 process.py ./source/sfxMoveInvaderB.wav 50
+python3 process.py ./source/sfxUfo.wav 50
+```
+
+Returns 50ms per entry beeps (~20 entries per second)
+

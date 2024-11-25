@@ -1,0 +1,14 @@
+https://theinvader360.github.io/fc64js/tools/image-tool/
+
+explosionLarge 5x3 2f2f2f666f2f2f2
+explosionSmall 4x3 2ff2f66f2ff2
+
+invaderA       4x3 f00f00000ff0
+invaderO       4x3 f00f0000f00f
+invaderT       4x3 0000f00ff00f
+invaderX       4x3 0000f00f0ff0
+player         5x3 ff0ff0000000000
+ufo            7x3 f00000f0f0f0f0f00000f
+
+logo 62x27 ////////IiIv/yIiIv/yIiL//yIiL/IiIiIv////////////8iIiIv8iIiIv8iIi//IiIi/yIiIiL/////////////JmZmIvZmZmL/ZmZv8iZmZv9mZmZm/////////////2ZmZmL2ZmZm/2Zmb/JmZmb/ZmZmb/////////////9mZmZm9mb2Zv9mZm/2ZmZm8mZv////////////////9mb2ZvZm9mb/ZmZv9mb2ZvJmYi////////////////ZmJmb2ZiZm/2b2b/Zm///2ZiIv///////////////2ZiIiL2YmZvJm9mL2ZvIv9mZmb////////////////2ZmZi9mZmbyZiZi9mbyLyZmZv/////////////////2ZmZvZmZm9mYmZvZmJm8mZv//////////////////8iJmb2Zmb/ZmZmb2ZiZvZmIi//////////////////ZiZm9mb//2ZmZm9mZmb2ZiIv/////////////////2ZmZv9m//9mb2ZvZmZm9mZmb//////////////////2Zmb/Zv//Zm9mb/Zmb/ZmZv////////8iLyIv8iLyIv8iL/IiL/8iIiL/8iIiIvIiIv//8iIvIiIiIvIi8iL/Ii/yIiL/IiIiL/IiIiLyIiIv/yIiImZiZmL2ZiZmL2Zv9mZi/2ZmZi8mZmZmJmZmL/ImZmJmZiZmJmYmZi9mYvZmZv9mZmZvJmZmbyZmZm8iZmZm9mYvZiJmb2ZiZmL2Zmb/Zm9mb2Zm//9mYmZvJmYmZv9mYmZiZmJmYvZm9mZmL2ZvZm9mYi/yZmJmYmZiZm//ZmImZmZi9mb2ZvZvZi9mb2ZvZmIv8mZmZvJmYi////ZmJmZmZiZmJmb2YmZvZm9mb2Zmb/ZmZm/2ZmZv////ZmJmZmYvZiZm9mJmb2ZvZmJmZv8mZmZvImZmb////2ZiZmJmb2ZmZvZmZm9mYmZiZiIvJmJmYiIiZm/////2ZiZmJmL2Zmb2ZmZvZmJm9mYiImZiZvJmJmb//////2YmZiZi9mZm9mb2b2ZmZvZmZmJm9mb2ZmZv//////9mb2ZvZv9mZvZm9m9mZm/2Zmb2ZvZm/2Zv////
+
