@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="Tileset" tilewidth="18" tileheight="16" tilecount="32" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image source="tiles/01.png" width="16" height="16"/>
+  </tile>
+  <tile id="1">
+   <image source="tiles/02.png" width="16" height="16"/>
+  </tile>
+  <tile id="2">
+   <image source="tiles/03.png" width="16" height="16"/>
+  </tile>
+  <tile id="3">
+   <image source="tiles/04.png" width="16" height="16"/>
+  </tile>
+  <tile id="4">
+   <image source="tiles/05.png" width="16" height="16"/>
+  </tile>
+  <tile id="5">
+   <image source="tiles/06.png" width="16" height="16"/>
+  </tile>
+  <tile id="6">
+   <image source="tiles/07.png" width="16" height="16"/>
+  </tile>
+  <tile id="7">
+   <image source="tiles/08.png" width="16" height="16"/>
+  </tile>
+  <tile id="8">
+   <image source="tiles/09.png" width="16" height="16"/>
+  </tile>
+  <tile id="9">
+   <image source="tiles/10.png" width="16" height="16"/>
+  </tile>
+  <tile id="10">
+   <image source="tiles/11.png" width="16" height="16"/>
+  </tile>
+  <tile id="11">
+   <image source="tiles/12.png" width="16" height="16"/>
+  </tile>
+  <tile id="12">
+   <image source="tiles/13.png" width="16" height="16"/>
+  </tile>
+  <tile id="13">
+   <image source="tiles/14.png" width="16" height="16"/>
+  </tile>
+  <tile id="14">
+   <image source="tiles/15.png" width="16" height="16"/>
+  </tile>
+  <tile id="15">
+   <image source="tiles/16.png" width="16" height="16"/>
+  </tile>
+  <tile id="16">
+   <image source="tiles/17.png" width="16" height="16"/>
+  </tile>
+  <tile id="17">
+   <image source="tiles/18.png" width="16" height="16"/>
+  </tile>
+  <tile id="18">
+   <image source="tiles/19.png" width="16" height="16"/>
+  </tile>
+  <tile id="19">
+   <image source="tiles/20.png" width="18" height="16"/>
+  </tile>
+  <tile id="20">
+   <image source="tiles/21.png" width="16" height="16"/>
+  </tile>
+  <tile id="21">
+   <image source="tiles/22.png" width="16" height="16"/>
+  </tile>
+  <tile id="22">
+   <image source="tiles/23.png" width="16" height="16"/>
+  </tile>
+  <tile id="23">
+   <image source="tiles/24.png" width="16" height="16"/>
+  </tile>
+  <tile id="24">
+   <image source="tiles/25.png" width="16" height="16"/>
+  </tile>
+  <tile id="25">
+   <image source="tiles/26.png" width="16" height="16"/>
+  </tile>
+  <tile id="26">
+   <image source="tiles/27.png" width="16" height="16"/>
+  </tile>
+  <tile id="27">
+   <image source="tiles/28.png" width="16" height="16"/>
+  </tile>
+  <tile id="28">
+   <image source="tiles/29.png" width="16" height="16"/>
+  </tile>
+  <tile id="29">
+   <image source="tiles/30.png" width="16" height="16"/>
+  </tile>
+  <tile id="30">
+   <image source="tiles/31.png" width="16" height="16"/>
+  </tile>
+  <tile id="31">
+   <image source="tiles/32.png" width="16" height="16"/>
+  </tile>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="10" height="10">
+  <data encoding="csv">
+25,24,25,24,25,24,25,24,25,24,
+23,26,27,27,27,27,27,27,27,22,
+25,26,27,28,28,28,28,28,27,24,
+23,26,27,28,30,30,30,28,27,22,
+25,26,27,28,31,32,31,28,27,24,
+23,26,27,28,28,29,28,28,27,22,
+25,26,27,27,27,29,27,27,27,24,
+23,26,26,29,29,29,29,29,26,22,
+25,26,26,26,26,26,26,26,26,24,
+23,22,23,22,23,22,23,22,23,22
+</data>
+ </layer>
+</map>

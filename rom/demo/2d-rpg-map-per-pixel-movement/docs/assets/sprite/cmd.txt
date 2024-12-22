@@ -1,0 +1,1 @@
+convert PlayerSheet.png +repage -crop 16x16 +repage Player.png

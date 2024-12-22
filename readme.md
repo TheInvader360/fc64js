@@ -21,6 +21,7 @@ The minified [library](lib/fc64.min.js) weighs in at just 16 kilobytes
 [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/flappy-bird/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/game/flappy-bird/) 
 [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/game/space-invaders/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/game/space-invaders/) 
 [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/ray-casting/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/ray-casting/) 
+[<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/2d-rpg-map-per-pixel-movement/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/2d-rpg-map-per-pixel-movement/) 
 [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/platformer/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/platformer/) 
 [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/dungeon-crawl/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/dungeon-crawl/) 
 [<img src="https://raw.githubusercontent.com/TheInvader360/fc64js/main/rom/demo/isometric/docs/demo.gif" width="128"/>](https://theinvader360.github.io/fc64js/rom/demo/isometric/) 
