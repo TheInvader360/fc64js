@@ -1,7 +1,7 @@
 // world units to pixels ratio: 1wu = 16px
 // coordinate system (world and screen): origin (0,0) in top left corner
 
-import '../../../../lib/fc64.js';
+import '../../../lib/fc64.js';
 
 fc64Init(romInit, romLoop, [0x000000, 0x606060, 0xA8A8A8, 0xF8F8F8, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00]);
 
