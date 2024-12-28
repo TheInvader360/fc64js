@@ -1,0 +1,16 @@
+convert Home1.png +repage -crop 16x16 +repage Home1.png
+convert Home2.png +repage -crop 16x16 +repage Home2.png
+convert Oak.png +repage -crop 16x16 +repage Oak.png
+convert Rival.png +repage -crop 16x16 +repage Rival.png
+convert Town.png +repage -crop 16x16 +repage Town.png
+
+manually deduped and renamed then copied to tiles-colors...
+
+cd tiles-colors
+mogrify -format png -fill "#000000" -opaque "#181818" *.png
+mogrify -format png -fill "#0000ff" -opaque "#5abdff" *.png
+mogrify -format png -fill "#ff0000" -opaque "#bd8cff" *.png
+mogrify -format png -fill "#ff00ff" -opaque "#ffffff" *.png
+
+manually tinified and copied to tiles-colors-tinified
+

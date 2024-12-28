@@ -2,92 +2,10 @@
 // coordinate system (world and screen): origin (0,0) in top left corner
 
 import '../../../lib/fc64.js';
+import { levelData, playerAnimations, tileImages } from './data.js';
+import { colors, directions } from './enums.js';
 
 fc64Init(romInit, romLoop, [0x000000, 0x606060, 0xA8A8A8, 0xF8F8F8, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00]);
-
-const colors = { black: 0, dark: 1, light: 2, white: 3, red: 4, green: 5, blue: 6, yellow: 7 }; // red/green/blue/yellow for debug use only
-const directions = { up: 0, down: 1, left: 2, right: 3 };
-
-const tileImages = new Map([
-  [ 1, imageFromB64String('IiIiIiIiIiIjMzMzMzMzMyMRERERERERIxAAAAAAAAAjEAIiIiIiIiMQICIiIiIiIxAiAiIiIiIjECIgIiIiIiMQIiIAAAAAIxAiIgAiIiIjECIiAgERESMQIiICEBERIxAiIgIRAAAjECIiAhEAESMQIiICEQEAIxAiIgIRAQA')],
-  [ 2, imageFromB64String('IiIiIiIiIiIzMzMzMzMzMxERERERERERAAAAAAAAAAAiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAIiIgIiIiICIRERAREREQEREREBERERARAAAAAAAAAAAQEREREBEREQAAAAAAAAAAAAAAAAAAAAA')],
-  [ 3, imageFromB64String('AAAAAAAAAAADMzMzMzMzMAMzMzMzMzMwAzMzMzMzMzADMzMzMzMzMAAAAAAAAAAAAzMzMzMzMzACAAAAAAAAIAICIiIiIiAgAgIiIAIiICACAiIjMiIgIAIAAAAAAAAgAgIiIiIiICACAiIgAiIgIAICIiMyIiAgAgAAAAAAACA')],
-  [ 4, imageFromB64String('IiIiIiIiIiIzMzMzMzMzMhEREREREREyAAAAAAAAATIiIiIiIiABMiIiIiIiAgEyIiIiIiAiATIiIiIiAiIBMgAAAAAiIgEyIiIiACIiATIRERAgIiIBMhERASAiIgEyAAARICIiATIRABEgIiIBMgAQESAiIgEyABARICIiATI')],
-  [ 5, imageFromB64String('IxAiIgIRAQAjECIiAhEBACMQIiICEQEAIxAiIgAAAQAjECIiAhEBACMQIiICEQEAIxAiIgIRAAAjECIiAhEBACMQIiICEQEAIxAiIgIRAQAjECIiAhEBACMQIiIAAAEAIxAiIgIRAQAjECIiAhEBACMQIiICEQAAIxAiIgIRAQA')],
-  [ 6, imageFromB64String('IjIiMiIjIiIiMzMyIiIyIjIyIjIiIjMzIyIiIyIiMiIjIiIjMzMyIiMyIjIiMiMiMiMzIiIyIjMiIiMiIjIiIyIiIjIiMiIjMiIjIzMzIiMjIjIiMiIzMiIzIiIyIiMiIiMiIjIiIyIiMzIjMyIjMjMiIzIiMzIjIyIiMiIjIiI')],
-  [ 7, imageFromB64String('MzMzMzMzMzMzMzMzMzMzMzIjMzMzMzMzMzMzMzMzMzMzMzMzIiMzMzMzMzMzMzMzMzMzMzMzMzMiIiIiIiIiIjMiIzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIzMzMzMzMzMzMzMzMzMzMzMzMzMzIiMzMzIiIiIiIiIiI')],
-  [ 8, imageFromB64String('AgIiIiIiICACAiIgAiIgIAICIiMyIiAgAgAAAAAAACACAiIiIiIgIAICIiACIiAgAgIiIzIiICACAAAAAAAAIDMiIzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIzMzMzMzMzMzMzMzMzMzMzMzMzMzIiMzMzIiIiIiIiIiI')],
-  [ 9, imageFromB64String('MAAAAAAAAAMCIiIiIiIiIAEgIiIiIgIQAiIiIiIiIiABEREREREREAIiIiIiIiIgASAiIiIiAhACIiIiIiIiIAEREREREREQAiIiIiIiIiABICIiIiICEAIiIiIiIiIgAAAAAAAAAAABEBEBEBEBEAEQEQEQEQEQMAAAAAAAAAM')],
-  [10, imageFromB64String('ABARICIiATIAEBEgIiIBMgAQESAiIgEyABAAACIiATIAEBEgIiIBMgAQESAiIgEyAAARICIiATIAEBEgIiIBMgAQESAiIgEyABARICIiATIAEBEgIiIBMgAQAAAiIgEyABARICIiATIAEBEgIiIBMgAAESAiIgEyABARICIiATI')],
-  [11, imageFromB64String('MzMzMzMzMzMyAAAAAAAAIzACERERERADMCEREREREQMwIRAAAAERAzAAAzMzMAADMDMDIiIwMwMwAAAAAAAAAwIzMzMzMzMgAjMzMzMzMyACIiIjMzMyIAIjMzMzMzMgAjMzMzMzMyACMzMzMzMzIAIzMzMzMzMgAjMzMzMzMyA')],
-  [12, imageFromB64String('AjMzMzMzMyACMzMzMzMzIAIiIiMzMzIgAiMzMzMzMyACMzMzMzMzIAIzMzMzMzMgAjMzMzMzMyACMzMzMzMzIAIjMzMzMzIgAiIiIiIiIiABIiIiIiIiEAAAAAAAAAAAIBEREREREQIhAAAAAAAAEzMzMzMzMzMzIiIiIiIiIiI')],
-  [13, imageFromB64String('MzMzMzMzMzMzMAADMAADMzMCIiACIiAzMCIhEiIRIgMwIhIRESISAzECEiIiIhIDMQISEAEhIAMwIhIiIiEgEzAhIhERIhIDMCEREiIRIgMwAiIgACIgAzAQAAERAAEDMBEREREREQMyAREQABEQIzMgAAIyAAIzMzMzMzMzMzM')],
-  [14, imageFromB64String('MzAAAAAAAAAzAiIiIiIiIjAiIiIiIiIiMCIiIiIiIiIwIiIiIiIiIjAiIiIiIiIiMCIiIiIiIiIwIiIiIiIiIjAiIiIiIiIiMDIiIiIiIiIwIyIiIiIiIjASMzMzMzMzMwEREREREREzAAAAAAAAADMBIhARERERMyAAAiIiIiI')],
-  [15, imageFromB64String('AAAAAAAAAzMiIiIiIiIgMyIiIiIiIiIDIiIiIiIiIgMiIiIiIiIiAyIiIiIiIiIDIiIiIiIiIgMiIiIiIiIiAyIiIiIiIiIDIiIiIiIiIwMiIiIiIiIyAzMzMzMzMyEDEREREREREDMAAAAAAAAAMxEREREBIhAzIiIiIiAAAjM')],
-  [16, imageFromB64String('MzMzAAAzMzMzMwAiIgAzMzMwIiIiIgMzMzAiEREiAzMzAiEAABIgMzACIAAAAiADMAIgAAACIAMwICIAACICAzAgEiIiIQIDMBIAIzIAIQMwEiIAACIhAzASEiIiISEDMwERIzIREDMzAREiIhEQMzMwARIhEAMzMzMwAAADMzM')],
-  [17, imageFromB64String('IxAiIgIRAQAjECIiAhEBACMQIiICEQARIxAiIgIRAAAjECIiAhARESMQIiICARERIxAiIgAiIiIjECIiAAAAACMQIiAiIiIiIxAiAiIiIiIjECAiIiIiIiMQAiIiIiIiIxAAAAAAAAAjERERERERESMzMzMzMzMzIiIiIiIiIiI')],
-  [18, imageFromB64String('AAAAAAAAAAAAAAAAAAAAABAREREQERERAAAAAAAAAAARERAREREQEREREBERERARIiIgIiIiICIAAAAAAAAAACIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiAAAAAAAAAAARERERERERETMzMzMzMzMzIiIiIiIiIiI')],
-  [19, imageFromB64String('ABARICIiATIAEBEgIiIBMhEAESAiIgEyAAARICIiATIREQEgIiIBMhERECAiIgEyIiIiACIiATIAAAAAIiIBMiIiIiICIgEyIiIiIiAiATIiIiIiIgIBMiIiIiIiIAEyAAAAAAAAATIRERERERERMjMzMzMzMzMyIiIiIiIiIiI')],
-  [20, imageFromB64String('AAAAAjMzMzMBEiIwMzMzMwESIjAzMzMzASEjMDMzMzMBISMwMzMzMwESIzAzMzMzARIiMDMzMzMBEiIwMzMzMwERIzAzMzMzASEjMDMzMzMBISMwMzMzMwEAADAzMzMzADMzADMzMzMDMRMwMzMzMwMTMTAzMzMzAxMxMDMzMzM')],
-  [21, imageFromB64String('MzMzMyAAAAAzMzMzAyIhEDMzMzMDIiEQMzMzMwMyEhAzMzMzAzISEDMzMzMDMiEQMzMzMwMiIRAzMzMzAyIhEDMzMzMDMhEQMzMzMwMyEhAzMzMzAzISEDMzMzMDAAAQMzMzMwAzMwAzMzMzAzETMDMzMzMDEzEwMzMzMwMTMTA')],
-  [22, imageFromB64String('MzMzMgAAAAAzMzIAEiIiIjMzABIiIiMzMzASIiEiMzMzASIiESIzMzIBIiERIiMzMBIiEREiIiIgEiIRERIiIgESIhERERIiARIiIREREREBEiIiEREREQESIiIiERERAREiIiIiEREBESIiIiIhEQERESIiIiIiARERESIiIiI')],
-  [23, imageFromB64String('AAAAACMzMzMiIRERACMzMyIiESIRADMzMiIhEiIRAzMyIiERIiEQMyIiIRESIRAjIiIhERIiEQMiIhEREiIRAiIhERESIhEQERERESIiERARERESIiIREBEREiIiIhEQEREiIiIiERAREiIiIiERECIiIiIiEREQIiIiIhERERA')],
-  [24, imageFromB64String('AREREREiIiIgERERERIiIiARERERERIiAgERERERERECIBEREREREQEiABERERERIAERAAABEREiIAAiIhARETIiAzIiIgERMiAzMiIiIAAzAjMiIQIjMzMCMiIQACMzMwIiEAEQEjMzIAABERECIjMzMiIhERAiMzMzMzMiIgA')],
-  [25, imageFromB64String('IiIiERERERAiIiERERERAiIiERERERECERERERERECARERERERECIBERERERACIQEREQAAAREAIREQEiIgACIhEQIiIzICIjAAIiIjMyAiMiIiASIzMgMyIiAAEiMyAzIiEBEAEiIDMiIBEREAACMyIBERIiMzMzACIiMzMzMzM')],
-  [26, imageFromB64String('MzMzMzMzMzMzMjMzMzMzMzIyMjMzMzMzMyMjMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyMzMzMzMzMjIyMzMzMzMzIyMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM')],
-  [27, imageFromB64String('MzMzMzMzMzMzMzMzMzMzMzMwAzMzMAMzMwMwMzMDMDMwMiMDMDIjAzAyIwMwMiMDMBMwAzATMAMwMQEDMDEBAzAxIQMwMSEDMDEhAzAxIQMwMyEDMDMhAzAxIQMwMSEDMCEhAzAhIQMwISEDMCEhAzMAADMzAAAzMzMzMzMzMzM')],
-  [28, imageFromB64String('IjMyIyIzMiMyIzIzMiMyMzIiMzMyIjMzMyIzMjMiMzIzIjMiMyIzIjMiMiIzIjIiMzIyIzMyMiMzMjIjMzIyIyIzMiMiMzIjMiMyMzIjMjMyIjMzMiIzMzMiMzIzIjMyMyIzIjMiMyIzIjIiMyIyIjMyMiMzMjIjMzIyIzMyMiM')],
-  [29, imageFromB64String('MiIiIzIiIiMiIiIiIiIiIiIiEiIiIhIiIiIiIiIiIiIhIiIiISIiIiIiIyIiIiMiIiIiIiIiIiIyIiIjMiIiIzIiIiMyIiIjIiIiIiIiIiIiIhIiIiISIiIiIiIiIiIiISIiIiEiIiIiIiMiIiIjIiIiIiIiIiIiMiIiIzIiIiM')],
-  [30, imageFromB64String('IQAAEiEAABIQEiEBEBIhAQEjMhABIzIQASMyEAEjMhABIzIQASMyEAEjMhABIzIQASMiEAEjIhABIzIQASMyEAEjMhABIzIQASMyEAEjMhABIzIQASMyEAEiIhABIiIQARIhEAESIRABEREQAREREBAREQEQEREBIQAAEiEAABI')],
-  [31, imageFromB64String('AAAAAAAAAAABEREREREREAMzMzMzMzMwAiIiIiIiIiAAAAAAAAAAAAEQIAAAAgEQAiAgAAACAiACICAAAAICIAIgIAAAAgIgAiAjMzMyAiABEAAAAAACEAESIiIzIiIQAiIRIjMhEiACIhEiIiESIAAAAAAAAAAAIiIiIiIiIiI')],
-  [32, imageFromB64String('AAAAAAAAAAAzMzMzMzMzMzMzMzMzMzMzIiIiIiIiIiIiERERERERIiIQAAAAAAEiAAAAAAAAAAAREAAAAAABESIQAAAAAAIhIhAAAAAAAiEiEAAAAAACISIQAAAAAAIhIhAAAAAAAiEiEAAAAAACISIQAAAAAAIhAAAAAAAAAAA')],
-]);
-
-const playerWalkU0Image = imageFromB64String('////AA////////AAAP//////8DMzD/////ADAAAwD///AwAjMgAw//8DAiMyIDD//wMCAjIgMP//AgAiMiAg///wACIiAA////AgIiAgIP//AyAiAiAg//8DAgAiMgD///AjMzMiD///8AIiIgAP///wAAAAMwD///8AAAAAD/8');
-const playerWalkU1Image = imageFromB64String('////8AD///////8AAA//////8DMzD/////ADAAAwD///AwAjMgAw//8DAiMyIDD//wMCIyAgMP//AgIjIgAg///wACIiAA///wICAiICD///AgIgIgIw//8AIyIAIDD///AiMzMyD///8AAiIiAP//8AMwAAAA////AAAAAA//8');
-const playerWalkD0Image = imageFromB64String('////AAAP//////AiMyD////wAiIAIA///wMCMzMAMP//AwMAADAw//8DAAAAADD//wIgAAACIP//8DMDMDMP///wIwMwMg///wICMzMgIP//AgAAAAAjD/8CMwIiIAMP//AzAzMyAP///wAiIAAP///wAAADMgD///8AAAAAD/8');
-const playerWalkD1Image = imageFromB64String('///wAAD//////wIzIg/////wAgAiIA///wMAMzMgMP//AwMAADAw//8DAAAAADD//wIgAAACIP//8DMDMDMP///wIwMwMg///wICMzMgIP/wMgAAAAAg//AwAiIgMyD//wAjMzAzD///8AACIgD///8AIzAAAA////AAAAAA//8');
-const playerWalkL0Image = imageFromB64String('////AAAP/////wAjIiD////wMwIzIg//8AAjMCICIP//AAIzADAiD///AAICMCIP/wAwMAMwIP//AzAzAzAP///wIzMDIP////8CIgIA/////wAAACD/////AgMwIg////8DAzAiD////wIAAAAP////AAMzMP////AAAAAAD/8');
-const playerWalkL1Image = imageFromB64String('//////////////8AAAD///8PACMyIgD//wAzAiMyIg//ACMwIgIiD//wAjMAMCIP//8AAgIwIP//ADAwAzAg//8DMDMDMA////AjMwMg/////wAAAAD/////8DMCIA/////wMwIgMP///wAAIgAw///wMzMAAzD///AAAAAAAA8');
-const playerWalkR0Image = imageFromB64String('///wAAD//////wIiMgD////wIjMgMw///wIgIgMyAA/wIgMAMyAA//AiAyAgAP///wIDMAMDAP//8AMwMwMw////AjAzMg////8AICIg/////wIAAAD////wIgMwIP////AiAzAw////8AAAACD/////AzMwAP////AAAAAAD/8');
-const playerWalkR1Image = imageFromB64String('/////////////wAAAP////8AIiMyAPD/8CIjMiAzAP/wIiAiAzIA//AiAwAzIA///wIDICAA////AgMwAwMA///wAzAzAzD///8CMDMyD////wAAAAD////wAiAzD////wMCIDMP////AwAiAAD///8DMAAzMw//8AAAAAAAD/8');
-const playerAnimations = new Map([
-  [directions.up,    new Anim([playerWalkU0Image, playerWalkU1Image], 10, true)],
-  [directions.down,  new Anim([playerWalkD0Image, playerWalkD1Image], 10, true)],
-  [directions.left,  new Anim([playerWalkL0Image, playerWalkL1Image], 10, true)],
-  [directions.right, new Anim([playerWalkR0Image, playerWalkR1Image], 10, true)],
-]);
-
-const levelData = new Map([
-  ['inside', { 
-    tilemap: [
-      [ 1, 2, 2, 2, 2, 2, 2, 3, 2, 4],
-      [ 5, 6, 6, 6, 6, 6, 7, 8, 9,10],
-      [ 5,11, 6,11, 6, 6, 7, 7, 9,10],
-      [ 5,12, 6,12, 6, 6, 7, 7, 7,10],
-      [ 5, 6, 6, 6, 6, 6, 7, 7,13,10],
-      [ 5, 7, 7, 7, 7, 7, 7,14,15,10],
-      [ 5,16,16, 7, 7, 7, 7, 7,13,10],
-      [17,18,18,18,20,21,18,18,18,19],
-    ],
-    exits: [{x: 5, y: 8, target: {ref: 'outside', x: 5, y: 4.5}}],
-  }],
-  ['outside', {
-    tilemap: [
-      [25,24,25,24,25,24,25,24,25,24],
-      [23,26,27,27,27,27,27,27,27,22],
-      [25,26,27,28,28,28,28,28,27,24],
-      [23,26,27,28,30,30,30,28,27,22],
-      [25,26,27,28,31,32,31,28,27,24],
-      [23,26,27,28,28,29,28,28,27,22],
-      [25,26,27,27,27,29,27,27,27,24],
-      [23,26,26,29,29,29,29,29,26,22],
-      [25,26,26,26,26,26,26,26,26,24],
-      [23,22,23,22,23,22,23,22,23,22],
-    ],
-    exits: [{ x: 5.5, y: 4.5, target: {ref: 'inside', x: 4.5, y: 6.5}}],
-  }],
-]);
 
 class Level {
   constructor(ref) {
@@ -123,7 +41,7 @@ class Player {
     this.y = y; // y position reference for internal use, for external collision detection and drawing purposes use the bounding rects
     this.state = Player.states.idle;
     this.stateTicks = 0;
-    this.facing = directions.down;
+    this.facingDir = directions.down;
     this.collisionBounds = new Rect(0, 0, 0.625, 0.5); // 10px wide 8px high (in world units 1/16*10=0.625wu wide 1/16*8=0.5wu high), real position set by updateBounds()
     this.drawBounds = new Rect(0, 0, 1, 1); // 16px wide 16px high (in world units 1/16*16=1wu wide 1/16*16=1wu high), real position set by updateBounds()
     this.velocityX = 0;
@@ -216,7 +134,7 @@ let transitionManager, level, player, debug;
 
 function romInit() {
   transitionManager = new TransitionManager();
-  level = new Level('inside');
+  level = new Level('Inside');
   player = new Player(2, 2.5);
 }
 
@@ -235,25 +153,25 @@ function updatePlayer() {
   // temporarily set velocity to zero on both axes (without changing player.state)...
   player.velocityX = 0;
   player.velocityY = 0;
-  // ...then set velocity (and facing/state) based on current input...
+  // ...then set velocity (and facingDir/state) based on current input...
   if (isPressed(BTN_U)) {
     player.velocityY = -Player.speed;
-    player.facing = directions.up;
+    player.facingDir = directions.up;
     player.setState(Player.states.walk);
   }
   if (isPressed(BTN_D)) {
     player.velocityY = Player.speed;
-    player.facing = directions.down;
+    player.facingDir = directions.down;
     player.setState(Player.states.walk);
   }
   if (isPressed(BTN_L)) {
     player.velocityX = -Player.speed;
-    player.facing = directions.left;
+    player.facingDir = directions.left;
     player.setState(Player.states.walk);
   }
   if (isPressed(BTN_R)) {
     player.velocityX = Player.speed;
-    player.facing = directions.right;
+    player.facingDir = directions.right;
     player.setState(Player.states.walk);
   }
   // ...if player velocity is still zero on both axes and state is not already idle - set state to idle
@@ -311,10 +229,13 @@ export function draw() {
     if (debug) drawRectangle((exit.bounds.x - viewport.x) * 16, (exit.bounds.y - viewport.y) * 16, exit.bounds.width * 16, exit.bounds.height * 16, colors.blue);
   }
   // player
-  const frameFinder = player.state == Player.states.idle ? 0 : player.stateTicks;
   if (debug) drawRectangle((player.drawBounds.x - viewport.x) * 16, (player.drawBounds.y - viewport.y) * 16, 16, 16, colors.green);
-  drawImage((player.drawBounds.x - viewport.x) * 16, (player.drawBounds.y - viewport.y) * 16, 16, 16, playerAnimations.get(player.facing).getKeyFrame(frameFinder));
-  if (debug) drawRectangle((player.collisionBounds.x - viewport.x) * 16, (player.collisionBounds.y - viewport.y) * 16, player.collisionBounds.width * 16, player.collisionBounds.height * 16, player.state == Player.states.idle ? colors.blue : colors.yellow);
+  drawImage((player.drawBounds.x - viewport.x) * 16, (player.drawBounds.y - viewport.y) * 16, 16, 16, playerAnimations.get(player.facingDir).getKeyFrame(player.state == Player.states.idle ? 0 : player.stateTicks));
+  if (debug) {
+    drawRectangle((player.collisionBounds.x - viewport.x) * 16, (player.collisionBounds.y - viewport.y) * 16, player.collisionBounds.width * 16, player.collisionBounds.height * 16, player.state == Player.states.idle ? colors.blue : colors.yellow);
+    const facingDirText = player.facingDir == directions.up ? 'U' : player.facingDir == directions.down ? 'D' : player.facingDir == directions.left ? 'L' : player.facingDir == directions.right ? 'R' : '';
+    drawText((player.x - viewport.x) * 16 + 3, (player.y - viewport.y) * 16 + 2, facingDirText, colors.blue);
+  }
   // transition effect
   transitionManager.applyGraphicsEffect();
 }

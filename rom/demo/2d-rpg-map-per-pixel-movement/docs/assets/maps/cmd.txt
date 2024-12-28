@@ -1,10 +1,12 @@
-cd colorized
-cp -a ../greyscale/. ./
+convert Inside.png +repage -crop 16x16 +repage TilesInside.png
+convert Outside.png +repage -crop 16x16 +repage TilesOutside.png
+
+manually deduped and renamed then copied to tiles-colors...
+
+cd tiles-colors
 mogrify -format png -fill "#0000ff" -opaque "#606060" *.png
 mogrify -format png -fill "#ff0000" -opaque "#a8a8a8" *.png
 mogrify -format png -fill "#ff00ff" -opaque "#f8f8f8" *.png
-convert MockupInside.png +repage -crop 16x16 +repage TilesInside.png
-convert MockupOutside.png +repage -crop 16x16 +repage TilesOutside.png
 
-was then quicker/easier to manually delete dupes and rename them than to automate the process...
+manually tinified and copied to tiles-colors-tinified
 

@@ -1,0 +1,11 @@
+convert PlayerSheet.png +repage -crop 16x16 +repage Player.png
+
+manually moved to frames-colors...
+
+cd frames-colors
+mogrify -format png -fill "#000000" -opaque "#141414" *.png
+mogrify -format png -fill "#ff0000" -opaque "#999999" *.png
+mogrify -format png -fill "#ff00ff" -opaque "#e8e8e8" *.png
+
+manually tinified and copied to frames-colors-tinified
+
